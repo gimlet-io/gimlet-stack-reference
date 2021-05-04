@@ -1,0 +1,133 @@
+{{- if .OAuth2Proxy.Enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oauth2-proxy-nginx
+  namespace: infrastructure
+data:
+  nginx.conf: |
+    worker_processes 5;
+
+    events {
+    }
+
+    http {
+      server {
+        listen 80 default_server;
+
+        location = /healthcheck {
+          add_header Content-Type text/plain;
+          return 200 'ok';
+        }
+
+        location ~ /redirect/(.*) {
+          return 307 https://$1$is_args$args;
+        }
+      }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: oauth2-proxy
+  name: oauth2-proxy
+  namespace: infrastructure
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: oauth2-proxy
+  template:
+    metadata:
+      labels:
+        k8s-app: oauth2-proxy
+    spec:
+      volumes:
+        - name: nginx
+          configMap:
+            name: oauth2-proxy-nginx
+      containers:
+        - name: nginx
+          image: nginx:1.19.3-alpine
+          resources:
+            limits:
+              cpu: 0.2
+              memory: 512Mi
+          ports:
+            - name: nginx
+              containerPort: 80
+          volumeMounts:
+            - name: nginx
+              mountPath: /etc/nginx/
+              readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 80
+            initialDelaySeconds: 3
+            timeoutSeconds: 2
+            failureThreshold: 2
+        - name: oauth2-proxy
+          image: quay.io/oauth2-proxy/oauth2-proxy:v7.1.2
+          args:
+            - --provider=github
+            - --email-domain=*
+            - --github-org={{ .OAuth2Proxy.Org }}
+            - --github-user={{ .OAuth2Proxy.User }}
+            - --upstream=file:///dev/null
+            - --upstream=http://localhost/redirect/
+            - --http-address=0.0.0.0:4180
+            - --cookie-domain=.{{ .Nginx.Host }}
+            - --footer=-
+          envFrom:
+            - secretRef:
+                name: oauth2-proxy
+          ports:
+            - containerPort: 4180
+              protocol: TCP
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: oauth2-proxy
+  name: oauth2-proxy
+  namespace: infrastructure
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      targetPort: http
+      port: 80
+  selector:
+    k8s-app: oauth2-proxy
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    {{- if .CertManager.Enabled }}
+    cert-manager.io/cluster-issuer: letsencrypt
+    {{- end }}
+  name: oauth2-proxy
+  namespace: infrastructure
+spec:
+  {{- if .CertManager.Enabled }}
+  tls:
+    - secretName: tls-oauth2-proxy
+      hosts:
+        - "auth.{{ .Nginx.Host }}"
+  {{- end }}
+  rules:
+    - host: "auth.{{ .Nginx.Host }}"
+      http:
+        paths:
+          - backend:
+              serviceName: oauth2-proxy
+              servicePort: http
+            path: /
+{{- end }}

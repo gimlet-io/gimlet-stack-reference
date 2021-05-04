@@ -1,0 +1,11 @@
+{{- if .Nginx.Enabled }}
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: ingress-nginx
+  namespace: infrastructure
+spec:
+  interval: 60m
+  url: https://kubernetes.github.io/ingress-nginx
+{{- end }}

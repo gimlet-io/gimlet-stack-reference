@@ -1,0 +1,25 @@
+{{- if .CertManager.Enabled }}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: cert-manager
+  chart:
+    spec:
+      chart: cert-manager
+      version: v1.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+      interval: 10m
+  values:
+    installCRDs: true
+    {{- if .Linkerd.Enabled }}
+    deploymentAnnotations:
+      linkerd.io/inject: disabled
+    {{- end }}
+{{- end }}

@@ -1,0 +1,47 @@
+{{- if .Nginx.Enabled }}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: ingress-nginx
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: 3.26.0
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+      interval: 10m
+  values:
+    controller:
+      {{- if .Linkerd.Enabled }}
+      admissionWebhooks:
+        patch:
+          podAnnotations:
+            linkerd.io/inject: disabled
+      podAnnotations:
+        linkerd.io/inject: disabled
+      {{- end }}
+      service:
+        externalTrafficPolicy: Local
+      {{- if eq .Vendor "do" }}
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+        service.beta.kubernetes.io/do-loadbalancer-hostname: "{{ .Nginx.Host }}"
+      config:
+        use-proxy-protocol: "true"
+      {{- end }}
+      metrics:
+        enabled: true
+        service:
+          annotations:
+            prometheus.io/port: "10254"
+            prometheus.io/scrape: "true"
+      defaultBackend:
+        enabled: true
+        replicaCount: 2
+{{- end }}

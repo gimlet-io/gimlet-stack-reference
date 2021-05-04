@@ -1,0 +1,100 @@
+{{- if .Prometheus.Enabled }}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: prometheus
+  chart:
+    spec:
+      chart: prometheus
+      version: 13.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus
+      interval: 10m
+  values:
+    pushgateway:
+      enabled: false
+    alertmanager:
+      enabled: false
+    server:
+      retention: "14d"
+      global:
+        scrape_interval: 15s
+    extraScrapeConfigs: |-
+    {{- if .Linkerd.Enabled }}
+      - job_name: 'linkerd-controller'
+        scrape_interval: 10s
+        scrape_timeout: 10s
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: ['linkerd']
+        relabel_configs:
+          - source_labels:
+              - __meta_kubernetes_pod_label_linkerd_io_control_plane_component
+              - __meta_kubernetes_pod_container_port_name
+            action: keep
+            regex: (.*);admin-http$
+          - source_labels: [__meta_kubernetes_pod_container_name]
+            action: replace
+            target_label: component
+      - job_name: 'linkerd-service-mirror'
+        scrape_interval: 10s
+        scrape_timeout: 10s
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels:
+              - __meta_kubernetes_pod_label_linkerd_io_control_plane_component
+              - __meta_kubernetes_pod_container_port_name
+            action: keep
+            regex: linkerd-service-mirror;admin-http$
+          - source_labels: [__meta_kubernetes_pod_container_name]
+            action: replace
+            target_label: component
+      - job_name: 'linkerd-proxy'
+        scrape_interval: 10s
+        scrape_timeout: 10s
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+        - source_labels:
+            - __meta_kubernetes_pod_container_name
+            - __meta_kubernetes_pod_container_port_name
+            - __meta_kubernetes_pod_label_linkerd_io_control_plane_ns
+          action: keep
+          regex: ^linkerd-proxy;linkerd-admin;linkerd$
+        - source_labels: [__meta_kubernetes_namespace]
+          action: replace
+          target_label: namespace
+        - source_labels: [__meta_kubernetes_pod_name]
+          action: replace
+          target_label: pod
+        - source_labels: [__meta_kubernetes_pod_label_linkerd_io_proxy_job]
+          action: replace
+          target_label: k8s_job
+        - action: labeldrop
+          regex: __meta_kubernetes_pod_label_linkerd_io_proxy_job
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_linkerd_io_proxy_(.+)
+        - action: labeldrop
+          regex: __meta_kubernetes_pod_label_linkerd_io_proxy_(.+)
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_linkerd_io_(.+)
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+          replacement: __tmp_pod_label_$1
+        - action: labelmap
+          regex: __tmp_pod_label_linkerd_io_(.+)
+          replacement:  __tmp_pod_label_$1
+        - action: labeldrop
+          regex: __tmp_pod_label_linkerd_io_(.+)
+        - action: labelmap
+          regex: __tmp_pod_label_(.+)
+    {{- end }}
+{{- end }}
