@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   k8s-namespaces.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -801,5 +801,5 @@ data:
       "title": "K8s / Namespaces",
       "uid": "9hEmrVjiz",
       "version": 1
-    }
+    }`}}
 {{- end }}

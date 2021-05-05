@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   logs.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -265,5 +265,5 @@ data:
       "title": "Logs",
       "uid": "_mBmhzOGz",
       "version": 1
-    }
+    }`}}
 {{- end }}

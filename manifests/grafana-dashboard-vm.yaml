@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   vm.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -1514,5 +1514,5 @@ data:
       "title": "VMs",
       "uid": "Ne_roaViz",
       "version": 1
-    }
+    }`}}
 {{- end }}

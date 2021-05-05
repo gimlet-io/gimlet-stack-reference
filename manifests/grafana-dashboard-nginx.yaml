@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   nginx.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -1479,5 +1479,5 @@ data:
       "title": "Nginx",
       "uid": "nginx",
       "version": 2
-    }
+    }`}}
 {{- end }}

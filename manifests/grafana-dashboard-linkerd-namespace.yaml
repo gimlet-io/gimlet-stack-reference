@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   linkerd-namespace.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -4486,5 +4486,5 @@ data:
       "title": "Linkerd / Namespace",
       "uid": "linkerd-namespace",
       "version": 1
-    }
+    }`}}
 {{- end }}

@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   linkerd-topline.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -1507,5 +1507,5 @@ data:
       "title": "Linkerd / Top Line",
       "uid": "linkerd-top-line",
       "version": 1
-    }
+    }`}}
 {{- end }}

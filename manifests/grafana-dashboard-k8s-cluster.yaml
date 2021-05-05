@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   k8s-cluster.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -1551,5 +1551,5 @@ data:
       "title": "K8s / Cluster",
       "uid": "AA9GWPtiz1",
       "version": 1
-    }
+    }`}}
 {{- end }}

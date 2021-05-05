@@ -9,7 +9,7 @@ metadata:
     grafana_dashboard: "1"
 data:
   prometheus.json: |-
-    {
+    {{`{
       "annotations": {
         "list": [
           {
@@ -1452,5 +1452,5 @@ data:
       "title": "Prometheus",
       "uid": "prometheus",
       "version": 1
-    }
+    }`}}
 {{- end }}
