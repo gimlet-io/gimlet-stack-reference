@@ -1,4 +1,4 @@
-{{- if .Nginx.Enabled }}
+{{ if .Nginx.Enabled -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository

@@ -1,4 +1,4 @@
-{{- if .Linkerd.Enabled }}
+{{ if .Linkerd.Enabled -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository

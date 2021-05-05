@@ -1,4 +1,4 @@
-{{- if .Prometheus.Enabled }}
+{{ if .Prometheus.Enabled -}}
 ---
 apiVersion: v1
 kind: ConfigMap

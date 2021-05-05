@@ -1,4 +1,4 @@
-{{- if .Nginx.Enabled }}
+{{ if .Nginx.Enabled -}}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -28,7 +28,7 @@ spec:
       {{- end }}
       service:
         externalTrafficPolicy: Local
-      {{- if eq .Vendor "do" }}
+      {{- if eq (default "" .Vendor) "do" }}
       annotations:
         service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
         service.beta.kubernetes.io/do-loadbalancer-hostname: "{{ .Nginx.Host }}"

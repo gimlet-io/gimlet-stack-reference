@@ -1,4 +1,4 @@
-{{- if or .Loki.Enabled .Prometheus.Enabled }}
+{{ if or .Loki.Enabled .Prometheus.Enabled -}}
 ---
 apiVersion: v1
 kind: ConfigMap

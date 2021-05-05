@@ -1,4 +1,4 @@
-{{- if .Nginx.Enabled }}
+{{ if .Nginx.Enabled -}}
 ---
 apiVersion: v1
 kind: ConfigMap

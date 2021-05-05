@@ -1,4 +1,4 @@
-{{- if .OAuth2Proxy.Enabled }}
+{{ if .OAuth2Proxy.Enabled -}}
 ---
 apiVersion: v1
 kind: ConfigMap
