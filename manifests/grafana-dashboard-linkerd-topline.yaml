@@ -1,4 +1,4 @@
-{{ if .Linkerd.Enabled -}}
+{{ if .linkerd.enabled -}}
 ---
 apiVersion: v1
 kind: ConfigMap

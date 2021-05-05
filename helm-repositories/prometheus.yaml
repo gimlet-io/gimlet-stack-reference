@@ -1,4 +1,4 @@
-{{ if .Prometheus.Enabled -}}
+{{ if .prometheus.enabled -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository

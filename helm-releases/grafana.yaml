@@ -1,4 +1,4 @@
-{{ if or .Loki.Enabled .Prometheus.Enabled -}}
+{{ if or .loki.enabled .prometheus.enabled -}}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -24,20 +24,20 @@ spec:
         enabled: true
       notifiers:
         enabled: true
-    {{- if .Nginx.Enabled }}
+    {{- if .nginx.enabled }}
     ingress:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: nginx
-      {{- if .CertManager.Enabled }}
+      {{- if .certManager.enabled }}
       cert-manager.io/cluster-issuer: letsencrypt
       tls:
         - secretName: tls-grafana
           hosts:
-            - grafana.{{ .Nginx.Host }}
+            - grafana.{{ .nginx.host }}
       {{- end }}
       hosts:
-        - grafana.{{ .Nginx.Host }}
+        - grafana.{{ .nginx.host }}
       path: /
     {{- end }}
 {{- end }}

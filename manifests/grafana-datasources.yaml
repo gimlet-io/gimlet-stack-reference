@@ -1,4 +1,4 @@
-{{ if or .Loki.Enabled .Prometheus.Enabled -}}
+{{ if or .loki.enabled .prometheus.enabled -}}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -11,7 +11,7 @@ data:
   datasources.yaml: |-
     apiVersion: 1
     datasources:
-    {{- if .Loki.Enabled }}
+    {{- if .loki.enabled }}
     - name: Loki
       type: loki
       access: proxy
@@ -23,7 +23,7 @@ data:
       url: http://loki:3100/loki
       version: 1
     {{- end }}
-    {{- if .Prometheus.Enabled }}
+    {{- if .prometheus.enabled }}
     - name: Prometheus
       type: prometheus
       access: proxy
