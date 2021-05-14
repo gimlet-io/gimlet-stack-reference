@@ -1,0 +1,20 @@
+stack:
+  repository: "https://github.com/gimlet-io/gimlet-stack-reference.git"
+config:
+  nginx:
+    enabled: true
+    host: mycompany.com
+  loki:
+    enabled: true
+  prometheus:
+    enabled: true
+  certManager:
+    email: "me@mycompany.com"
+  oauth2Proxy:
+    enabled: true
+    org: "My Company"
+    user: "githubUser"
+    clientID: "xxx"
+    clientSecret: "xxx"
+  sealedSecrets:
+    sealingKey: "xxx"
