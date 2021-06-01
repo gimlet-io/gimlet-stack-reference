@@ -30,7 +30,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: nginx
       {{- if .certManager.enabled }}
-      cert-manager.io/cluster-issuer: letsencrypt
+        cert-manager.io/cluster-issuer: letsencrypt
       tls:
         - secretName: tls-grafana
           hosts:
