@@ -461,7 +461,11 @@ components:
 
 changeLog: |
 
-  - Fixing Loki version number as it was not existing
+  - 🍏 Cert Manager to 1.4.0
+    Just a regular cadence of version updates; including fixes, features, which are crucial if you were waiting for them;
+    otherwise just a good practice to be up-to-date.
+    The release log if you care: https://github.com/jetstack/cert-manager/releases/tag/v1.4.0
+  - 🍏 Grafana to 8.0.3. Just the latest patch release
 
 message: |
 
@@ -479,5 +483,9 @@ message: |
 
   - how to upgrade your stack 👉 https://gimlet.io/gimlet-stack/upgrading-a-stack/
   - or how to reuse the automation to deliver your own apps 👉 https://gimlet.io/gimlet-stack/reusing-the-stack-repo-for-application-deployments/
+
+  I also recommend that you sign up for the stack update feed.
+  You will get 2 emails a month helping you keeping your cluster up-to date and secure:
+  👉 https://stack-update-feed.gimlet.io/
 
   Onwards!
