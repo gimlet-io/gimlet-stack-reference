@@ -1,4 +1,4 @@
-# gilet-stack-reference
+# gimlet-stack-reference
 
 A complete Kubernetes stack with ingress, observability and more that can be delivered with Gimlet Stack.
 
