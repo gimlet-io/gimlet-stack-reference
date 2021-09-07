@@ -25,6 +25,8 @@ spec:
       retention: "14d"
       global:
         scrape_interval: 15s
+      strategy:
+        type: Recreate
     extraScrapeConfigs: |-
     {{- if .Linkerd.Enabled }}
       - job_name: 'linkerd-controller'
