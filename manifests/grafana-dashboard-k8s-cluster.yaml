@@ -81,14 +81,14 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(kube_pod_container_resource_requests_cpu_cores)",
+              "expr": "sum(kube_pod_container_resource_requests{resource="cpu"})",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "cores booked",
               "refId": "A"
             },
             {
-              "expr": "100* sum(kube_pod_container_resource_requests_cpu_cores) / sum(kube_node_status_capacity_cpu_cores)",
+              "expr": "100* sum(kube_pod_container_resource_requests{resource="cpu"}) / sum(kube_node_status_capacity{resource="cpu"})",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "%",
@@ -188,14 +188,14 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(kube_pod_container_resource_requests_memory_bytes)",
+              "expr": "sum(kube_pod_container_resource_requests{resource="memory"})",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "memory booked",
               "refId": "A"
             },
             {
-              "expr": "100* sum(kube_pod_container_resource_requests_memory_bytes) / sum(kube_node_status_capacity_memory_bytes)",
+              "expr": "100* sum(kube_pod_container_resource_requests{resource="memory"}) / sum(kube_node_status_capacity{resource="memory"})",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "%",
@@ -310,7 +310,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_node_status_capacity_cpu_cores)",
+              "expr": "sum(kube_node_status_capacity{resource="cpu"})",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
@@ -396,7 +396,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_node_status_capacity_memory_bytes)/1024/1024/1024",
+              "expr": "sum(kube_node_status_capacity{resource="memory"})/1024/1024/1024",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
@@ -1090,7 +1090,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(kube_pod_container_resource_requests_memory_bytes)  by (namespace)",
+              "expr": "sum(kube_pod_container_resource_requests{resource="memory"})  by (namespace)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{namespace}}",
@@ -1185,7 +1185,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(kube_pod_container_resource_requests_cpu_cores)  by (namespace)",
+              "expr": "sum(kube_pod_container_resource_requests{resource="cpu"})  by (namespace)",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
