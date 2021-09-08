@@ -283,7 +283,6 @@ data:
             "lineColor": "rgb(31, 120, 193)",
             "show": false
           },
-          "tableColumn": "node_load1{app=\"prometheus\", chart=\"prometheus-11.11.1\", component=\"node-exporter\", heritage=\"Helm\", instance=\"172.25.0.2:9100\", job=\"kubernetes-service-endpoints\", kubernetes_name=\"prometheus-node-exporter\", kubernetes_namespace=\"infrastructure\", kubernetes_node=\"k3d-test-server-0\", release=\"prometheus\"}",
           "targets": [
             {
               "expr": "node_load1{kubernetes_node=~\"$node\"}",
@@ -559,7 +558,6 @@ data:
             "lineColor": "rgb(31, 120, 193)",
             "show": false
           },
-          "tableColumn": "{app=\"prometheus\", chart=\"prometheus-11.11.1\", component=\"node-exporter\", heritage=\"Helm\", instance=\"172.25.0.2:9100\", job=\"kubernetes-service-endpoints\", kubernetes_name=\"prometheus-node-exporter\", kubernetes_namespace=\"infrastructure\", kubernetes_node=\"k3d-test-server-0\", release=\"prometheus\"}",
           "targets": [
             {
               "expr": "node_time_seconds{kubernetes_node=~\"$node\"} - node_boot_time_seconds{kubernetes_node=~\"$node\"}",
