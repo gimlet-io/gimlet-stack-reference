@@ -267,7 +267,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "container_memory_working_set_bytes{namespace='$namespace', pod=~\"$pod\", container!=\"POD\", container!='', container=~\"$container\"}* on (pod) group_left(label_app) kube_pod_labels{label_app=~'$app'}/1024/1024",
+              "expr": "container_memory_working_set_bytes{namespace='$namespace', pod=~\"$pod\", container!=\"POD\", container!='', container=~\"$container\"}* on (pod) group_left(label_app_kubernetes_io_instance) kube_pod_labels{label_app_kubernetes_io_instance=~'$app'}/1024/1024",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -362,7 +362,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(container_cpu_usage_seconds_total{namespace='$namespace', pod=~\"$pod\", container!='POD', container!='', container=~\"$container\"}[5m]) * on (pod) group_left(label_app) kube_pod_labels{label_app=~'$app'} *1000",
+              "expr": "irate(container_cpu_usage_seconds_total{namespace='$namespace', pod=~\"$pod\", container!='POD', container!='', container=~\"$container\"}[5m]) * on (pod) group_left(label_app_kubernetes_io_instance) kube_pod_labels{label_app_kubernetes_io_instance=~'$app'} *1000",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -463,7 +463,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(container_network_transmit_bytes_total{namespace='$namespace', pod=~'$pod'}[5m]) * on (pod) group_left(label_app) kube_pod_labels{label_app=~'$app'} / 1000",
+              "expr": "irate(container_network_transmit_bytes_total{namespace='$namespace', pod=~'$pod'}[5m]) * on (pod) group_left(label_app_kubernetes_io_instance) kube_pod_labels{label_app_kubernetes_io_instance=~'$app'} / 1000",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -471,7 +471,7 @@ data:
               "refId": "A"
             },
             {
-              "expr": "irate(container_network_receive_bytes_total{namespace='$namespace', pod=~'$pod'}[5m]) * on (pod) group_left(label_app) kube_pod_labels{label_app=~'$app'} / 1000",
+              "expr": "irate(container_network_receive_bytes_total{namespace='$namespace', pod=~'$pod'}[5m]) * on (pod) group_left(label_app_kubernetes_io_instance) kube_pod_labels{label_app_kubernetes_io_instance=~'$app'} / 1000",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -688,14 +688,14 @@ data:
               ]
             },
             "datasource": "Prometheus",
-            "definition": "label_values(kube_pod_labels{namespace=\"$namespace\"}, label_app)",
+            "definition": "label_values(kube_pod_labels{namespace=\"$namespace\"}, label_app_kubernetes_io_instance)",
             "hide": 0,
             "includeAll": true,
             "label": "App:",
             "multi": true,
             "name": "app",
             "options": [],
-            "query": "label_values(kube_pod_labels{namespace=\"$namespace\"}, label_app)",
+            "query": "label_values(kube_pod_labels{namespace=\"$namespace\"}, label_app_kubernetes_io_instance)",
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
@@ -718,14 +718,14 @@ data:
               ]
             },
             "datasource": "Prometheus",
-            "definition": "label_values({namespace=\"$namespace\", label_app=~\"$app\"}, pod)",
+            "definition": "label_values({namespace=\"$namespace\", label_app_kubernetes_io_instance=~\"$app\"}, pod)",
             "hide": 0,
             "includeAll": true,
             "label": "Pod:",
             "multi": true,
             "name": "pod",
             "options": [],
-            "query": "label_values({namespace=\"$namespace\", label_app=~\"$app\"}, pod)",
+            "query": "label_values({namespace=\"$namespace\", label_app_kubernetes_io_instance=~\"$app\"}, pod)",
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
@@ -748,14 +748,14 @@ data:
               ]
             },
             "datasource": "Prometheus",
-            "definition": "label_values({namespace=\"$namespace\", container!=\"POD\", pod=~\"$pod\", label_app=~\"$app\"}, container)",
+            "definition": "label_values({namespace=\"$namespace\", container!=\"POD\", pod=~\"$pod\", label_app_kubernetes_io_instance=~\"$app\"}, container)",
             "hide": 0,
             "includeAll": true,
             "label": "Container:",
             "multi": true,
             "name": "container",
             "options": [],
-            "query": "label_values({namespace=\"$namespace\", container!=\"POD\", pod=~\"$pod\", label_app=~\"$app\"}, container)",
+            "query": "label_values({namespace=\"$namespace\", container!=\"POD\", pod=~\"$pod\", label_app_kubernetes_io_instance=~\"$app\"}, container)",
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
