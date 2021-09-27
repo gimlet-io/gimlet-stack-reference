@@ -1,6 +1,7 @@
 # ---
 # stack:
 #   repository: https://github.com/tcrst/gimlet-stack-reference.git?tag=v0.6.0
+#   path: ./examples/
 # config:
 #   certManager:
 #     email: me@mycompany.com
@@ -12,7 +13,7 @@
 #   oauth2Proxy:
 #     clientID: xxx
 #     clientSecret: xxx
-#     enabled: true
+#     enabled: false
 #     org: My Company
 #     user: githubUser
 #   prometheus:
