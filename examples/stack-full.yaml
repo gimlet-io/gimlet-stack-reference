@@ -1,5 +1,5 @@
 stack:
-  repository: "https://github.com/gimlet-io/gimlet-stack-reference.git"
+  repository: "https://github.com/tcrst/gimlet-stack-reference.git"
 config:
   nginx:
     enabled: true
