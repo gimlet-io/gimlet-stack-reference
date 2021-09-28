@@ -1,6 +1,6 @@
 # ---
 # stack:
-#   repository: https://github.com/tcrst/gimlet-stack-reference.git?tag=v0.6.0
+#   repository: https://github.com/tcrst/gimlet-stack-reference.git?tag=v0.6.1
 #   path: ./examples/
 # config:
 #   certManager:
