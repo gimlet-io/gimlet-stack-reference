@@ -27,8 +27,7 @@ spec:
     {{- if .nginx.enabled }}
     ingress:
       enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
+      ingressClassName: nginx
       {{- if .certManager.enabled }}
         cert-manager.io/cluster-issuer: letsencrypt
       tls:

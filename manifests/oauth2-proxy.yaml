@@ -105,17 +105,17 @@ spec:
   selector:
     k8s-app: oauth2-proxy
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  {{- if .certManager.enabled }}
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    {{- if .certManager.enabled }}
     cert-manager.io/cluster-issuer: letsencrypt
-    {{- end }}
+  {{- end }}
   name: oauth2-proxy
   namespace: infrastructure
 spec:
+  ingressClassName: nginx
   {{- if .certManager.enabled }}
   tls:
     - secretName: tls-oauth2-proxy
@@ -126,8 +126,12 @@ spec:
     - host: "auth.{{ .nginx.host }}"
       http:
         paths:
-          - backend:
-              serviceName: oauth2-proxy
-              servicePort: http
-            path: /
+          - path: /
+            pathType: "Prefix"
+            backend:
+              service:
+                name: oauth2-proxy
+                port:
+                  name: "http"
+
 {{- end }}
