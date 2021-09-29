@@ -461,16 +461,18 @@ components:
 
 changeLog: |
 
-  - 🐛 Fixing Grafana dashboards that were broken since Gimlet Stack v0.5.0
-
-  - 🍏 Ingress Nginx  update from 0.49 to 1.0.2
+  - ❗Ingress Nginx update from 0.49 to 1.0.2
+    This change requires Kubernetes cluster version >=1.19
+    since this version of Nginx is using the `networking.k8s.io/v1` API group introduced in 1.19
 
   - 🍏 Grafana update from 8.0.3 to 8.1.5
+    Just keeping up with Grafana updates
 
-  - 🍏 Prometheus helm chart is updated to 14.7.1
-    Just a regular cadence of version updates; including fixes, features, etc
+  - 🍏 Prometheus Helm chart is updated to 14.7.1
+    No Prometheus version update, only a technical change to keep up with the Helm chart fixes
 
-  - 🍏 Fixed Prometheus Dashboard and updated Nginx dashboard to newer version
+  - 🐛 Fixing the Prometheus Grafana dashboard
+    From now on you can get insights from your Prometheus ingesting
 
 message: |
 
