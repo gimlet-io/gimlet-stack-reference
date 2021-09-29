@@ -1449,39 +1449,6 @@ data:
             "tagsQuery": "",
             "type": "query",
             "useTags": false
-<<<<<<< HEAD
-          },
-          {
-            "allValue": ".*",
-            "current": {
-              "selected": false,
-              "text": "All",
-              "value": "$__all"
-            },
-            "datasource": "Prometheus",
-            "definition": "",
-            "description": null,
-            "error": null,
-            "hide": 0,
-            "includeAll": true,
-            "label": "Ingress",
-            "multi": false,
-            "name": "ingress",
-            "options": [],
-            "query": {
-              "query": "label_values(nginx_ingress_controller_requests{namespace=~\"$namespace\",controller_class=~\"$controller_class\",controller=~\"$controller\"}, ingress) ",
-              "refId": "Prometheus-ingress-Variable-Query"
-            },
-            "refresh": 1,
-            "regex": "",
-            "skipUrlSync": false,
-            "sort": 2,
-            "tagValuesQuery": "",
-            "tagsQuery": "",
-            "type": "query",
-            "useTags": false
-=======
->>>>>>> parent of 97b3780... Update nginx dashboard
           }
         ]
       },
@@ -1495,16 +1462,7 @@ data:
           "10s",
           "30s",
           "2m",
-<<<<<<< HEAD
-          "5m",
-          "15m",
-          "30m",
-          "1h",
-          "2h",
-          "1d"
-=======
           "5m"
->>>>>>> parent of 97b3780... Update nginx dashboard
         ],
         "time_options": [
           "5m",
@@ -1514,22 +1472,12 @@ data:
           "12h",
           "24h",
           "2d",
-<<<<<<< HEAD
-          "7d",
-          "30d"
-=======
           "7d"
->>>>>>> parent of 97b3780... Update nginx dashboard
         ]
       },
       "timezone": "browser",
       "title": "Nginx",
-<<<<<<< HEAD
-      "uid": "nginx-v2",
-      "version": 1
-=======
       "uid": "nginx",
       "version": 2
->>>>>>> parent of 97b3780... Update nginx dashboard
     }`}}
 {{- end }}
