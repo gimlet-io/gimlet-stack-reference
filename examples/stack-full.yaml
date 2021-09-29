@@ -1,21 +1,20 @@
----
 stack:
-  repository: https://github.com/tcrst/gimlet-stack-reference.git?tag=v0.6.0
+  repository: "https://github.com/gimlet-io/gimlet-stack-reference.git"
 config:
-  certManager:
-    email: me@mycompany.com
-  loki:
-    enabled: true
   nginx:
     enabled: true
     host: mycompany.com
-  oauth2Proxy:
-    clientID: xxx
-    clientSecret: xxx
-    enabled: false
-    org: My Company
-    user: githubUser
+  loki:
+    enabled: true
   prometheus:
     enabled: true
+  certManager:
+    email: "me@mycompany.com"
+  oauth2Proxy:
+    enabled: true
+    org: "My Company"
+    user: "githubUser"
+    clientID: "xxx"
+    clientSecret: "xxx"
   sealedSecrets:
-    sealingKey: xxx
+    sealingKey: "xxx"
