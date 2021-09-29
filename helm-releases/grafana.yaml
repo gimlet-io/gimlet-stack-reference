@@ -29,6 +29,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       {{- if .certManager.enabled }}
+      annotations:
         cert-manager.io/cluster-issuer: letsencrypt
       tls:
         - secretName: tls-grafana
