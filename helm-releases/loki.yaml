@@ -65,4 +65,6 @@ spec:
         compactor:
           working_directory: /data/loki/boltdb-shipper-compactor
           shared_store: filesystem
+      tracing:
+        jaegerAgentHost: tempo
 {{- end }}

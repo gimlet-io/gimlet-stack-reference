@@ -10,6 +10,8 @@ categories:
     id: metrics
   - name: "🔐 Secrets"
     id: secrets
+  - name: "🔍 Tracing"
+    id: tracing    
 components:
   - name: Nginx
     variable: nginx
@@ -458,21 +460,64 @@ components:
           "metaData": {}
         }
       ]
+  - name: Tempo
+    variable: tempo
+    category: tracing
+    logo: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    description: ''
+    onePager: |-
+      ### What do you get with Tempo?
+      - Grafana Tempo is an open source, easy-to-use and high-volume distributed tracing backend. Tempo is cost-efficient, requiring only object storage to operate, and is deeply integrated with Grafana, Prometheus, and Loki.
+
+      ### How to verify the deployment?
+
+      ```
+      $ kubectl get pods --namespace infrastructure
+
+      NAME                              READY   STATUS    RESTARTS   AGE
+      tempo-0  1/1     Running   0          1m
+      ```
+
+
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "title": "The root schema",
+        "description": "The root schema comprises the entire JSON document.",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+           "loadsample": {
+            "$id": "#/properties/loadsample",
+            "type": "boolean",
+            "title": "Load Sample Trace Data"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#/properties/enabled",
+            "#/properties/loadsample"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
+
 
 changeLog: |
 
-  - ❗Ingress Nginx update from 0.49 to 1.0.2
-    This change requires Kubernetes cluster version >=1.19
-    since this version of Nginx is using the `networking.k8s.io/v1` API group introduced in 1.19
+  - 🍏 Grafana datasources updated with tempo data source.
 
-  - 🍏 Grafana update from 8.0.3 to 8.1.5
-    Just keeping up with Grafana updates
-
-  - 🍏 Prometheus Helm chart is updated to 14.7.1
-    No Prometheus version update, only a technical change to keep up with the Helm chart fixes
-
-  - 🐛 Fixing the Prometheus Grafana dashboard
-    From now on you can get insights from your Prometheus ingesting
+  - 🍏 Grafana Tempo Chart 0.7.7 added.
+    Grafana Tempo sample trace generator added.
 
 message: |
 
