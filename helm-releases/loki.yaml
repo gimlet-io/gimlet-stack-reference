@@ -10,8 +10,8 @@ spec:
   releaseName: loki
   chart:
     spec:
-      chart: loki-stack
-      version: 2.4.1
+      chart: loki
+      version: 2.6.0
       sourceRef:
         kind: HelmRepository
         name: grafana
