@@ -14,7 +14,7 @@ spec:
       version: 0.7.7
       sourceRef:
         kind: HelmRepository
-        name: tempo
+        name: grafana
       interval: 10m
   values:
     installCRDs: true
