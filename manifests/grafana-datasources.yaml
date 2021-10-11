@@ -23,28 +23,17 @@ data:
       url: http://loki:3100
       version: 1
       uid: loki-tempo
-      editable: true
-      jsonData: {
+      jsonData: |
+        {
             "derivedFields": [
                 {
                     "datasourceUid": "tempo",
                     "matcherRegex": "traceID=(\\w+)",
                     "name": "traceID",
                     "url": "$${__value.raw}"
-                },
-                {
-                    "datasourceUid": "tempo",
-                    "matcherRegex": "traceId (\\w+)",
-                    "name": "TraceID",
-                    "url": "$${__value.raw}"
                 }
             ]
         }    
-    - name: LokiMetrics
-      type: prometheus
-      access: proxy
-      url: http://loki:3100/loki
-      version: 1
     {{- end }}
     {{- if .prometheus.enabled }}
     - name: Prometheus
@@ -60,8 +49,8 @@ data:
       url: http://tempo:3100
       version: 1
       uid: tempo
-      editable: true
-      jsonData: {
+      jsonData: |
+        {
             "tracesToLogs": {
                 "datasourceUid": "loki-tempo",
                 "tags": [
