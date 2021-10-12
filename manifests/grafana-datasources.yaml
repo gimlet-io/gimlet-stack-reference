@@ -41,8 +41,7 @@ data:
       url: http://tempo:3100
       version: 1
       uid: tempo
-      jsonData: |
-        {
+      jsonData: {
             "tracesToLogs": {
                 "datasourceUid": "loki",
                 "tags": [

@@ -463,7 +463,7 @@ components:
   - name: Grafana Tempo
     variable: tempo
     category: tracing
-    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/tempo.png
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/tempo-tuning/assets/tempo.png
     description: ''
     onePager: |-
       ### What do you get with Tempo?
