@@ -514,10 +514,14 @@ components:
 
 changeLog: |
 
-  - 🍏 Grafana datasources updated with tempo data source.
-
-  - 🍏 Grafana Tempo Chart 0.7.7 added.
-    Grafana Tempo sample trace generator added.
+  - 🆕 Supporting Grafana Tempo to store traces
+  - Deprecating the LokiTempo datasource in Grafana
+    Up until recently you needed to use this datasource to query log based metrics.
+    By now the Loki datasource supports log based metrics, so you can run `rate` functions against the Loki datasource
+  - 🐛 Using the Loki and Promtail Helm charts instead of the Loki Stack going forward.
+    This is fixing a bug where the Loki datasource was not picked up from the manifests/grafana-datasources.yaml location.
+  - 🍏 Added a "Simple Query" field for the "Logs" dashboard.
+    Terms you put into this field will be matched against the logs as if you wrote |~".*$simple_query.*" type query.
 
 message: |
 
