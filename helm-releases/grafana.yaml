@@ -1,4 +1,4 @@
-{{ if or .loki.enabled .prometheus.enabled -}}
+{{ if or (or .loki.enabled .prometheus.enabled) .tempo.enabled -}}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease

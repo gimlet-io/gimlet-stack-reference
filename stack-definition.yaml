@@ -460,10 +460,10 @@ components:
           "metaData": {}
         }
       ]
-  - name: Tempo
+  - name: Grafana Tempo
     variable: tempo
     category: tracing
-    logo: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/tempo.png
     description: ''
     onePager: |-
       ### What do you get with Tempo?
@@ -472,7 +472,7 @@ components:
       ### How to verify the deployment?
 
       ```
-      $ kubectl get pods --namespace infrastructure
+      $ kubectl get pods --namespace infrastructure | grep tempo
 
       NAME                              READY   STATUS    RESTARTS   AGE
       tempo-0  1/1     Running   0          1m
@@ -492,10 +492,10 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-           "loadsample": {
-            "$id": "#/properties/loadsample",
+           "sampleTraceData": {
+            "$id": "#/properties/sampleTraceData",
             "type": "boolean",
-            "title": "Load Sample Trace Data"
+            "title": "Sample Trace Data"
           }
         }
       }
@@ -504,7 +504,7 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
-            "#/properties/loadsample"
+            "#/properties/sampleTraceData"
           ],
           "uiSchema": {},
           "metaData": {}
@@ -514,10 +514,14 @@ components:
 
 changeLog: |
 
-  - 🍏 Grafana datasources updated with tempo data source.
-
-  - 🍏 Grafana Tempo Chart 0.7.7 added.
-    Grafana Tempo sample trace generator added.
+  - 🆕 Supporting Grafana Tempo to store traces
+  - Deprecating the LokiTempo datasource in Grafana
+    Up until recently you needed to use this datasource to query log based metrics.
+    By now the Loki datasource supports log based metrics, so you can run `rate` functions against the Loki datasource
+  - 🐛 Using the Loki and Promtail Helm charts instead of the Loki Stack going forward.
+    This is fixing a bug where the Loki datasource was not picked up from the manifests/grafana-datasources.yaml location.
+  - 🍏 Added a "Simple Query" field for the "Logs" dashboard.
+    Terms you put into this field will be matched against the logs as if you wrote |~".*$simple_query.*" type query.
 
 message: |
 
