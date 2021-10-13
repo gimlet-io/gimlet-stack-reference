@@ -35,7 +35,7 @@ data:
           "bars": true,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "LokiMetrics",
+          "datasource": "Loki",
           "fieldConfig": {
             "defaults": {
               "custom": {},
