@@ -19,6 +19,12 @@ data:
             "hide": true,
             "iconColor": "rgba(0, 211, 255, 1)",
             "name": "Annotations & Alerts",
+            "target": {
+              "limit": 100,
+              "matchAny": false,
+              "tags": [],
+              "type": "dashboard"
+            },
             "type": "dashboard"
           }
         ]
@@ -27,7 +33,7 @@ data:
       "gnetId": null,
       "graphTooltip": 0,
       "id": 3,
-      "iteration": 1600770044564,
+      "iteration": 1634113737351,
       "links": [],
       "panels": [
         {
@@ -38,7 +44,6 @@ data:
           "datasource": "Loki",
           "fieldConfig": {
             "defaults": {
-              "custom": {},
               "links": []
             },
             "overrides": []
@@ -65,8 +70,11 @@ data:
           "lines": false,
           "linewidth": 1,
           "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
-          "pluginVersion": "7.1.5",
+          "pluginVersion": "8.1.5",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -76,7 +84,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate({namespace=~\"$namespace\", container=~\"$container\"} $query [5m])) by (container,namespace)",
+              "expr": "sum(rate({namespace=~\"$namespace\", container=~\"$container\"}  |~\".*$simple_query.*\" $query [5m])) by (container,namespace)",
               "interval": "",
               "legendFormat": "stdout:{{namespace}}/{{container}}",
               "refId": "A"
@@ -125,12 +133,6 @@ data:
         },
         {
           "datasource": "Loki",
-          "fieldConfig": {
-            "defaults": {
-              "custom": {}
-            },
-            "overrides": []
-          },
           "gridPos": {
             "h": 14,
             "w": 24,
@@ -139,6 +141,10 @@ data:
           },
           "id": 4,
           "options": {
+            "dedupStrategy": "none",
+            "enableLogDetails": true,
+            "prettifyLogMessage": false,
+            "showCommonLabels": false,
             "showLabels": true,
             "showTime": true,
             "sortOrder": "Descending",
@@ -146,7 +152,7 @@ data:
           },
           "targets": [
             {
-              "expr": "{namespace=~\"$namespace\", container=~\"$container\"} $query",
+              "expr": "{namespace=~\"$namespace\", container=~\"$container\"} |~\".*$simple_query.*\" $query",
               "legendFormat": "",
               "refId": "A"
             }
@@ -157,7 +163,7 @@ data:
           "type": "logs"
         }
       ],
-      "schemaVersion": 26,
+      "schemaVersion": 30,
       "style": "dark",
       "tags": [],
       "templating": {
@@ -167,14 +173,16 @@ data:
             "current": {
               "selected": true,
               "text": [
-                  "All"
+                "All"
               ],
               "value": [
-                  "$__all"
+                "$__all"
               ]
             },
             "datasource": "Loki",
             "definition": "label_values(namespace)",
+            "description": null,
+            "error": null,
             "hide": 0,
             "includeAll": true,
             "label": "Namespace",
@@ -187,7 +195,6 @@ data:
             "skipUrlSync": false,
             "sort": 0,
             "tagValuesQuery": "",
-            "tags": [],
             "tagsQuery": "",
             "type": "query",
             "useTags": false
@@ -197,14 +204,16 @@ data:
             "current": {
               "selected": true,
               "text": [
-                  "All"
+                "All"
               ],
               "value": [
-                  "$__all"
+                "$__all"
               ]
             },
             "datasource": "Loki",
             "definition": "label_values(container)",
+            "description": null,
+            "error": null,
             "hide": 0,
             "includeAll": true,
             "label": "Container",
@@ -217,7 +226,6 @@ data:
             "skipUrlSync": false,
             "sort": 0,
             "tagValuesQuery": "",
-            "tags": [],
             "tagsQuery": "",
             "type": "query",
             "useTags": false
@@ -228,9 +236,33 @@ data:
               "text": "",
               "value": ""
             },
+            "description": null,
+            "error": null,
             "hide": 0,
-            "label": "Query",
+            "label": "Raw Query",
             "name": "query",
+            "options": [
+              {
+                "selected": true,
+                "text": "",
+                "value": ""
+              }
+            ],
+            "query": "",
+            "skipUrlSync": false,
+            "type": "textbox"
+          },
+          {
+            "current": {
+              "selected": false,
+              "text": "",
+              "value": ""
+            },
+            "description": null,
+            "error": null,
+            "hide": 0,
+            "label": "Simple Query",
+            "name": "simple_query",
             "options": [
               {
                 "selected": true,
@@ -250,15 +282,15 @@ data:
       },
       "timepicker": {
         "refresh_intervals": [
-            "10s",
-            "30s",
-            "1m",
-            "5m",
-            "15m",
-            "30m",
-            "1h",
-            "2h",
-            "1d"
+          "10s",
+          "30s",
+          "1m",
+          "5m",
+          "15m",
+          "30m",
+          "1h",
+          "2h",
+          "1d"
         ]
       },
       "timezone": "",
