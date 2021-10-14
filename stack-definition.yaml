@@ -342,6 +342,14 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
+          },
+          "retentionDays": {
+            "$id": "#/properties/retentionDays",
+            "type": "integer",
+            "title": "Retentian (in days)",
+            "default": 14,
+            "minimum": 1,
+            "maximum": 365
           }
         }
       }
@@ -349,9 +357,14 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled"
+            "#/properties/enabled",
+            "#/properties/retentionDays"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#/properties/retentionDays": {
+              "ui:widget": "range"
+            }
+          },
           "metaData": {}
         }
       ]

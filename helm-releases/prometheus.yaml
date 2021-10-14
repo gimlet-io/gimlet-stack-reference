@@ -28,7 +28,7 @@ spec:
     server:
       strategy:
         type: Recreate
-      retention: "14d"
+      retention: "{{ default 14 .prometheus.retentionDays }}d"
       global:
         scrape_interval: 15s
     extraScrapeConfigs: |-
