@@ -1,21 +1,22 @@
-{{ if .tempo.enabled -}}
+{{ if .loki.enabled -}}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: tempo
+  name: promtail
   namespace: infrastructure
 spec:
   interval: 60m
-  releaseName: tempo
+  releaseName: promtail
   chart:
     spec:
-      chart: tempo
-      version: 0.7.7
+      chart: promtail
+      version: 3.6.0
       sourceRef:
         kind: HelmRepository
         name: grafana
       interval: 10m
   values:
-    installCRDs: true
+    config:
+      lokiAddress: "http://loki:3100/loki/api/v1/push"
 {{- end }}

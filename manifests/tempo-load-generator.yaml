@@ -1,4 +1,4 @@
-{{ if .tempo.loadsample -}}
+{{ if .tempo.sampleTraceData -}}
 ---
 apiVersion: v1
 data:
