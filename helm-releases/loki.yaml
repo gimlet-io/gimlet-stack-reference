@@ -56,7 +56,7 @@ spec:
         max_look_back_period: 0s
       table_manager:
         retention_deletes_enabled: true
-        retention_period: 336h
+        retention_period: {{ mul 24 (default 14 .loki.retentionDays) }}h
       compactor:
         working_directory: /data/loki/boltdb-shipper-compactor
         shared_store: filesystem
