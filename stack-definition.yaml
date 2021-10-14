@@ -278,6 +278,19 @@ components:
             "default": 14,
             "minimum": 1,
             "maximum": 365
+          },
+          "persistence": {
+            "$id": "#/properties/persistence",
+            "type": "boolean",
+            "title": "Persistence"
+          },
+          "volumeSize": {
+            "$id": "#/properties/volumeSize",
+            "type": "integer",
+            "title": "Peristent Volume Size (in GB)",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 100
           }
         }
       }
@@ -286,10 +299,15 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
-            "#/properties/retentionDays"
+            "#/properties/retentionDays",
+            "#/properties/persistence",
+            "#/properties/volumeSize"
           ],
           "uiSchema": {
             "#/properties/retentionDays": {
+              "ui:widget": "range"
+            },
+            "#/properties/volumeSize": {
               "ui:widget": "range"
             }
           },
