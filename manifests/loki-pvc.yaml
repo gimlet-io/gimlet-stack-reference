@@ -1,0 +1,14 @@
+{{ if .prometheus.persistence -}}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: loki-0
+  namespace: infrastructure
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ default 10 .prometheus.volumeSize -}}Gi
+{{- end }}

@@ -17,6 +17,12 @@ spec:
         name: grafana
       interval: 10m
   values:
+    {{ if .prometheus.persistence -}}
+    persistence:
+      enabled: true
+      size: {{ default 10 .prometheus.volumeSize -}}Gi
+      existingClaim: loki-0
+    {{- end }}
     config:
       auth_enabled: false
       ingester:

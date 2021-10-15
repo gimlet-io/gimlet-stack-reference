@@ -28,6 +28,10 @@ spec:
     server:
       strategy:
         type: Recreate
+      {{ if .prometheus.persistence -}}
+      persistentVolume:
+        size: {{ default 10 .prometheus.volumeSize -}}Gi
+      {{- end }}
       retention: "{{ default 14 .prometheus.retentionDays }}d"
       global:
         scrape_interval: 15s
