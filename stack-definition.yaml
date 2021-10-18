@@ -589,7 +589,7 @@ components:
       $ kubectl get pods --namespace infrastructure | grep kyverno
 
       NAME                              READY   STATUS    RESTARTS   AGE
-      Kyverno-0  1/1     Running   0          1m
+      kyverno-5ccd8d64b4-5vqlk  1/1     Running   0          1m
       ```
 
 
@@ -632,8 +632,8 @@ components:
 
 changeLog: |
 
-  - 🆕 Persistence support for Loki and Prometheus
-    ❗If you already have custom persistence settings in your chart values, carefully observe the diff
+  - 🆕 Kyverno Added
+    ❗ Default policy validation is audit.
 
 message: |
 
