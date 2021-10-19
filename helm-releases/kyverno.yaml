@@ -19,6 +19,9 @@ spec:
   values:
     podSecurityStandard: {{ .kyverno.podSecurityStandard }}
     validationFailureAction: audit
+    podAnnotations:
+      prometheus.io/port: "8000"
+      prometheus.io/scrape: "true"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
