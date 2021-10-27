@@ -1,0 +1,11 @@
+{{ if .crossplane.enabled -}}
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: crossplane
+  namespace: infrastructure
+spec:
+  interval: 60m
+  url: https://charts.crossplane.io/stable
+{{- end }}
