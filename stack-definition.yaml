@@ -685,8 +685,23 @@ components:
       ]
 changeLog: |
 
-  - 🆕 Crossplane Added
-    ❗ Default provider is aws.
+  - 🆕 Cert Manager upgraded from v1.5.3 to v1.6.1 chart version
+       This upgrade contains;
+         - Fix CRDs which were accidentally changed in cert-manager v1.5.0
+         - Fixes renewal time issue for certs with skewed duration period
+
+  - 🆕 Grafana upgraded from 6.16.10 to 6.17.5 chart version
+       This upgrade point CVE-2021-41174 security vulnerability patch.
+
+  - 🆕 Ingress Nginx upgraded from 4.0.3 to 4.0.6 chart version
+
+  - 🆕 Loki upgraded from 2.6.0 to 2.8.0 chart version
+
+  - 🆕 Prometheus upgraded from 14.7.1 to 14.11.1 chart version
+
+  - 🆕 Promtail upgraded from 3.6.0 to 3.8.0 chart version
+
+  - 🆕 Tempo upgraded from 0.7.7 to 0.9.0 chart version
 
 message: |
 
