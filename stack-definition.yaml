@@ -631,9 +631,19 @@ components:
       ]
 
 changeLog: |
+  This update contains a bunch of version updates. Just keeping up with versions as a good measure.
 
-  - 🆕 Kyverno Added
-    ❗ Default policy validation is audit.
+  No breaking changes.
+
+  In any case you defined Cert-Manager resources by hand (not with Gimlet Stack), make sure to use the v1 apiGroup.
+
+  - 🆕 Kyverno is now part of Gimlet Stack. If you want to enforce basic ruleset in your cluster, Kyverno is just the tool for `*.yourdomain.com`
+  - 🍏 Cert Manager upgraded from v1.5.3 to v1.6.1
+  - 🍏 Grafana upgraded to 8.2.3
+  - 🍏 Ingress Nginx tov1.0.4
+  - 🍏 Loki and Promtail upgraded to 2.4.1
+  - 🍏 Prometheus chart is upgraded
+  - 🍏 Tempo upgraded to 1.2 - includes performance improvements
 
 message: |
 
