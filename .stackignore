@@ -4,3 +4,4 @@ examples/
 .stackignore
 LICENSE
 *.md
+.gitpod.yml
