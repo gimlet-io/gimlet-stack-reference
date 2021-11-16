@@ -1,0 +1,22 @@
+tasks:
+  - init: |
+      curl -L https://github.com/gimlet-io/gimlet-stack/releases/download/v0.3.5/stack-$(uname)-$(uname -m) -o stack
+      chmod +x stack
+      sudo mv ./stack /usr/local/bin/stack
+      stack --version
+  - name: vscode settings
+    init: |
+      mkdir -p "$PWD/.vscode";
+      cat << 'EOF' > "$PWD/.vscode/settings.json"
+        {
+          "terminal.integrated.fontFamily": "Monospace",
+          "terminal.integrated.fontSize": 14
+        }
+      EOF
+      exit
+
+gitConfig:
+  alias.st: status
+  alias.l: log --graph --pretty=default
+  alias.lola: log --graph --oneline --all
+  alias.fp: fetch --prune
