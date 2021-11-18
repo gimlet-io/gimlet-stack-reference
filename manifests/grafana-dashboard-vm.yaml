@@ -7,6 +7,8 @@ metadata:
   name: grafana-dashboard-vm
   labels:
     grafana_dashboard: "1"
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
   vm.json: |-
     {{`{

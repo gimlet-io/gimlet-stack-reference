@@ -7,6 +7,8 @@ metadata:
   name: grafana-dashboard-linkerd-deployment
   labels:
     grafana_dashboard: "1"
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
   linkerd-deployment.json: |-
     {{`{

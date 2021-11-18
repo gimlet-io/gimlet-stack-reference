@@ -7,6 +7,8 @@ metadata:
   name: grafana-dashboard-nginx
   labels:
     grafana_dashboard: "1"
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 data:
   nginx.json: |-
     {{`{
