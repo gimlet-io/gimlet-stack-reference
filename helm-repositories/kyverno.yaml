@@ -8,4 +8,13 @@ metadata:
 spec:
   interval: 60m
   url: https://kyverno.github.io/kyverno
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: kyverno-policy-reporter
+  namespace: infrastructure
+spec:
+  interval: 60m
+  url: https://kyverno.github.io/policy-reporter
 {{- end }}

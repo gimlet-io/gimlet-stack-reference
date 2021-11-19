@@ -3,6 +3,25 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
+  name: kyverno-crds
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: kyverno-crds
+  chart:
+    spec:
+      chart: kyverno-crds
+      version: v2.0.3
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+      interval: 10m
+  values:
+    installCRDs: true
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
   name: kyverno
   namespace: infrastructure
 spec:
@@ -26,19 +45,21 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: kyverno-crds
+  name: kyverno-policy-reporter
   namespace: infrastructure
 spec:
   interval: 60m
-  releaseName: kyverno-crds
+  releaseName: kyverno-policy-reporter
   chart:
     spec:
-      chart: kyverno-crds
-      version: v2.0.3
+      chart: policy-reporter
+      version: 1.12.6
       sourceRef:
         kind: HelmRepository
-        name: kyverno
+        name: kyverno-policy-reporter
       interval: 10m
   values:
-    installCRDs: true
+    podAnnotations:
+      prometheus.io/port: "2112"
+      prometheus.io/scrape: "true"
 {{- end }}
