@@ -592,6 +592,18 @@ components:
       kyverno-5ccd8d64b4-5vqlk  1/1     Running   0          1m
       ```
 
+      ### Validate the deployed policies
+
+      ```
+      kubectl get policyreport -A
+      kubectl get clusterpolicyreport
+      ```
+
+      ### Check policy reports
+
+      kubectl describe polr polr-ns-staging -n staging | grep "Result: \+fail" -B10
+
+      or in Grafana on the "Poilicy Reports" dashboard
 
     schema: |-
       {
@@ -631,19 +643,9 @@ components:
       ]
 
 changeLog: |
-  This update contains a bunch of version updates. Just keeping up with versions as a good measure.
+  - 🍏 Updated Kyverno
 
-  No breaking changes.
-
-  In any case you defined Cert-Manager resources by hand (not with Gimlet Stack), make sure to use the v1 apiGroup.
-
-  - 🆕 Kyverno is now part of Gimlet Stack. If you want to enforce basic ruleset in your cluster, Kyverno is just the tool.
-  - 🍏 Cert Manager upgraded to 1.6.1
-  - 🍏 Grafana upgraded to 8.2.3
-  - 🍏 Ingress Nginx to 1.0.4
-  - 🍏 Loki and Promtail upgraded to 2.4.1
-  - 🍏 Prometheus chart is upgraded
-  - 🍏 Tempo upgraded to 1.2 - includes performance improvements
+  ❗ You must use stack CLI v0.4.0 for this version when you run `stack generate`
 
 message: |
 
