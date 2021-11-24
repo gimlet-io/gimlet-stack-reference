@@ -1,0 +1,8 @@
+{{ if .crossplane.enabled -}}
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws
+spec:
+  package: "crossplane/provider-aws:v0.21.1"
+{{- end }}
