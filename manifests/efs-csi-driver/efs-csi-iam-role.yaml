@@ -1,0 +1,36 @@
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRole
+metadata:
+  name: efs-csi-driver-role
+spec:
+  forProvider:
+    assumeRolePolicyDocument: |
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Federated": "arn:aws:iam::782027979363:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/54BBD7982BA24A924D148F7FAA2AADE7"
+                  },
+                  "Action": "sts:AssumeRoleWithWebIdentity",
+                  "Condition": {
+                      "StringEquals": {
+                      "oidc.eks.eu-central-1.amazonaws.com/id/54BBD7982BA24A924D148F7FAA2AADE7:sub" : "system:serviceaccount:kube-system:efs-csi-controller-sa"
+                      }
+                  }
+              }
+          ]
+      }
+  providerConfigRef:
+    name: default
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: efs-csi-driver-role-policy-assignment
+spec:
+  forProvider:
+    policyArn: arn:aws:iam::782027979363:policy/efs-csi-driver-policy
+    roleName: efs-csi-driver-role
