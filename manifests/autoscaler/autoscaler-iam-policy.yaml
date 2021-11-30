@@ -1,0 +1,32 @@
+---
+apiVersion: identity.aws.crossplane.io/v1alpha1
+kind: IAMPolicy
+metadata:
+  name: eks-autoscaler-policy
+  namespace: infrastructure
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    description: Policy for Amazon EKS cluster autoscaler
+    name: eks-autoscaler-policy
+    document: |
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Action": [
+                      "autoscaling:DescribeAutoScalingGroups",
+                      "autoscaling:DescribeAutoScalingInstances",
+                      "autoscaling:DescribeLaunchConfigurations",
+                      "autoscaling:DescribeTags",
+                      "autoscaling:SetDesiredCapacity",
+                      "autoscaling:TerminateInstanceInAutoScalingGroup",
+                      "ec2:DescribeLaunchTemplateVersions"
+                  ],
+                  "Resource": "*",
+                  "Effect": "Allow"
+              }
+          ]
+      }
+  providerConfigRef:
+    name: default

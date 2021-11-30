@@ -2,6 +2,8 @@
 name: Gimlet Stack Reference
 description: Providing a reference stack to demonstrate Gimlet Stack
 categories:
+  - name: "☁️ Cloud Provider"
+    id: cloud
   - name: "⬅️Ingress"
     id: ingress
   - name: "📑 Logging"
@@ -14,9 +16,62 @@ categories:
     id: tracing
   - name: "📋 Policy"
     id: policy
-  - name: "🧩 Addons"
-    id: addons
 components:
+  - name: AWS
+    variable: aws
+    category: cloud
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/aws.png
+    description: ''
+    onePager: |-
+      ### What do you get with Crossplan?
+      - Crossplane is an open source Kubernetes add-on that transforms your cluster into a universal control plane. Crossplane enables platform teams to assemble infrastructure from multiple vendors, and expose higher level self-service APIs for application teams to consume, without having to write any code.
+
+      ### How to verify the deployment?
+
+      ```
+      $ kubectl get pods --namespace infrastructure | grep crossplane
+
+      NAME                                      READY   STATUS    RESTARTS   AGE
+      crossplane-5ccd8d64b4-5vqlk-zd             1/1     Running   0          1m
+      crossplane-provider-aws-e374-4cq4d-ab      1/1     Running   0          1m
+      crossplane-rbac-manager-856c9bb5df-wh      1/1     Running   0          1m
+      ```
+
+      ### Setting credentials
+      ```
+      AWS_CREDS_BASE64=$(echo -e "[default]\naws_access_key_id = $(aws configure get aws_access_key_id --profile $aws_profile)\naws_secret_access_key = $(aws configure get aws_secret_access_key --profile $aws_profile)" | base64  | tr -d "\n")
+      ```
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "title": "The root schema",
+        "description": "The root schema comprises the entire JSON document.",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "crd": {
+            "$id": "#/properties/crd",
+            "type": "string",
+            "title": "Credentials"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#/properties/enabled",
+            "#/properties/crd"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
   - name: Nginx
     variable: nginx
     category: ingress
@@ -626,62 +681,6 @@ components:
           "schemaIDs": [
             "#/properties/enabled",
             "#/properties/podSecurityStandard"
-          ],
-          "uiSchema": {},
-          "metaData": {}
-        }
-      ]
-  - name: Crossplane
-    variable: crossplane
-    category: addons
-    logo: https://raw.githubusercontent.com/crossplane/artwork/420102818bc649730cc97de5b4ed8178e9333eb5/logo/icon.svg
-    description: ''
-    onePager: |-
-      ### What do you get with Crossplan?
-      - Crossplane is an open source Kubernetes add-on that transforms your cluster into a universal control plane. Crossplane enables platform teams to assemble infrastructure from multiple vendors, and expose higher level self-service APIs for application teams to consume, without having to write any code.
-
-      ### How to verify the deployment?
-
-      ```
-      $ kubectl get pods --namespace infrastructure | grep crossplane
-
-      NAME                                      READY   STATUS    RESTARTS   AGE
-      crossplane-5ccd8d64b4-5vqlk-zd             1/1     Running   0          1m
-      crossplane-provider-aws-e374-4cq4d-ab      1/1     Running   0          1m
-      crossplane-rbac-manager-856c9bb5df-wh      1/1     Running   0          1m
-      ```
-
-      ### Setting credentials
-      ```
-      AWS_CREDS_BASE64=$(echo -e "[default]\naws_access_key_id = $(aws configure get aws_access_key_id --profile $aws_profile)\naws_secret_access_key = $(aws configure get aws_secret_access_key --profile $aws_profile)" | base64  | tr -d "\n")
-      ```
-
-    schema: |-
-      {
-        "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
-        "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
-        "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
-          "crd": {
-            "$id": "#/properties/crd",
-            "type": "string",
-            "title": "Credentials"
-          }
-        }
-      }
-    uiSchema: |-
-      [
-        {
-          "schemaIDs": [
-            "#/properties/enabled",
-            "#/properties/crd"
           ],
           "uiSchema": {},
           "metaData": {}

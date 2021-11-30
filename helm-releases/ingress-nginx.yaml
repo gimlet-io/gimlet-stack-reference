@@ -41,7 +41,7 @@ spec:
           annotations:
             prometheus.io/port: "10254"
             prometheus.io/scrape: "true"
-      defaultBackend:
-        enabled: true
-        replicaCount: 2
+    defaultBackend:
+      enabled: true
+      replicaCount: 2
 {{- end }}
