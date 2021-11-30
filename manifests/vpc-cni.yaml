@@ -1,3 +1,4 @@
+{{ if .aws.increasedMaxPodCount -}}
 ---
 # Source: aws-vpc-cni/templates/serviceaccount.yaml
 apiVersion: v1
@@ -267,3 +268,4 @@ spec:
                 operator: NotIn
                 values:
                 - fargate
+{{- end }}

@@ -54,10 +54,25 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "crd": {
-            "$id": "#/properties/crd",
+          "awsCredentials": {
+            "$id": "#/properties/awsCredentials",
             "type": "string",
-            "title": "Credentials"
+            "title": "AWS Credentials"
+          },
+          "increasedMaxPodCount": {
+            "$id": "#/properties/increasedMaxPodCount",
+            "type": "boolean",
+            "title": "Increased max-pod count"
+          },
+          "clusterAutoScaler": {
+            "$id": "#/properties/clusterAutoScaler",
+            "type": "boolean",
+            "title": "Cluster Autoscaler"
+          },
+          "horizontalPodAutoscaler": {
+            "$id": "#/properties/horizontalPodAutoscaler",
+            "type": "boolean",
+            "title": "Horizontal Pod Autoscaler"
           }
         }
       }
@@ -66,7 +81,10 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
-            "#/properties/crd"
+            "#/properties/awsCredentials",
+            "#/properties/increasedMaxPodCount",
+            "#/properties/clusterAutoScaler",
+            "#/properties/horizontalPodAutoscaler"
           ],
           "uiSchema": {},
           "metaData": {}

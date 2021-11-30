@@ -1,3 +1,4 @@
+{{ if .aws.clusterAutoscaler -}}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRole
@@ -12,12 +13,12 @@ spec:
               {
                   "Effect": "Allow",
                   "Principal": {
-                      "Federated": "arn:aws:iam::782027979363:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/54BBD7982BA24A924D148F7FAA2AADE7"
+                      "Federated": "arn:aws:iam::<<OIDC provider id>>:oidc-provider/oidc.eks.<<TODO region>>.amazonaws.com/id/<<OIDC provider id>>"
                   },
                   "Action": "sts:AssumeRoleWithWebIdentity",
                   "Condition": {
                       "StringEquals": {
-                      "oidc.eks.eu-central-1.amazonaws.com/id/54BBD7982BA24A924D148F7FAA2AADE7:sub" : "system:serviceaccount:kube-system:cluster-autoscaler"
+                      "oidc.eks.<<TODO region>>.amazonaws.com/id/<<OIDC provider id>>:sub" : "system:serviceaccount:kube-system:cluster-autoscaler"
                       }
                   }
               }
@@ -32,5 +33,6 @@ metadata:
   name: eks-autoscaler-role-policy-assignment
 spec:
   forProvider:
-    policyArn: arn:aws:iam::782027979363:policy/eks-autoscaler-policy
+    policyArn: arn:aws:iam::<<account id>>:policy/eks-autoscaler-policy
     roleName: eks-autoscaler-role
+{{- end }}
