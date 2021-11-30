@@ -120,7 +120,7 @@ components:
             "#/properties/clusterAutoScaler",
             "#/properties/horizontalPodAutoscaler",
             "#/properties/extendedDiskSupport",
-            "#/properties/efsSupport",
+            "#/properties/efsSupport"
           ],
           "uiSchema": {},
           "metaData": {}
