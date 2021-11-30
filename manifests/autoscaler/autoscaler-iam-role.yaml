@@ -13,12 +13,12 @@ spec:
               {
                   "Effect": "Allow",
                   "Principal": {
-                      "Federated": "arn:aws:iam::<<OIDC provider id>>:oidc-provider/oidc.eks.<<TODO region>>.amazonaws.com/id/<<OIDC provider id>>"
+                      "Federated": "arn:aws:iam::{{ .aws.oidcProviderID -}}:oidc-provider/oidc.eks.{{ .aws.region -}}.amazonaws.com/id/{{ .aws.oidcProviderID -}}"
                   },
                   "Action": "sts:AssumeRoleWithWebIdentity",
                   "Condition": {
                       "StringEquals": {
-                      "oidc.eks.<<TODO region>>.amazonaws.com/id/<<OIDC provider id>>:sub" : "system:serviceaccount:kube-system:cluster-autoscaler"
+                      "oidc.eks.{{ .aws.region -}}.amazonaws.com/id/{{ .aws.oidcProviderID -}}:sub" : "system:serviceaccount:kube-system:cluster-autoscaler"
                       }
                   }
               }
@@ -33,6 +33,6 @@ metadata:
   name: eks-autoscaler-role-policy-assignment
 spec:
   forProvider:
-    policyArn: arn:aws:iam::<<account id>>:policy/eks-autoscaler-policy
+    policyArn: arn:aws:iam::{{ .aws.accountID -}}:policy/eks-autoscaler-policy
     roleName: eks-autoscaler-role
 {{- end }}

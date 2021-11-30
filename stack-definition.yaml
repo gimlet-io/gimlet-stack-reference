@@ -54,10 +54,30 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
+          "accountID": {
+            "$id": "#/properties/accountID",
+            "type": "string",
+            "title": "AWS Account ID"
+          },
           "awsCredentials": {
             "$id": "#/properties/awsCredentials",
             "type": "string",
             "title": "AWS Credentials"
+          },
+          "region": {
+            "$id": "#/properties/region",
+            "type": "string",
+            "title": "Region"
+          },
+          "cluster": {
+            "$id": "#/properties/cluster",
+            "type": "string",
+            "title": "Cluster Name"
+          },
+          "oidcProviderID": {
+            "$id": "#/properties/oidcProviderID",
+            "type": "string",
+            "title": "OIDC Provider ID"
           },
           "increasedMaxPodCount": {
             "$id": "#/properties/increasedMaxPodCount",
@@ -81,7 +101,11 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
+            "#/properties/accountID",
             "#/properties/awsCredentials",
+            "#/properties/region",
+            "#/properties/cluster",
+            "#/properties/oidcProviderID",
             "#/properties/increasedMaxPodCount",
             "#/properties/clusterAutoScaler",
             "#/properties/horizontalPodAutoscaler"

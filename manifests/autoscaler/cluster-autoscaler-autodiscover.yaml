@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::782027979363:role/eks-autoscaler-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .aws.accountID -}}:role/eks-autoscaler-role
   labels:
     k8s-addon: cluster-autoscaler.addons.k8s.io
     k8s-app: cluster-autoscaler
@@ -163,12 +163,12 @@ spec:
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
             - --expander=least-waste
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<<TODO cluster name from var>>
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .aws.cluster -}}
             - --balance-similar-node-groups
             - --skip-nodes-with-system-pods=false
           env:
           - name: AWS_REGION
-            value: <<TODO region from var>>
+            value: {{ .aws.region -}}
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt #/etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes
