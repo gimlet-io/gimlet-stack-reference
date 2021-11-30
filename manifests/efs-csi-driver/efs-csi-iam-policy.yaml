@@ -1,3 +1,4 @@
+{{ if .aws.efsSupport -}}
 ---
 apiVersion: identity.aws.crossplane.io/v1alpha1
 kind: IAMPolicy
@@ -47,3 +48,4 @@ spec:
       }
   providerConfigRef:
     name: default
+{{- end }}

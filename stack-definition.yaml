@@ -93,6 +93,16 @@ components:
             "$id": "#/properties/horizontalPodAutoscaler",
             "type": "boolean",
             "title": "Horizontal Pod Autoscaler"
+          },
+          "extendedDiskSupport": {
+            "$id": "#/properties/extendedDiskSupport",
+            "type": "boolean",
+            "title": "Extended Disk Support"
+          },
+          "efsSupport": {
+            "$id": "#/properties/efsSupport",
+            "type": "boolean",
+            "title": "EFS Support"
           }
         }
       }
@@ -108,7 +118,9 @@ components:
             "#/properties/oidcProviderID",
             "#/properties/increasedMaxPodCount",
             "#/properties/clusterAutoScaler",
-            "#/properties/horizontalPodAutoscaler"
+            "#/properties/horizontalPodAutoscaler",
+            "#/properties/extendedDiskSupport",
+            "#/properties/efsSupport",
           ],
           "uiSchema": {},
           "metaData": {}

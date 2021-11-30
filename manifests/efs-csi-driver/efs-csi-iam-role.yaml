@@ -1,3 +1,4 @@
+{{ if .aws.efsSupport -}}
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRole
@@ -12,12 +13,12 @@ spec:
               {
                   "Effect": "Allow",
                   "Principal": {
-                      "Federated": "arn:aws:iam::782027979363:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/54BBD7982BA24A924D148F7FAA2AADE7"
+                      "Federated": "arn:aws:iam::{{ .aws.accountID -}}:oidc-provider/oidc.eks.{{ .aws.region -}}.amazonaws.com/id/{{ .aws.oidcProviderID -}}"
                   },
                   "Action": "sts:AssumeRoleWithWebIdentity",
                   "Condition": {
                       "StringEquals": {
-                      "oidc.eks.eu-central-1.amazonaws.com/id/54BBD7982BA24A924D148F7FAA2AADE7:sub" : "system:serviceaccount:kube-system:efs-csi-controller-sa"
+                      "oidc.eks.{{ .aws.region -}}.amazonaws.com/id/{{ .aws.oidcProviderID -}}:sub" : "system:serviceaccount:kube-system:efs-csi-controller-sa"
                       }
                   }
               }
@@ -32,5 +33,6 @@ metadata:
   name: efs-csi-driver-role-policy-assignment
 spec:
   forProvider:
-    policyArn: arn:aws:iam::782027979363:policy/efs-csi-driver-policy
+    policyArn: arn:aws:iam::{{ .aws.accountID -}}:policy/efs-csi-driver-policy
     roleName: efs-csi-driver-role
+{{- end }}
