@@ -57,12 +57,14 @@ components:
           "accountID": {
             "$id": "#/properties/accountID",
             "type": "string",
-            "title": "AWS Account ID"
+            "title": "AWS Account ID",
+            "description": "You can find your Account ID on the AWS console, in the top right user menu dropdown"
           },
           "awsCredentials": {
             "$id": "#/properties/awsCredentials",
             "type": "string",
-            "title": "AWS Credentials"
+            "title": "AWS Credentials",
+            "description": "If you have a working `aws` CLI access, obtain the credentials with the \n```AWS_CREDS_BASE64=$(echo -e \"[default]\naws_access_key_id = $(aws configure get aws_access_key_id --profile $aws_profile)\naws_secret_access_key = $(aws configure get aws_secret_access_key --profile $aws_profile)\" | base64  | tr -d \"\n\")``` command."
           },
           "region": {
             "$id": "#/properties/region",
