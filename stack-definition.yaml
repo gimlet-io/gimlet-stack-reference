@@ -643,9 +643,7 @@ components:
       ]
 
 changeLog: |
-  - 🍏 Updated Kyverno
-
-  ❗ You must use stack CLI v0.4.0 for this version when you run `stack generate`
+  - 🍏 Upgrading Grafana to 8.3.1 due to security report: https://grafana.com/blog/2021/12/07/grafana-8.3.1-8.2.7-8.1.8-and-8.0.7-released-with-high-severity-security-fix/?utm_source=tw&utm_medium=social
 
 message: |
 
