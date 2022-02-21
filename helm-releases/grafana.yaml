@@ -27,20 +27,20 @@ spec:
         enabled: true
       notifiers:
         enabled: true
-    {{- if .nginx.enabled }}
+    {{- if or .nginx.enabled .civo.enabled}}
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: {{ .nginx.enabled | "nginx" "trafeik" }}
       {{- if .certManager.enabled }}
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
       tls:
         - secretName: tls-grafana
           hosts:
-            - grafana.{{ .nginx.host }}
+            - grafana.{{ .nginx.enabled | .nginx.host .civo.host }}
       {{- end }}
       hosts:
-        - grafana.{{ .nginx.host }}
+        - grafana.{{ .nginx.enabled | .nginx.host .civo.host }}
       path: /
     {{- end }}
 {{- end }}

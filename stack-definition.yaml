@@ -23,21 +23,48 @@ components:
     variable: civo
     category: cloud
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/civo/assets/civo.svg
-    description: ''
+    description: 'Enable CIVO Cloud defaults to better integrate into the CIVO landscape'
     onePager: |-
-      Hello
+      Enable CIVO Cloud defaults to better integrate into the CIVO landscape
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
+        "$id": "#civo",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
+          }
+        },
+        "dependencies": {
+          "enabled": {
+            "oneOf": [
+              {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  },
+                  "host": {
+                    "$id": "#/properties/host",
+                    "type": "string",
+                    "title": "Host",
+                    "description": "Your company domain you will expose your services on"
+                  }
+                },
+                "required": [
+                  "host"
+                ]
+              }
+            ]
           }
         }
       }
@@ -45,7 +72,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled"
+            "#civo"
           ],
           "uiSchema": {},
           "metaData": {}
