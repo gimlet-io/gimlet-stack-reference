@@ -4,6 +4,8 @@ description: |
   Logging, metrics, ingress and more - all delivered with gitops.
 
 categories:
+  - name: "☁️ Cloud Provider"
+    id: cloud
   - name: "⬅️Ingress"
     id: ingress
   - name: "📑 Logging"
@@ -17,6 +19,38 @@ categories:
   - name: "📋 Policy"
     id: policy
 components:
+  - name: CIVO
+    variable: civo
+    category: cloud
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/civo/assets/civo.svg
+    description: ''
+    onePager: |-
+      Hello
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "title": "The root schema",
+        "description": "The root schema comprises the entire JSON document.",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#/properties/enabled"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
   - name: Nginx
     variable: nginx
     category: ingress
