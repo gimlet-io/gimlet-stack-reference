@@ -30,17 +30,17 @@ spec:
     {{- if or .nginx.enabled .civo.enabled}}
     ingress:
       enabled: true
-      ingressClassName: {{ .nginx.enabled | "nginx" "trafeik" }}
+      ingressClassName: {{ .nginx.enabled | ternary "nginx" "trafeik" }}
       {{- if .certManager.enabled }}
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
       tls:
         - secretName: tls-grafana
           hosts:
-            - grafana.{{ .nginx.enabled | .nginx.host .civo.host }}
+            - grafana.{{ .nginx.enabled | ternary .nginx.host .civo.host }}
       {{- end }}
       hosts:
-        - grafana.{{ .nginx.enabled | .nginx.host .civo.host }}
+        - grafana.{{ .nginx.enabled | ternary .nginx.host .civo.host }}
       path: /
     {{- end }}
 {{- end }}

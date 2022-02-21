@@ -115,15 +115,15 @@ metadata:
   name: oauth2-proxy
   namespace: infrastructure
 spec:
-  ingressClassName: {{ .nginx.enabled | "nginx" "trafeik" }}
+  ingressClassName: {{ .nginx.enabled | ternary "nginx" "trafeik" }}
   {{- if .certManager.enabled }}
   tls:
     - secretName: tls-oauth2-proxy
       hosts:
-        - "auth.{{ .nginx.enabled | .nginx.host .civo.host }}"
+        - "auth.{{ .nginx.enabled | ternary .nginx.host .civo.host }}"
   {{- end }}
   rules:
-    - host: "auth.{{ .nginx.enabled | .nginx.host .civo.host }}"
+    - host: "auth.{{ .nginx.enabled | ternary .nginx.host .civo.host }}"
       http:
         paths:
           - path: /
