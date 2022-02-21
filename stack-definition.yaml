@@ -126,7 +126,8 @@ components:
           "enabled": {
             "$id": "#/properties/enabled",
             "type": "boolean",
-            "title": "Enabled"
+            "title": "Enabled",
+            "default": false
           }
         },
         "dependencies": {
