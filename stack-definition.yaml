@@ -1,6 +1,8 @@
 ---
-name: Gimlet Stack Reference
-description: Providing a reference stack to demonstrate Gimlet Stack
+name: Bootstrap curated Kubernetes stacks!
+description: |
+  Logging, metrics, ingress and more - all delivered with gitops.
+
 categories:
   - name: "⬅️Ingress"
     id: ingress
