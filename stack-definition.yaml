@@ -407,6 +407,61 @@ components:
           "metaData": {}
         }
       ]
+  - name: Grafana Cloud
+    variable: grafanaCloud
+    category: logging
+    logo: https://grafana.com/static/img/menu/grafana2.svg
+    description: ''
+    onePager: |-
+      Install Promtail to ship logs to Grafana Cloud.
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#grafanaCloud",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "clusterName": {
+            "$id": "#/properties/clusterName",
+            "type": "string",
+            "title": "Cluster Name",
+            "description": "A unique cluster identifier that is attached to labels shipped by this Prometheus. You can use this later on for querying."
+          },
+          "url": {
+            "$id": "#/properties/url",
+            "type": "string",
+            "title": "URL",
+            "description": "URL field on the Grafana Cloud dashboard"
+          },
+          "username": {
+            "$id": "#/properties/username",
+            "type": "string",
+            "title": "User",
+            "description": "User field on the Grafana Cloud dashboard"
+          },
+          "password": {
+            "$id": "#/properties/password",
+            "type": "string",
+            "title": "Password / API Key",
+            "description": "Password field on the Grafana Cloud dashboard"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#grafanaCloud"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
   - name: Prometheus
     variable: prometheus
     category: metrics
@@ -457,10 +512,8 @@ components:
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
+        "$id": "#prometheus",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -487,6 +540,42 @@ components:
             "default": 10,
             "minimum": 1,
             "maximum": 100
+          },
+          "grafanaCloud": {
+            "$id": "#/properties/grafanaCloud",
+            "type": "object",
+            "title": "Write to Grafana Cloud",
+            "properties": {
+              "enabled": {
+                "$id": "#/properties/enabled",
+                "type": "boolean",
+                "title": "Enabled"
+              },
+              "clusterName": {
+                "$id": "#/properties/clusterName",
+                "type": "string",
+                "title": "Cluster Name",
+                "description": "A unique cluster identifier that is attached to labels shipped by this Prometheus. You can use this later on for querying."
+              },
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "Remote Write Endpoint",
+                "description": "Remote Write Endpoint URL on the Grafana Cloud dashboard"
+              },
+              "username": {
+                "$id": "#/properties/username",
+                "type": "string",
+                "title": "Username / Instance ID",
+                "description": "Username / Instance ID on the Grafana Cloud dashboard"
+              },
+              "password": {
+                "$id": "#/properties/password",
+                "type": "string",
+                "title": "Password / API Key",
+                "description": "Password / API Key on the Grafana Cloud dashboard"
+              }
+            }
           }
         }
       }
@@ -494,10 +583,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled",
-            "#/properties/retentionDays",
-            "#/properties/persistence",
-            "#/properties/volumeSize"
+            "#prometheus"
           ],
           "uiSchema": {
             "#/properties/retentionDays": {
