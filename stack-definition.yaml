@@ -337,13 +337,47 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "retentionDays": {
-            "$id": "#/properties/retentionDays",
-            "type": "integer",
-            "title": "Retentian (in days)",
-            "default": 14,
-            "minimum": 1,
-            "maximum": 365
+          "storage": {
+            "$id": "#/properties/storage",
+            "type": "object",
+            "title": "Storage",
+            "oneOf": [
+              {
+                "id": "#/properties/storage/oneOf/0",
+                "title": "Volume Storage",
+                "properties": {
+                  "retentionDays": {
+                    "type": "integer",
+                    "title": "Retentian (in days)",
+                    "minimum": 1
+                  }
+                },
+                "required": ["retentionDays"]
+              },
+              {
+                "id": "#/properties/storage/oneOf/1",
+                "title": "S3 Storage",
+                "type": "object",
+                "properties": {
+                  "s3Url": {
+                    "type": "string",
+                    "title": "S3 URL",
+                    "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
+                    "default": "s3://<access_key>:<uri-encoded-secret-access-key>@<region>"
+                  },
+                  "bucketName": {
+                    "type": "string",
+                    "title": "Bucket Name",
+                    "description": "Use an existing PersistentVolumeClaim",
+                    "default": "my-bucket"
+                  }
+                },
+                "required": [
+                  "s3Url",
+                  "bucketName"
+                ]
+              }
+            ]
           },
           "persistence": {
             "$id": "#/properties/persistence",
@@ -355,8 +389,7 @@ components:
             "type": "integer",
             "title": "Peristent Volume Size (in GB)",
             "default": 10,
-            "minimum": 1,
-            "maximum": 100
+            "minimum": 1
           }
         }
       }
@@ -365,17 +398,11 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
-            "#/properties/retentionDays",
+            "#/properties/storage",
             "#/properties/persistence",
             "#/properties/volumeSize"
           ],
           "uiSchema": {
-            "#/properties/retentionDays": {
-              "ui:widget": "range"
-            },
-            "#/properties/volumeSize": {
-              "ui:widget": "range"
-            }
           },
           "metaData": {}
         }
