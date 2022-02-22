@@ -22,7 +22,7 @@ components:
   - name: CIVO
     variable: civo
     category: cloud
-    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/civo/assets/civo.svg
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/civo.svg
     description: 'Enable CIVO Cloud defaults to better integrate into the CIVO landscape'
     onePager: |-
       Enable CIVO Cloud defaults to better integrate into the CIVO landscape
@@ -732,6 +732,98 @@ components:
           "metaData": {}
         }
       ]
+  - name: OAuth2Proxy
+    variable: oauth2Proxy
+    category: ingress
+    logo: https://raw.githubusercontent.com/oauth2-proxy/oauth2-proxy/master/docs/static/img/logos/OAuth2_Proxy_icon.svg
+    description: ''
+    onePager: |-
+      ### What do you get with OAuth2Proxy?
+      - You can authenticate your internal services with Github
+      - Use it instead of a VPN
+
+      ### How to verify the deployment?
+
+      ```
+      kubectl get pods --namespace infrastructure
+      ```
+      ```
+      NAME                                                   READY   STATUS    RESTARTS   AGE
+      oauth2-proxy-56cc5665c5-t6472                          2/2     Running   2          18h
+      ```
+      To add authentication for your services, add the following annotations to your ingresses:
+      ```diff
+      apiVersion: extensions/v1beta1
+      kind: Ingress
+      metadata:
+        name: my-app
+        namespace: infrastructure
+        annotations:
+          kubernetes.io/ingress.class: 'nginx'
+      +   nginx.ingress.kubernetes.io/auth-url: "https://auth.<<your-nginx-domain>>/oauth2/auth"
+      +   nginx.ingress.kubernetes.io/auth-signin: "https://auth.<<your-nginx-domain>>/oauth2/start?rd=/redirect/$http_host$escaped_request_uri"
+      spec:
+        tls:
+        - hosts:
+          - my-app.<<your-nginx-domain>>
+        rules:
+          - host: my-app.<<your-nginx-domain>>
+            http:
+              paths:
+                - backend:
+                    serviceName: my-app
+                    servicePort: 80
+      ```
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#oauth2Proxy",
+        "type": "object",
+        "title": "The root schema",
+        "description": "The root schema comprises the entire JSON document.",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "org": {
+            "$id": "#/properties/org",
+            "type": "string",
+            "title": "Github Organization",
+            "description": "Github users member of this organization will be allowed to access your protected sites"
+          },
+          "user": {
+            "$id": "#/properties/user",
+            "type": "string",
+            "title": "Github User",
+            "description": "If you want to grant access per user basis, a comma separated list"
+          },
+          "clientID": {
+            "$id": "#/properties/clientID",
+            "type": "string",
+            "title": "Github ClientID",
+            "description": "ClientID of the Github OAuth application"
+          },
+          "clientSecret": {
+            "$id": "#/properties/clientSecret",
+            "type": "string",
+            "title": "Github Client Secret",
+            "description": "Client secret of the Github OAuth application"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#oauth2Proxy"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
+
 
 changeLog: |
   - 🍏 Upgrading Grafana to 8.3.1 due to security report: https://grafana.com/blog/2021/12/07/grafana-8.3.1-8.2.7-8.1.8-and-8.0.7-released-with-high-severity-security-fix/?utm_source=tw&utm_medium=social

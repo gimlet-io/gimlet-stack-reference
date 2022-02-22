@@ -115,7 +115,7 @@ metadata:
   name: oauth2-proxy
   namespace: infrastructure
 spec:
-  ingressClassName: {{ default false .nginx.enabled | ternary "nginx" "trafeik" }}
+  ingressClassName: {{ default false .nginx.enabled | ternary "nginx" "traefik" }}
   {{- if .certManager.enabled }}
   tls:
     - secretName: tls-oauth2-proxy
