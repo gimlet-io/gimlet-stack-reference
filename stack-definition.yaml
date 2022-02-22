@@ -701,6 +701,46 @@ components:
           "metaData": {}
         }
       ]
+  - name: ExternalSecrets
+    variable: externalSecrets
+    category: secrets
+    logo: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/round_eso_logo.png
+    description: ''
+    onePager: |-
+      The project extends the Kubernetes API by adding an ExternalSecrets object using Custom Resource Definition and a controller to implement the behavior of the object itself.
+
+      An ExternalSecret declares how to fetch the secret data, while the controller converts all ExternalSecrets to Secrets. The conversion is completely transparent to Pods that can access Secrets normally.
+
+      - `ExternalSecrets` are added in the cluster (e.g., kubectl apply -f external-secret-example.yml)
+      - Controller fetches `ExternalSecrets` using the Kubernetes API
+      - Controller uses `ExternalSecrets` to fetch secret data from external providers (e.g, AWS Secrets Manager)
+      - Controller upserts `Secrets`
+      - Pods can access `Secrets` normally
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "http://example.com/example.json",
+        "type": "object",
+        "title": "The root schema",
+        "description": "The root schema comprises the entire JSON document.",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#/properties/enabled"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
   - name: Grafana Tempo
     variable: tempo
     category: tracing
