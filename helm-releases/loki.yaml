@@ -17,11 +17,10 @@ spec:
         name: grafana
       interval: 10m
   values:
-    {{ if .prometheus.persistence -}}
+    {{ if .loki.persistence -}}
     persistence:
       enabled: true
-      size: {{ default 10 .prometheus.volumeSize -}}Gi
-      existingClaim: loki-0
+      size: {{ default 10 .loki.volumeSize -}}Gi
     {{- end }}
     config:
       auth_enabled: false
