@@ -35,6 +35,24 @@ spec:
       retention: "{{ default 14 .prometheus.retentionDays }}d"
       global:
         scrape_interval: 15s
+        {{ if .prometheus.grafanaCloud.enabled -}}
+        external_labels:
+          cluster:  {{ .prometheus.grafanaCloud.clusterName }}
+          # https://grafana.com/docs/grafana-cloud/metrics-prometheus/#sending-data-from-multiple-high-availability-prometheus-instances
+          __replica__: replica1
+        {{- end }}
+      {{ if .prometheus.grafanaCloud.enabled -}}
+      remoteWrite:
+        - url: {{ .prometheus.grafanaCloud.url }}
+          basic_auth:
+            username: {{ .prometheus.grafanaCloud.username }}
+            password: {{ .prometheus.grafanaCloud.password }}
+          write_relabel_configs:
+          - source_labels:
+            - "__name__"
+            regex: "node_load1|node_cpu_seconds_total|node_filesystem_free_bytes|node_time_seconds|node_network_transmit_bytes_total|node_network_receive_bytes_total|node_disk_reads_completed_total|node_disk_writes_completed_total|node_disk_written_bytes_total|node_disk_read_bytes_total|node_disk_io_time_weighted_seconds_total|node_filesystem_avail_bytes|node_filesystem_size_bytes|node_boot_time_seconds|node_memory_MemAvailable_bytes|node_memory_MemTotal_bytes|kube_pod_container_resource_requests|kube_node_status_capacity|kube_pod_container_status_restarts_total|kubelet_volume_stats_used_bytes|kubelet_volume_stats_capacity_bytes|container_memory_working_set_bytes|kube_pod_labels|container_cpu_usage_seconds_total|container_network_transmit_bytes_total|container_network_receive_bytes_total"
+            action: "keep"
+      {{- end }}
     extraScrapeConfigs: |-
     {{- if .Linkerd.Enabled }}
       - job_name: 'linkerd-controller'
