@@ -963,8 +963,6 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#gimletDashboard",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1043,8 +1041,6 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#gimletAgent",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1087,8 +1083,6 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#gimletd",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
