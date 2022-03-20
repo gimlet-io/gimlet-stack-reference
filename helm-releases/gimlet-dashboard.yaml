@@ -56,6 +56,9 @@ spec:
       GITHUB_CLIENT_SECRET: "{{ .gimletDashboard.githubClientSecret }}"
       WEBHOOK_SECRET: "{{ .gimletDashboard.webhookSecret }}"
       RELEASE_HISTORY_SINCE_DAYS: 7
+      {{- if .gimletDashboard.bootstrapEnv }}
+      BOOTSTRAP_ENV: "{{ .gimletDashboard.bootstrapEnv }}"
+      {{- end }}
     resources:
       requests:
         cpu: "100m"

@@ -44,6 +44,7 @@ spec:
       PRINT_ADMIN_TOKEN: true
       GITOPS_REPO: {{ .gimletd.gitopsRepo }}
       GITOPS_REPO_DEPLOY_KEY_PATH: /github/deploy.key
+      ADMIN_TOKEN: {{ .gimletd.adminToken }}
     fileSecrets:
       - name:  github-gitops-deploy-key
         path: /github
