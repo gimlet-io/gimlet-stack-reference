@@ -952,7 +952,26 @@ components:
 
 
 changeLog: |
-  - 🍏 Upgrading Grafana to 8.3.1 due to security report: https://grafana.com/blog/2021/12/07/grafana-8.3.1-8.2.7-8.1.8-and-8.0.7-released-with-high-severity-security-fix/?utm_source=tw&utm_medium=social
+  - 🆕 Cert Manager upgraded from v1.6.1 to v1.7.1
+    Version 1.7 brings new private key output formats, configuration improvements for the webhook, some long-awaited code cleanup, a fix for ingress class semantics and a bunch of other changes.
+  - 🍏 Grafana chart version upgraded from 6.17.5 to 6.24.1
+  - 🍏 Grafana upgraded from 8.3.1 to 8.4.4
+    https://github.com/grafana/grafana/blob/main/CHANGELOG.md
+  - 🍏 Ingress-nginx chart upgraded from 4.0.6 to 4.0.18
+  - 🍏 Kyverno chart upgraded from 2.1.3 to 2.3.1
+  - 🆕 Policy-reporter chart upgraded from 1.12.6 to 2.7.0
+    Removed deprecated values crdVersion, cleanupDebounceTime
+    Simplify policyPriorities, policyPriorities.enabled was removed along with the watch feature
+    Priority determined mainly over severity
+    Add sources filter to target configurations
+    Improved NetworkPolicy configuration for all components
+    Metrics now an optional feature
+    Each component expose a single Port 8080
+  - 🍏 Loki chart upgraded from 2.8.1 to 2.10.1
+  - 🍏 Prometheus chart upgraded from 14.11.1 to 15.5.3
+  - 🍏 Promtail chart upgraded from 3.8.0 to 3.11.0
+  - 🍏 Sealed-secrets upgraded from 1.16.1 to 2.1.4
+  - 🍏 Tempo upgraded from 0.9.0 to 0.14.2
 
 message: |
 
