@@ -1042,6 +1042,12 @@ components:
                 "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
                 "default": "postgres:5432"
               },
+              "db": {
+                "$id": "#/properties/database",
+                "type": "string",
+                "title": "Postgresql Database Name",
+                "default": "gimlet_dasboard"
+              },
               "user": {
                 "$id": "#/properties/user",
                 "type": "string",
@@ -1166,12 +1172,18 @@ components:
                 "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
                 "default": "postgres:5432"
               },
+              "db": {
+                "$id": "#/properties/database",
+                "type": "string",
+                "title": "Postgresql Database Name",
+                "default": "gimletd"
+              },
               "user": {
                 "$id": "#/properties/user",
                 "type": "string",
                 "title": "Postgresql User",
                 "description": "",
-                "default": "gimlet_dashboard"
+                "default": "gimletd"
               },
               "password": {
                 "$id": "#/properties/password",
