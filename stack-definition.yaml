@@ -954,10 +954,14 @@ components:
 changeLog: |
   - 🆕 Cert Manager upgraded from v1.6.1 to v1.7.1
     Version 1.7 brings new private key output formats, configuration improvements for the webhook, some long-awaited code cleanup, a fix for ingress class semantics and a bunch of other changes.
+    [https://github.com/cert-manager/cert-manager/releases/tag/v1.7.0](https://github.com/cert-manager/cert-manager/releases/tag/v1.7.0)
   - 🍏 Grafana chart version upgraded from 6.17.5 to 6.24.1
-  - 🍏 Grafana upgraded from 8.3.1 to 8.4.4
-    https://github.com/grafana/grafana/blob/main/CHANGELOG.md
-  - 🍏 Ingress-nginx chart upgraded from 4.0.6 to 4.0.18
+  - 🐛 Grafana upgraded from 8.3.1 to 8.4.4
+    What's news in v8.4:
+    [https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v8-4/](https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v8-4/)
+  - 🐛 Ingress-nginx chart upgraded from 4.0.6 to 4.0.18
+    Check the 4.0.18 Changelog here:
+    [https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/CHANGELOG.md#4018](https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/CHANGELOG.md#4018)
   - 🍏 Kyverno chart upgraded from 2.1.3 to 2.3.1
   - 🆕 Policy-reporter chart upgraded from 1.12.6 to 2.7.0
     Removed deprecated values crdVersion, cleanupDebounceTime
