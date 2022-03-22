@@ -1016,6 +1016,46 @@ components:
             "type": "string",
             "title": "Webhook Secret",
             "description": ""
+          },
+          "postgresql": {
+            "$id": "#/properties/postgresql",
+            "type": "object",
+            "title": "Postgresql settings",
+            "description": "",
+            "properties": {
+              "install": {
+                "$id": "#/properties/install",
+                "type": "boolean",
+                "title": "Install Postgresql",
+                "description": "Install a Postgresql instance to host Gimlet data"
+              },
+              "postgresPassword": {
+                "$id": "#/properties/postgresPassword",
+                "type": "string",
+                "title": "Postgresql Admin Password",
+                "description": "Fill it if you install Postgresql together with Gimlet"
+              },
+              "hostAndPort": {
+                "$id": "#/properties/hostAndPort",
+                "type": "string",
+                "title": "Postgresql Host and Port",
+                "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
+                "default": "postgres:5432"
+              },
+              "user": {
+                "$id": "#/properties/user",
+                "type": "string",
+                "title": "Postgresql User",
+                "description": "",
+                "default": "gimlet_dashboard"
+              },
+              "password": {
+                "$id": "#/properties/password",
+                "type": "string",
+                "title": "Postgresql Password",
+                "description": ""
+              }
+            }
           }
         }
       }
@@ -1100,6 +1140,46 @@ components:
             "type": "string",
             "title": "Deploy Key",
             "description": "The private key of the deploy key pair to access the gitops repo on Github"
+          },
+          "postgresql": {
+            "$id": "#/properties/postgresql",
+            "type": "object",
+            "title": "Postgresql settings",
+            "description": "",
+            "properties": {
+              "install": {
+                "$id": "#/properties/install",
+                "type": "boolean",
+                "title": "Install Postgresql",
+                "description": "Install a Postgresql instance to host Gimlet data"
+              },
+              "postgresPassword": {
+                "$id": "#/properties/postgresPassword",
+                "type": "string",
+                "title": "Postgresql Admin Password",
+                "description": "Fill it if you install Postgresql together with Gimlet"
+              },
+              "hostAndPort": {
+                "$id": "#/properties/hostAndPort",
+                "type": "string",
+                "title": "Postgresql Host and Port",
+                "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
+                "default": "postgres:5432"
+              },
+              "user": {
+                "$id": "#/properties/user",
+                "type": "string",
+                "title": "Postgresql User",
+                "description": "",
+                "default": "gimlet_dashboard"
+              },
+              "password": {
+                "$id": "#/properties/password",
+                "type": "string",
+                "title": "Postgresql Password",
+                "description": ""
+              }
+            }
           }
         }
       }

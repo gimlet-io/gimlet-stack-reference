@@ -1,0 +1,38 @@
+{{ if or .gimletd.postgresql.install .gimletDashboard.postgresql.install -}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+  namespace: infrastructure
+data:
+  init.sql: |
+    CREATE DATABASE gimletd;
+    CREATE USER gimletd WITH ENCRYPTED PASSWORD '{{ .gimletd.postgresql.password }}';
+    GRANT ALL PRIVILEGES ON DATABASE gimletd to gimletd;
+    CREATE DATABASE gimlet_dashboard;
+    CREATE USER gimlet_dashboard WITH ENCRYPTED PASSWORD '{{ .gimletDashboard.postgresql.password }}';
+    GRANT ALL PRIVILEGES ON DATABASE gimlet_dashboard to gimlet_dashboard;
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: postgresql
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: postgresql
+  chart:
+    spec:
+      chart: postgresql
+      version: 11.0.4
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+      interval: 10m
+  values:
+    auth:
+      postgresPassword: "{{ default .gimletDashboard.postgresql.postgresPassword .gimletd.postgresql.postgresPassword -}}"
+    primary:
+      initdb:
+        scriptsConfigMap: postgres-init

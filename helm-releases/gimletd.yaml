@@ -45,6 +45,10 @@ spec:
       GITOPS_REPO: {{ .gimletd.gitopsRepo }}
       GITOPS_REPO_DEPLOY_KEY_PATH: /github/deploy.key
       ADMIN_TOKEN: {{ .gimletd.adminToken }}
+      {{- if .gimletd.postgresql.password }}
+      DATABASE_DRIVER: postgres
+      DATABASE_CONFIG: "postgres://{{ .gimletd.postgresql.user }}:{{ .gimletd.postgresql.password }}@{{ .gimletd.postgresql.hostAndPort }}/{{ .gimletd.postgresql.db }}?sslmode=disable"
+      {{- end }}
     fileSecrets:
       - name:  github-gitops-deploy-key
         path: /github

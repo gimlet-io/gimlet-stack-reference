@@ -59,6 +59,10 @@ spec:
       {{- if .gimletDashboard.bootstrapEnv }}
       BOOTSTRAP_ENV: "{{ .gimletDashboard.bootstrapEnv }}"
       {{- end }}
+      {{- if .gimletDashboard.postgresql.password }}
+      DATABASE_DRIVER: postgres
+      DATABASE_CONFIG: "postgres://{{ .gimletDashboard.postgresql.user }}:{{ .gimletDashboard.postgresql.password }}@{{ .gimletDashboard.postgresql.hostAndPort }}/{{ .gimletDashboard.postgresql.db }}?sslmode=disable"
+      {{- end }}
     resources:
       requests:
         cpu: "100m"
