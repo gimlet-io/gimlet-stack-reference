@@ -36,3 +36,4 @@ spec:
     primary:
       initdb:
         scriptsConfigMap: postgres-init
+{{- end }}
