@@ -1216,8 +1216,10 @@ changeLog: |
   - #23 we introduced a priority lane for charts that are dependencies for other charts and manifests. They will be applied first on the cluster
   - Technically this means we have two `Kustomization` resources now
 
-  To update to this version:
-  Check the instructions at: https://github.com/gimlet-io/gimlet-stack-reference/releases/tag/0.12.0
+  To update to this version, check the instructions at:
+  
+  👉  https://github.com/gimlet-io/gimlet-stack-reference/releases/tag/v0.12.0
+
 message: |
 
   Hey 👋 Laszlo here, the maker of Gimlet Stack.
