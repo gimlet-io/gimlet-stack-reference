@@ -1210,8 +1210,38 @@ components:
 
 
 changeLog: |
-  - 🍏 Upgrading Grafana to 8.3.1 due to security report: https://grafana.com/blog/2021/12/07/grafana-8.3.1-8.2.7-8.1.8-and-8.0.7-released-with-high-severity-security-fix/?utm_source=tw&utm_medium=social
+  ❗ This is a breaking change ❗
+  
+  What changed?
+  - #23 we introduced a priority lane for charts that are dependencies for other charts and manifests. They will be applied first on the cluster
+  - Technically this means we have two `Kustomization` resources now
 
+  To update to this version:
+  - Make sure you have Gimlet CLI version >`v0.14.0-rc.3`
+  - Besides introducing a new `Kustomization` handling the `dependencies` folder, the existing Kustomization was renamed too.
+  Furthermore, to handle a recent SSH key issue, we also fixed https://github.com/gimlet-io/gimlet/issues/104
+  This means you have to bootstrap the gitops automation again.
+  - But first, let's delete the old Kustomization. The order matters, as the Kustomization has garbage collection enabled, and since the latest stack version has some resources moved between folders, the garbage collection would delete them from the cluster. The [best practice](https://fluxcd.io/docs/faq/#how-can-i-safely-move-resources-from-one-dir-to-another) is to turn pruning off first, then move resources.
+  ```
+  kubectl delete kustomizations.kustomize.toolkit.fluxcd.io -n flux-system \
+  gitops-staging-repo
+  kubectl delete secret -n flux-system gitops-repo-staging
+  kubectl delete gitrepositories.source.toolkit.fluxcd.io -n flux-system \
+  gitops-staging-repo
+  ```
+  - Delete the matching yamls from your gitops repo's flux folder
+  - Push it to git
+  - Bootstrap the gitops automation
+  ```
+  gimlet gitops upgrade \                                               
+    --env staging \
+    --gitops-repo-url git@github.com:mycompany/myrepo.git \
+    --no-controller
+  ```
+  - Make sure to push the changes and flux applies them
+  - Run `gimlet stack update` and `gimlet-stack generate`
+  - Inspect the changeset, how `cert-manager.yaml` and the `namespaces.yaml` was moved to the `dependencies` folder. Watch out for custom changes, adjust the moved files as necessary
+  - Make sure to push the changes and flux applies them  
 message: |
 
   Hey 👋 Laszlo here, the maker of Gimlet Stack.
@@ -1226,8 +1256,7 @@ message: |
 
   Now that you generated Kubernetes resources from your stack, maybe you are interested in:
 
-  - how to upgrade your stack 👉 https://gimlet.io/gimlet-stack/upgrading-a-stack/
-  - or how to reuse the automation to deliver your own apps 👉 https://gimlet.io/gimlet-stack/reusing-the-stack-repo-for-application-deployments/
+  - how to upgrade your stack 👉 https://gimlet.io/docs/reconfiguring-upgrading-and-making-custom-changes-to-stacks/
 
   I also recommend that you sign up for the stack update feed.
   You will get 2 emails a month helping you keeping your cluster up-to date and secure:
