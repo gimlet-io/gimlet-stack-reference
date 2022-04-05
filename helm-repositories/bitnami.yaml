@@ -1,0 +1,11 @@
+{{ if or .gimletd.postgresql.install .gimletDashboard.postgresql.install -}}
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: bitnami
+  namespace: infrastructure
+spec:
+  interval: 60m
+  url: https://charts.bitnami.com/bitnami
+{{- end }}

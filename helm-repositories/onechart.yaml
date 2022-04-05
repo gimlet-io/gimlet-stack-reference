@@ -1,0 +1,11 @@
+{{ if or .gimletDashboard.enabled .gimletd.enabled -}}
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: onechart
+  namespace: infrastructure
+spec:
+  interval: 60m
+  url: https://chart.onechart.dev
+{{- end }}

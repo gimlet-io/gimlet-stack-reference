@@ -18,6 +18,8 @@ categories:
     id: tracing
   - name: "📋 Policy"
     id: policy
+  - name: "⚙️ Gimlet"
+    id: gimlet
 components:
   - name: CIVO
     variable: civo
@@ -949,6 +951,262 @@ components:
           "metaData": {}
         }
       ]
+  - name: Gimlet Dashboard
+    variable: gimletDashboard
+    category: gimlet
+    logo: https://gimlet.io/logo.svg
+    description: ''
+    onePager: |-
+
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#gimletDashboard",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "jwtSecret": {
+            "$id": "#/properties/org",
+            "type": "string",
+            "title": "JWT Secret",
+            "description": "Random string to seed JWT tokens, eg the output of `openssl rand -hex 32`"
+          },
+          "githubOrg": {
+            "$id": "#/properties/githubOrg",
+            "type": "string",
+            "title": "Github Organization",
+            "description": "Users that are members of this Github Organization will be able to authenticate to the dashboard"
+          },
+          "gimletdToken": {
+            "$id": "#/properties/githubOrg",
+            "type": "string",
+            "title": "GimletD Token",
+            "description": "A GimletD admin token"
+          },
+          "githubAppId": {
+            "$id": "#/properties/githubAppId",
+            "type": "string",
+            "title": "Github App ID",
+            "description": ""
+          },
+          "githubPrivateKey": {
+            "$id": "#/properties/githubPrivateKey",
+            "type": "string",
+            "title": "Github Private Key",
+            "description": ""
+          },
+          "githubClientId": {
+            "$id": "#/properties/githubClientId",
+            "type": "string",
+            "title": "Github Client ID",
+            "description": ""
+          },
+          "githubClientSecret": {
+            "$id": "#/properties/githubClientSecret",
+            "type": "string",
+            "title": "Github Client Secret",
+            "description": ""
+          },
+          "webhookSecret": {
+            "$id": "#/properties/webhookSecret",
+            "type": "string",
+            "title": "Webhook Secret",
+            "description": ""
+          },
+          "postgresql": {
+            "$id": "#/properties/postgresql",
+            "type": "object",
+            "title": "Postgresql settings",
+            "description": "",
+            "properties": {
+              "install": {
+                "$id": "#/properties/install",
+                "type": "boolean",
+                "title": "Install Postgresql",
+                "description": "Install a Postgresql instance to host Gimlet data"
+              },
+              "postgresPassword": {
+                "$id": "#/properties/postgresPassword",
+                "type": "string",
+                "title": "Postgresql Admin Password",
+                "description": "Fill it if you install Postgresql together with Gimlet"
+              },
+              "hostAndPort": {
+                "$id": "#/properties/hostAndPort",
+                "type": "string",
+                "title": "Postgresql Host and Port",
+                "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
+                "default": "postgres:5432"
+              },
+              "db": {
+                "$id": "#/properties/database",
+                "type": "string",
+                "title": "Postgresql Database Name",
+                "default": "gimlet_dasboard"
+              },
+              "user": {
+                "$id": "#/properties/user",
+                "type": "string",
+                "title": "Postgresql User",
+                "description": "",
+                "default": "gimlet_dashboard"
+              },
+              "password": {
+                "$id": "#/properties/password",
+                "type": "string",
+                "title": "Postgresql Password",
+                "description": ""
+              }
+            }
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#gimletDashboard"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
+  - name: Gimlet Agent
+    variable: gimletAgent
+    category: gimlet
+    logo: https://gimlet.io/logo.svg
+    description: ''
+    onePager: |-
+
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#gimletAgent",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "environment": {
+            "$id": "#/properties/environment",
+            "type": "string",
+            "title": "Environment",
+            "description": "The logical name of the environment the agent is deployed to"
+          },
+          "agentKey": {
+            "$id": "#/properties/agentKey",
+            "type": "string",
+            "title": "Agent Key",
+            "description": "Agent Key to authenticate to Gimlet Dashboard"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#gimletAgent"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
+  - name: GimletD
+    variable: gimletd
+    category: gimlet
+    logo: https://gimlet.io/logo.svg
+    description: ''
+    onePager: |-
+
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#gimletd",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "gitopsRepo": {
+            "$id": "#/properties/gitopsRepo",
+            "type": "string",
+            "title": "Gitops Repository",
+            "description": "Repository owner and name (owner/name) where GimletD writes the application manifests"
+          },
+          "deployKey": {
+            "$id": "#/properties/deployKey",
+            "type": "string",
+            "title": "Deploy Key",
+            "description": "The private key of the deploy key pair to access the gitops repo on Github"
+          },
+          "postgresql": {
+            "$id": "#/properties/postgresql",
+            "type": "object",
+            "title": "Postgresql settings",
+            "description": "",
+            "properties": {
+              "install": {
+                "$id": "#/properties/install",
+                "type": "boolean",
+                "title": "Install Postgresql",
+                "description": "Install a Postgresql instance to host Gimlet data"
+              },
+              "postgresPassword": {
+                "$id": "#/properties/postgresPassword",
+                "type": "string",
+                "title": "Postgresql Admin Password",
+                "description": "Fill it if you install Postgresql together with Gimlet"
+              },
+              "hostAndPort": {
+                "$id": "#/properties/hostAndPort",
+                "type": "string",
+                "title": "Postgresql Host and Port",
+                "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
+                "default": "postgres:5432"
+              },
+              "db": {
+                "$id": "#/properties/database",
+                "type": "string",
+                "title": "Postgresql Database Name",
+                "default": "gimletd"
+              },
+              "user": {
+                "$id": "#/properties/user",
+                "type": "string",
+                "title": "Postgresql User",
+                "description": "",
+                "default": "gimletd"
+              },
+              "password": {
+                "$id": "#/properties/password",
+                "type": "string",
+                "title": "Postgresql Password",
+                "description": ""
+              }
+            }
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#gimletd"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
+
+
 
 
 changeLog: |
@@ -991,8 +1249,7 @@ message: |
 
   Now that you generated Kubernetes resources from your stack, maybe you are interested in:
 
-  - how to upgrade your stack 👉 https://gimlet.io/gimlet-stack/upgrading-a-stack/
-  - or how to reuse the automation to deliver your own apps 👉 https://gimlet.io/gimlet-stack/reusing-the-stack-repo-for-application-deployments/
+  - how to upgrade your stack 👉 https://gimlet.io/docs/reconfiguring-upgrading-and-making-custom-changes-to-stacks/
 
   I also recommend that you sign up for the stack update feed.
   You will get 2 emails a month helping you keeping your cluster up-to date and secure:
