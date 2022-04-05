@@ -17,9 +17,6 @@ spec:
         name: grafana
       interval: 10m
   values:
-    image:
-      repository: grafana/grafana
-      tag: 8.4.4
     sidecar:
       datasources:
         enabled: true
