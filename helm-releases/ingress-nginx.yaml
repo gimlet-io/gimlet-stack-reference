@@ -26,8 +26,10 @@ spec:
       podAnnotations:
         linkerd.io/inject: disabled
       {{- end }}
+      {{- if not .civo.enabled }}
       service:
         externalTrafficPolicy: Local
+      {{- end }}
       {{- if eq (default "" .vendor) "do" }}
       annotations:
         service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"

@@ -38,21 +38,26 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
+          },
+          "usingBuiltInTraefikIngress": {
+            "$id": "#/properties/usingBuiltInTraefikIngress",
+            "type": "boolean",
+            "title": "Use the Traefik Ingress from the CIVO marketplace"
           }
         },
         "dependencies": {
-          "enabled": {
+          "usingBuiltInTraefikIngress": {
             "oneOf": [
               {
                 "properties": {
-                  "enabled": {
+                  "usingBuiltInTraefikIngress": {
                     "const": false
                   }
                 }
               },
               {
                 "properties": {
-                  "enabled": {
+                  "usingBuiltInTraefikIngress": {
                     "const": true
                   },
                   "host": {
