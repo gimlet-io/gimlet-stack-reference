@@ -38,7 +38,7 @@ spec:
     serviceAccount: gimlet-agent
     image:
       repository: ghcr.io/gimlet-io/gimlet-dashboard
-      tag: agent-v0.6.0
+      tag: agent-v0.6.1
       pullPolicy: Always
     vars:
       HOST: https://gimlet.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}

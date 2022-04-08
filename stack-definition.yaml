@@ -1215,7 +1215,7 @@ components:
 
 
 changeLog: |
-  - 🐛 Minor fix for using Gimlet Stack on CIVO cloud
+  - 🐛 Minor fix for using Gimlet Dashboard on k8s 1.22 and above
 
 message: |
 
