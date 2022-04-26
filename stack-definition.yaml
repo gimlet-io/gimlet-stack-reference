@@ -1104,6 +1104,12 @@ components:
             "title": "Environment",
             "description": "The logical name of the environment the agent is deployed to"
           },
+          "dashboardAddress": {
+            "$id": "#/properties/dashboardAddress",
+            "type": "string",
+            "title": "Gimlet Dashboard Address",
+            "description": "The address where Gimlet Dashboard is running, eg.: https://gimlet.mycompany.com"
+          },
           "agentKey": {
             "$id": "#/properties/agentKey",
             "type": "string",
@@ -1212,10 +1218,8 @@ components:
       ]
 
 
-
-
 changeLog: |
-  - 🐛 Minor fix for using Gimlet Dashboard on k8s 1.22 and above
+  - 🐛 Minor fix for installing Gimlet Agent
 
 message: |
 

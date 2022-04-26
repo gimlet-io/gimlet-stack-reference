@@ -41,7 +41,7 @@ spec:
       tag: agent-v0.6.1
       pullPolicy: Always
     vars:
-      HOST: https://gimlet.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}
+      HOST: {{ .gimletAgent.dashboardAddress }}
       AGENT_KEY: {{ .gimletAgent.agentKey }}
       ENV: {{ .gimletAgent.environment }}
     debugSidecarEnabled: true
