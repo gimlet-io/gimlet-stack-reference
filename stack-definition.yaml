@@ -1219,7 +1219,7 @@ components:
 
 
 changeLog: |
-  - 🐛 Minor fix for installing Gimlet Agent
+  - 🐛 Fixing a recent ImagePullBackOff error with Sealed Secrets as per https://github.com/bitnami-labs/sealed-secrets/issues/822
 
 message: |
 
