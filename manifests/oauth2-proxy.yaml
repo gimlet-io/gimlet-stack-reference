@@ -74,8 +74,8 @@ spec:
           args:
             - --provider=github
             - --email-domain=*
-            - --github-org={{ .OAuth2Proxy.Org }}
-            - --github-user={{ .OAuth2Proxy.User }}
+            - --github-org={{ .oauth2Proxy.org }}
+            - --github-user={{ .oauth2Proxy.user }}
             - --upstream=file:///dev/null
             - --upstream=http://localhost/redirect/
             - --http-address=0.0.0.0:4180
@@ -133,4 +133,14 @@ spec:
                 name: oauth2-proxy
                 port:
                   name: "http"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: oauth2-proxy
+  namespace: infrastructure
+stringData:
+  OAUTH2_PROXY_CLIENT_ID: {{ .oauth2Proxy.clientID }}
+  OAUTH2_PROXY_CLIENT_SECRET: {{ .oauth2Proxy.clientSecret }}
+  OAUTH2_PROXY_COOKIE_SECRET: <<openssl rand -hex 16>>
 {{- end }}
