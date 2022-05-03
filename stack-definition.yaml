@@ -937,7 +937,7 @@ components:
             "$id": "#/properties/cookieSecret",
             "type": "string",
             "title": "Cookie Secret",
-            "description": "A random seed string that is the base of cookie encryption. eg: the output of `openssl rand -hex 32`"
+            "description": "A random seed string that is the base of cookie encryption. eg: the output of `openssl rand -hex 16`"
           },
           "org": {
             "$id": "#/properties/org",
