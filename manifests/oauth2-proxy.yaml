@@ -50,7 +50,7 @@ spec:
             name: oauth2-proxy-nginx
       containers:
         - name: nginx
-          image: nginx:1.19.3-alpine
+          image: nginx:1.21.6-alpine
           resources:
             limits:
               cpu: 0.2
@@ -142,5 +142,5 @@ metadata:
 stringData:
   OAUTH2_PROXY_CLIENT_ID: {{ .oauth2Proxy.clientID }}
   OAUTH2_PROXY_CLIENT_SECRET: {{ .oauth2Proxy.clientSecret }}
-  OAUTH2_PROXY_COOKIE_SECRET: <<openssl rand -hex 16>>
+  OAUTH2_PROXY_COOKIE_SECRET: {{ .oauth2Proxy.cookieSecret }}
 {{- end }}

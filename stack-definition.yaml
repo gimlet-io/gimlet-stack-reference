@@ -711,7 +711,7 @@ components:
   - name: ExternalSecrets
     variable: externalSecrets
     category: secrets
-    logo: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/round_eso_logo.png
+    logo: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-medium.png
     description: ''
     onePager: |-
       The project extends the Kubernetes API by adding an ExternalSecrets object using Custom Resource Definition and a controller to implement the behavior of the object itself.
@@ -884,6 +884,15 @@ components:
       NAME                                                   READY   STATUS    RESTARTS   AGE
       oauth2-proxy-56cc5665c5-t6472                          2/2     Running   2          18h
       ```
+
+      ### Configuring the Github OAuth app
+
+      Follow the [Github guide](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
+
+      - Set `https://auth.<<your-nginx-domain>>` for "Homepage URL"
+      - Set `https://auth.<<your-nginx-domain>>/oauth2/callback` for "Authorization callback URL"
+
+      ### Add OAuth to your service
       To add authentication for your services, add the following annotations to your ingresses:
       ```diff
       apiVersion: extensions/v1beta1
@@ -907,6 +916,10 @@ components:
                     serviceName: my-app
                     servicePort: 80
       ```
+
+      ### Checking if you are logged in
+
+      Visit [https://auth.<<your-nginx-domain>>/oauth2/userinfo](https://auth.<<your-nginx-domain>>/oauth2/userinfo)
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
@@ -919,6 +932,12 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
+          },
+          "cookieSecret": {
+            "$id": "#/properties/cookieSecret",
+            "type": "string",
+            "title": "Cookie Secret",
+            "description": "A random seed string that is the base of cookie encryption. eg: the output of `openssl rand -hex 32`"
           },
           "org": {
             "$id": "#/properties/org",
@@ -1219,7 +1238,7 @@ components:
 
 
 changeLog: |
-  - 🐛 Fixing a recent ImagePullBackOff error with Sealed Secrets as per https://github.com/bitnami-labs/sealed-secrets/issues/822
+  - 🐛 Minor OAuth2 component fixes
 
 message: |
 
