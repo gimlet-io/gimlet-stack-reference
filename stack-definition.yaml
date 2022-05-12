@@ -1269,7 +1269,14 @@ components:
           "schemaIDs": [
             "#gimletd"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#/properties/deployKey": {
+              "ui:widget": "textarea",
+              "ui:options": {
+                "rows": 15
+              }
+            }
+          },
           "metaData": {}
         }
       ]
