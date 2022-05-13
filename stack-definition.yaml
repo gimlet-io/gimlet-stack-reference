@@ -1270,10 +1270,22 @@ components:
             "#gimletd"
           ],
           "uiSchema": {
-            "#/properties/deployKey": {
-              "ui:widget": "textarea",
-              "ui:options": {
-                "rows": 15
+            "#gimletd": {
+              "deployKey": {
+                "ui:widget": "textarea",
+                "ui:options": {
+                  "rows": 8
+                }
+              },
+              "environments": {
+                "items": {
+                  "deployKey": {
+                    "ui:widget": "textarea",
+                    "ui:options": {
+                      "rows": 8
+                    }
+                  }
+                }
               }
             }
           },
