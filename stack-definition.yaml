@@ -1253,6 +1253,7 @@ changeLog: |
   - 🍏 Promtail chart upgraded from 3.11.0 to 4.2.1
   - 🍏 Sealed Secrets chart upgraded from 2.1.6 to 2.1.8
   - 🍏 Tempo chart upgraded from 0.14.2 to 0.15.1
+  - 🍏 Onechart upgraded to 0.36.0
 
 message: |
 
