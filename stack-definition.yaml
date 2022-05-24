@@ -1238,7 +1238,10 @@ components:
 
 
 changeLog: |
-  - 🐛 Minor OAuth2 component fixes
+  - 🆕 Cert Manager upgraded from v1.7.1 to v1.8.0
+    The field spec.privateKey.rotationPolicy on Certificate resources is now validated.
+    Valid options are Never and Always. If you are using a GitOps flow and one of your YAML manifests contains a Certificate with an invalid value,
+    you will need to update it with a valid value to prevent your GitOps tool from failing on the new validation.
 
 message: |
 
