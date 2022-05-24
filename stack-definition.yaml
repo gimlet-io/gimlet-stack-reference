@@ -1238,10 +1238,12 @@ components:
 
 
 changeLog: |
-  - 🆕 Cert Manager upgraded from v1.7.1 to v1.8.0
-    The field spec.privateKey.rotationPolicy on Certificate resources is now validated.
-    Valid options are Never and Always. If you are using a GitOps flow and one of your YAML manifests contains a Certificate with an invalid value,
-    you will need to update it with a valid value to prevent your GitOps tool from failing on the new validation.
+  - 🍏 Loki chart upgraded from 2.10.3 to 2.11.1
+  - 🍏 PostgreSQL chart upgraded from 11.0.4 to 11.2.6
+  - 🍏 Prometheus chart upgraded from 15.5.3 to 15.9.0
+  - 🍏 Promtail chart upgraded from 3.11.0 to 4.2.1
+  - 🍏 Sealed Secrets chart upgraded from 2.1.6 to 2.1.8
+  - 🍏 Tempo chart upgraded from 0.14.2 to 0.15.1
 
 message: |
 
