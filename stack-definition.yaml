@@ -1238,6 +1238,15 @@ components:
 
 
 changeLog: |
+  - 🆕 Cert Manager chart upgraded from v1.7.1 to v1.8.0
+    Check the 1.8.0 Changelog here:
+    https://github.com/cert-manager/cert-manager/releases/tag/v1.8.0
+  - 🆕 External Secrets chart upgraded from v0.4.4 to v0.5.3
+    What's new in 0.5.0:
+    https://github.com/external-secrets/external-secrets/releases/tag/helm-chart-0.5.0
+  - 🍏 Grafana chart upgraded from v6.24.1 to v6.29.4
+  - 🍏 Ingress-nginx chart upgraded from v4.0.18 to v4.1.2
+  - 🍏 Kyverno chart upgraded from v2.3.1 to v2.3.2
   - 🍏 Loki chart upgraded from 2.10.3 to 2.11.1
   - 🍏 PostgreSQL chart upgraded from 11.0.4 to 11.2.6
   - 🍏 Prometheus chart upgraded from 15.5.3 to 15.9.0
