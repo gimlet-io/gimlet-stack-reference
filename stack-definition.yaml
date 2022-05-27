@@ -1247,12 +1247,29 @@ changeLog: |
   - 🍏 Grafana chart upgraded from v6.24.1 to v6.29.4
   - 🍏 Ingress-nginx chart upgraded from v4.0.18 to v4.1.2
   - 🍏 Kyverno chart upgraded from v2.3.1 to v2.3.2
-  - 🍏 Loki chart upgraded from 2.10.3 to 2.11.1
-  - 🍏 PostgreSQL chart upgraded from 11.0.4 to 11.2.6
-  - 🍏 Prometheus chart upgraded from 15.5.3 to 15.9.0
-  - 🍏 Promtail chart upgraded from 3.11.0 to 4.2.1
-  - 🍏 Sealed Secrets chart upgraded from 2.1.6 to 2.1.8
-  - 🍏 Tempo chart upgraded from 0.14.2 to 0.15.1
+  - 🆕 Loki upgraded from 2.4.2 to 2.5.0
+    In 2.5.0, split_queries_by_interval can only be defined in the limits_config section.
+    Loki will fail to start if you do not remove the split_queries_by_interval configuration parameter from the query_range section.
+    Additionally, it has a new default value of 30m rather than 0.
+  - 🍏 Prometheus upgraded from 2.31.1 to 2.34.0
+    Classic UI got removed.
+  - 🍏 Promtail upgraded from 2.4.2 to 2.5.0
+    Promtail now permits client-side global rate limiting and pipeline-configurable rate limiting.
+  - 🆕 Tempo chart upgraded from 1.3.2 to 1.4.1
+    • The distributors use a new API endpoint on the ingesters to push spans.
+    Please rollout all ingesters before rolling the distributors to prevent downtime.
+    Also, during this period, the ingesters will use considerably more resources and should be scaled up (or incoming traffic should be heavily throttled).
+    Once all distributors and ingesters have rolled performance will return to normal.
+    • Querier options related to search have moved under a search block:
+      search_query_timeout: 30s
+      search_external_endpoints: []
+      search_prefer_self: 2
+    becomes
+      search:
+      query_timeout: 30s
+      prefer_self: 2
+      external_endpoints: []
+    • Dropped tempo-search-retention-duration parameter on the vulture.
   - 🍏 Onechart upgraded to 0.36.0
   - 🍏 Gimlet Dashboard and Gimletd updated
 
