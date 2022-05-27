@@ -1238,15 +1238,16 @@ components:
 
 
 changeLog: |
-  - 🆕 Cert Manager chart upgraded from v1.7.1 to v1.8.0
-    Check the 1.8.0 Changelog here:
-    https://github.com/cert-manager/cert-manager/releases/tag/v1.8.0
-  - 🆕 External Secrets chart upgraded from v0.4.4 to v0.5.3
-    What's new in 0.5.0:
-    https://github.com/external-secrets/external-secrets/releases/tag/helm-chart-0.5.0
-  - 🍏 Grafana chart upgraded from v6.24.1 to v6.29.4
-  - 🍏 Ingress-nginx chart upgraded from v4.0.18 to v4.1.2
-  - 🍏 Kyverno chart upgraded from v2.3.1 to v2.3.2
+  - 🍏 Cert Manager upgraded from 1.7.1 to 1.8.0
+  - 🍏 External Secrets upgraded from 0.4.4 to 0.5.3
+  - 🆕 Grafana upgraded from 8.4.2 to 8.5.3
+    For a proxied request, e.g. Grafana's datasource or plugin proxy:
+      • If the request is cancelled, e.g. from the browser/by the client,
+      the HTTP status code is now 499 Client closed request instead of 502 Bad gateway
+      • If the request times out, e.g. takes longer time than allowed,
+      the HTTP status code is now 504 Gateway timeout instead of 502 Bad gateway.
+  - 🐛 Ingress-nginx upgraded from 1.1.2 to 1.2.0
+  - 🐛 Kyverno upgraded from v1.6.0 to v1.6.2
   - 🆕 Loki upgraded from 2.4.2 to 2.5.0
     In 2.5.0, split_queries_by_interval can only be defined in the limits_config section.
     Loki will fail to start if you do not remove the split_queries_by_interval configuration parameter from the query_range section.
@@ -1270,7 +1271,6 @@ changeLog: |
       prefer_self: 2
       external_endpoints: []
     • Dropped tempo-search-retention-duration parameter on the vulture.
-  - 🍏 Onechart upgraded to 0.36.0
   - 🍏 Gimlet Dashboard and Gimletd updated
 
 message: |
