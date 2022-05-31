@@ -1147,7 +1147,7 @@ components:
           "metaData": {}
         }
       ]
-  - name: GimletD
+  - name: Gimletd
     variable: gimletd
     category: gimlet
     logo: https://gimlet.io/logo.svg
@@ -1168,14 +1168,52 @@ components:
           "gitopsRepo": {
             "$id": "#/properties/gitopsRepo",
             "type": "string",
-            "title": "Gitops Repository",
-            "description": "Repository owner and name (owner/name) where GimletD writes the application manifests"
+            "title": "Default Gitops Repository",
+            "description": "Repository owner and name (owner/name) where GimletD writes the application manifests if it can't find environment specific config"
           },
           "deployKey": {
             "$id": "#/properties/deployKey",
             "type": "string",
-            "title": "Deploy Key",
-            "description": "The private key of the deploy key pair to access the gitops repo on Github"
+            "title": "Default Deploy Key",
+            "description": "The private key of the deploy key pair to access the Default Gitops Repository on Github"
+          },
+          "environments": {
+            "$id": "#/properties/environments",
+            "type": "array",
+            "title": "Environments",
+            "default": [],
+            "additionalItems": true,
+            "items": {
+              "$id": "#/properties/environments/items",
+              "type": "object",
+              "properties": {
+                "name": {
+                  "$id": "#/properties/environments/items/properties/name",
+                  "type": "string",
+                  "title": "Environment Name",
+                  "description": "The name of the environment. Should match the `env` field in gimlet manifests"
+                },
+                "repoPerEnv": {
+                  "$id": "#/properties/environments/items/repoPerEnv",
+                  "type": "boolean",
+                  "title": "Use a dedicated gitops repo for this environment",
+                  "description": "Whether this env has its dedicated git repository, or uses a shared one",
+                  "default": true
+                },
+                "gitopsRepo": {
+                  "$id": "#/properties/environments/items/gitopsRepo",
+                  "type": "string",
+                  "title": "Gitops Repository",
+                  "description": "Repository owner and name (owner/name) where GimletD writes the application manifests for this environment"
+                },
+                "deployKey": {
+                  "$id": "#/properties/environments/items/deployKey",
+                  "type": "string",
+                  "title": "Deploy Key",
+                  "description": "The private key of the deploy key pair to access the gitops repo for this environment"
+                }
+              }
+            }
           },
           "postgresql": {
             "$id": "#/properties/postgresql",
@@ -1231,7 +1269,26 @@ components:
           "schemaIDs": [
             "#gimletd"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#gimletd": {
+              "deployKey": {
+                "ui:widget": "textarea",
+                "ui:options": {
+                  "rows": 8
+                }
+              },
+              "environments": {
+                "items": {
+                  "deployKey": {
+                    "ui:widget": "textarea",
+                    "ui:options": {
+                      "rows": 8
+                    }
+                  }
+                }
+              }
+            }
+          },
           "metaData": {}
         }
       ]

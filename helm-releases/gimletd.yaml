@@ -44,19 +44,39 @@ spec:
       tlsEnabled: true
     vars:
       PRINT_ADMIN_TOKEN: true
+      {{- if .gimletd.gitopsRepo }}
       GITOPS_REPO: {{ .gimletd.gitopsRepo }}
+      {{- end }}
+      {{- if .gimletd.deployKey }}
       GITOPS_REPO_DEPLOY_KEY_PATH: /github/deploy.key
+      {{- end }}
+      {{- if .gimletd.environments }}
+      GITOPS_REPOS: 
+      {{- $length := len .gimletd.environments }}
+      {{- range $idx, $env := .gimletd.environments }}
+        {{- $idxplusone := add1 $idx }}
+        {{- printf "%senv=%s&repoPerEnv=%t&gitopsRepo=%s&deployKeyPath=/github/%s.key%s" (eq $idx 0 | ternary " " "") $env.name $env.repoPerEnv $env.gitopsRepo $env.name (eq $length $idxplusone | ternary "" ";") }}
+      {{- end}}
+      {{- end }}
       ADMIN_TOKEN: {{ .gimletd.adminToken }}
       {{- if .gimletd.postgresql.password }}
       DATABASE_DRIVER: postgres
       DATABASE_CONFIG: "postgres://{{ .gimletd.postgresql.user }}:{{ .gimletd.postgresql.password }}@{{ .gimletd.postgresql.hostAndPort }}/{{ .gimletd.postgresql.db }}?sslmode=disable"
       {{- end }}
+    {{- if or .gimletd.deployKey .gimletd.environments }}
     fileSecrets:
       - name:  github-gitops-deploy-key
         path: /github
         secrets:
+          {{- if .gimletd.deployKey }}
           deploy.key: |
 {{ indent 12 .gimletd.deployKey }}
+          {{- end }}
+          {{- range $idx, $env := .gimletd.environments }}
+          {{ $env.name }}.key: |
+{{ indent 12 $env.deployKey -}}
+          {{- end }}
+    {{- end }}
     resources:
       requests:
         cpu: "50m"
