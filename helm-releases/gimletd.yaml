@@ -61,7 +61,7 @@ spec:
       ADMIN_TOKEN: {{ .gimletd.adminToken }}
       {{- if .gimletd.postgresql.password }}
       DATABASE_DRIVER: postgres
-      DATABASE_CONFIG: "postgres://{{ .gimletd.postgresql.user }}:{{ .gimletd.postgresql.password }}@{{ .gimletd.postgresql.hostAndPort }}/{{ .gimletd.postgresql.db }}?sslmode=disable"
+      DATABASE_CONFIG: "postgres://{{ default gimletd .gimletd.postgresql.user }}:{{ .gimletd.postgresql.password }}@{{ default "postgres:5432" .gimletd.postgresql.hostAndPort }}/{{ default gimletd .gimletd.postgresql.db }}?sslmode=disable"
       {{- end }}
     {{- if or .gimletd.deployKey .gimletd.environments }}
     fileSecrets:
