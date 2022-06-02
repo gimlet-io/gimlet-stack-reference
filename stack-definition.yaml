@@ -1441,286 +1441,272 @@ components:
             "additionalItems": true,
             "items": {
               "$id": "#/properties/namespaces/items",
-              "anyOf": [
-                {
-                  "$id": "#/properties/namespaces/items/anyOf/0",
+              "type": "object",
+              "properties": {
+                "namespace": {
+                  "$id": "#/properties/namespaces/items/properties/namespace",
                   "type": "object",
-                  "title": "The first anyOf schema",
+                  "title": "The namespace schema",
                   "description": "An explanation about the purpose of this instance.",
                   "default": {},
                   "examples": [
                     {
-                      "name": "staging",
-                      "namespace": {
-                        "budget": {
-                          "cpu": 32,
-                          "memory": "64Gi",
-                          "storage": "500Gi"
-                        },
-                        "overcommit": {
-                          "cpu": 2,
-                          "memory": 1
-                        }
+                      "budget": {
+                        "cpu": 32,
+                        "memory": "64Gi",
+                        "storage": "500Gi"
                       },
-                      "pod": {
-                        "limits": {
-                          "cpu": 4,
-                          "memory": "8Gi"
-                        },
-                        "defaults": {
-                          "cpu": "200m",
-                          "memory": "200Mi"
-                        },
-                        "overcommit": {
-                          "cpu": 10,
-                          "memory": 2
-                        }
+                      "overcommit": {
+                        "cpu": 2,
+                        "memory": 1
                       }
                     }
                   ],
                   "required": [
-                    "name",
-                    "namespace",
-                    "pod"
+                    "budget",
+                    "overcommit"
                   ],
                   "properties": {
-                    "name": {
-                      "$id": "#/properties/namespaces/items/anyOf/0/properties/name",
-                      "type": "string",
-                      "title": "The name schema",
-                      "description": "An explanation about the purpose of this instance.",
-                      "default": "",
-                      "examples": [
-                        "staging"
-                      ]
-                    },
-                    "namespace": {
-                      "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace",
+                    "budget": {
+                      "$id": "#/properties/namespaces/items/properties/namespace/properties/budget",
                       "type": "object",
-                      "title": "The namespace schema",
+                      "title": "The budget schema",
                       "description": "An explanation about the purpose of this instance.",
                       "default": {},
                       "examples": [
                         {
-                          "budget": {
-                            "cpu": 32,
-                            "memory": "64Gi",
-                            "storage": "500Gi"
-                          },
-                          "overcommit": {
-                            "cpu": 2,
-                            "memory": 1
-                          }
+                          "cpu": 32,
+                          "memory": "64Gi",
+                          "storage": "500Gi"
                         }
                       ],
                       "required": [
-                        "budget",
-                        "overcommit"
+                        "cpu",
+                        "memory",
+                        "storage"
                       ],
                       "properties": {
-                        "budget": {
-                          "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace/properties/budget",
-                          "type": "object",
-                          "title": "The budget schema",
+                        "cpu": {
+                          "$id": "#/properties/namespaces/items/properties/namespace/properties/budget/properties/cpu",
+                          "type": "integer",
+                          "title": "The cpu schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": {},
+                          "default": 0,
                           "examples": [
-                            {
-                              "cpu": 32,
-                              "memory": "64Gi",
-                              "storage": "500Gi"
-                            }
-                          ],
-                          "required": [
-                            "cpu",
-                            "memory",
-                            "storage"
-                          ],
-                          "properties": {
-                            "cpu": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace/properties/budget/properties/cpu",
-                              "type": "integer",
-                              "title": "The cpu schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": 0,
-                              "examples": [
-                                32
-                              ]
-                            },
-                            "memory": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace/properties/budget/properties/memory",
-                              "type": "string",
-                              "title": "The memory schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": "",
-                              "examples": [
-                                "64Gi"
-                              ]
-                            },
-                            "storage": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace/properties/budget/properties/storage",
-                              "type": "string",
-                              "title": "The storage schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": "",
-                              "examples": [
-                                "500Gi"
-                              ]
-                            }
-                          }
+                            32
+                          ]
                         },
-                        "overcommit": {
-                          "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace/properties/overcommit",
-                          "type": "object",
-                          "title": "The overcommit schema",
+                        "memory": {
+                          "$id": "#/properties/namespaces/items/properties/namespace/properties/budget/properties/memory",
+                          "type": "string",
+                          "title": "The memory schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": {},
+                          "default": "",
                           "examples": [
-                            {
-                              "cpu": 2,
-                              "memory": 1
-                            }
-                          ],
-                          "required": [
-                            "cpu",
-                            "memory"
-                          ],
-                          "properties": {
-                            "cpu": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace/properties/overcommit/properties/cpu",
-                              "type": "integer",
-                              "title": "The cpu schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": 0,
-                              "examples": [
-                                2
-                              ]
-                            },
-                            "memory": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/namespace/properties/overcommit/properties/memory",
-                              "type": "integer",
-                              "title": "The memory schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": 0,
-                              "examples": [
-                                1
-                              ]
-                            }
-                          }
+                            "64Gi"
+                          ]
+                        },
+                        "storage": {
+                          "$id": "#/properties/namespaces/items/properties/namespace/properties/budget/properties/storage",
+                          "type": "string",
+                          "title": "The storage schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "500Gi"
+                          ]
                         }
                       }
                     },
-                    "pod": {
-                      "$id": "#/properties/namespaces/items/anyOf/0/properties/pod",
+                    "overcommit": {
+                      "$id": "#/properties/namespaces/items/properties/namespace/properties/overcommit",
                       "type": "object",
-                      "title": "The pod schema",
+                      "title": "The overcommit schema",
                       "description": "An explanation about the purpose of this instance.",
                       "default": {},
                       "examples": [
                         {
-                          "limits": {
-                            "cpu": 4,
-                            "memory": "8Gi"
-                          },
-                          "defaults": {
-                            "cpu": "200m",
-                            "memory": "200Mi"
-                          },
-                          "overcommit": {
-                            "cpu": 10,
-                            "memory": 2
-                          }
+                          "cpu": 2,
+                          "memory": 1
                         }
                       ],
                       "required": [
-                        "limits",
-                        "defaults",
-                        "overcommit"
+                        "cpu",
+                        "memory"
                       ],
                       "properties": {
-                        "limits": {
-                          "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/limits",
-                          "type": "object",
-                          "title": "The limits schema",
+                        "cpu": {
+                          "$id": "#/properties/namespaces/items/properties/namespace/properties/overcommit/properties/cpu",
+                          "type": "integer",
+                          "title": "The cpu schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": {},
+                          "default": 0,
                           "examples": [
-                            {
-                              "cpu": 4,
-                              "memory": "8Gi"
-                            }
-                          ],
-                          "required": [
-                            "cpu",
-                            "memory"
-                          ],
-                          "properties": {
-                            "cpu": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/limits/properties/cpu",
-                              "type": "integer",
-                              "title": "The cpu schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": 0,
-                              "examples": [
-                                4
-                              ]
-                            },
-                            "memory": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/limits/properties/memory",
-                              "type": "string",
-                              "title": "The memory schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": "",
-                              "examples": [
-                                "8Gi"
-                              ]
-                            }
-                          }
+                            2
+                          ]
                         },
-                        "defaults": {
-                          "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/defaults",
-                          "type": "object",
-                          "title": "The defaults schema",
+                        "memory": {
+                          "$id": "#/properties/namespaces/items/properties/namespace/properties/overcommit/properties/memory",
+                          "type": "integer",
+                          "title": "The memory schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": {},
+                          "default": 0,
                           "examples": [
-                            {
-                              "cpu": "200m",
-                              "memory": "200Mi"
-                            }
-                          ],
-                          "required": [
-                            "cpu",
-                            "memory"
-                          ],
-                          "properties": {
-                            "cpu": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/defaults/properties/cpu",
-                              "type": "string",
-                              "title": "The cpu schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": "",
-                              "examples": [
-                                "200m"
-                              ]
-                            },
-                            "memory": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/defaults/properties/memory",
-                              "type": "string",
-                              "title": "The memory schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": "",
-                              "examples": [
-                                "200Mi"
-                              ]
-                            }
-                          }
+                            1
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "pod": {
+                  "$id": "#/properties/namespaces/items/properties/pod",
+                  "type": "object",
+                  "title": "The pod schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "examples": [
+                    {
+                      "limits": {
+                        "cpu": 4,
+                        "memory": "8Gi"
+                      },
+                      "defaults": {
+                        "cpu": "200m",
+                        "memory": "200Mi"
+                      },
+                      "overcommit": {
+                        "cpu": 10,
+                        "memory": 2
+                      }
+                    }
+                  ],
+                  "required": [
+                    "limits",
+                    "defaults",
+                    "overcommit"
+                  ],
+                  "properties": {
+                    "limits": {
+                      "$id": "#/properties/namespaces/items/properties/pod/properties/limits",
+                      "type": "object",
+                      "title": "The limits schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": {},
+                      "examples": [
+                        {
+                          "cpu": 4,
+                          "memory": "8Gi"
+                        }
+                      ],
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "properties": {
+                        "cpu": {
+                          "$id": "#/properties/namespaces/items/properties/pod/properties/limits/properties/cpu",
+                          "type": "integer",
+                          "title": "The cpu schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": 0,
+                          "examples": [
+                            4
+                          ]
+                        },
+                        "memory": {
+                          "$id": "#/properties/namespaces/items/properties/pod/properties/limits/properties/memory",
+                          "type": "string",
+                          "title": "The memory schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "8Gi"
+                          ]
+                        }
+                      }
+                    },
+                    "defaults": {
+                      "$id": "#/properties/namespaces/items/properties/pod/properties/defaults",
+                      "type": "object",
+                      "title": "The defaults schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": {},
+                      "examples": [
+                        {
+                          "cpu": "200m",
+                          "memory": "200Mi"
+                        }
+                      ],
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "properties": {
+                        "cpu": {
+                          "$id": "#/properties/namespaces/items/properties/pod/properties/defaults/properties/cpu",
+                          "type": "string",
+                          "title": "The cpu schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "200m"
+                          ]
+                        },
+                        "memory": {
+                          "$id": "#/properties/namespaces/items/properties/pod/properties/defaults/properties/memory",
+                          "type": "string",
+                          "title": "The memory schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": "",
+                          "examples": [
+                            "200Mi"
+                          ]
+                        }
+                      }
+                    },
+                    "overcommit": {
+                      "$id": "#/properties/namespaces/items/properties/pod/properties/overcommit",
+                      "type": "object",
+                      "title": "The overcommit schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": {},
+                      "examples": [
+                        {
+                          "cpu": 10,
+                          "memory": 2
+                        }
+                      ],
+                      "required": [
+                        "cpu",
+                        "memory"
+                      ],
+                      "properties": {
+                        "cpu": {
+                          "$id": "#/properties/namespaces/items/properties/pod/properties/overcommit/properties/cpu",
+                          "type": "integer",
+                          "title": "The cpu schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": 0,
+                          "examples": [
+                            10
+                          ]
+                        },
+                        "memory": {
+                          "$id": "#/properties/namespaces/items/properties/pod/properties/overcommit/properties/memory",
+                          "type": "integer",
+                          "title": "The memory schema",
+                          "description": "An explanation about the purpose of this instance.",
+                          "default": 0,
+                          "examples": [
+                            2
+                          ]
                         }
                       }
                     }
                   }
                 }
-              ]
+              }
             }
           }
         }
