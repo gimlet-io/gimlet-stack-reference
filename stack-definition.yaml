@@ -1715,45 +1715,6 @@ components:
                               ]
                             }
                           }
-                        },
-                        "overcommit": {
-                          "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/overcommit",
-                          "type": "object",
-                          "title": "The overcommit schema",
-                          "description": "An explanation about the purpose of this instance.",
-                          "default": {},
-                          "examples": [
-                            {
-                              "cpu": 10,
-                              "memory": 2
-                            }
-                          ],
-                          "required": [
-                            "cpu",
-                            "memory"
-                          ],
-                          "properties": {
-                            "cpu": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/overcommit/properties/cpu",
-                              "type": "integer",
-                              "title": "The cpu schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": 0,
-                              "examples": [
-                                10
-                              ]
-                            },
-                            "memory": {
-                              "$id": "#/properties/namespaces/items/anyOf/0/properties/pod/properties/overcommit/properties/memory",
-                              "type": "integer",
-                              "title": "The memory schema",
-                              "description": "An explanation about the purpose of this instance.",
-                              "default": 0,
-                              "examples": [
-                                2
-                              ]
-                            }
-                          }
                         }
                       }
                     }
