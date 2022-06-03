@@ -1395,11 +1395,6 @@ components:
             }
           }
         ],
-        "required": [
-          "namespaces",
-          "namespace",
-          "pod"
-        ],
         "properties": {
           "namespaces": {
             "$id": "#/properties/namespaces",
@@ -1442,7 +1437,17 @@ components:
             "items": {
               "$id": "#/properties/namespaces/items",
               "type": "object",
+              "required": [
+                "name"
+              ],
               "properties": {
+                "name": {
+                  "$id": "#/properties/namespaces/items/properties/name",
+                  "type": "string",
+                  "title": "Namespace name",
+                  "description": "The name of the namespace.",
+                  "default": "staging"
+                },
                 "namespace": {
                   "$id": "#/properties/namespaces/items/properties/namespace",
                   "type": "object",
@@ -1461,10 +1466,6 @@ components:
                         "memory": 1
                       }
                     }
-                  ],
-                  "required": [
-                    "budget",
-                    "overcommit"
                   ],
                   "properties": {
                     "budget": {
@@ -1491,7 +1492,8 @@ components:
                           "type": "integer",
                           "title": "The cpu schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": 0,
+                          "default": 32,
+                          "minimum": 1,
                           "examples": [
                             32
                           ]
@@ -1501,7 +1503,7 @@ components:
                           "type": "string",
                           "title": "The memory schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": "",
+                          "default": "64Gi",
                           "examples": [
                             "64Gi"
                           ]
@@ -1511,7 +1513,7 @@ components:
                           "type": "string",
                           "title": "The storage schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": "",
+                          "default": "500Gi",
                           "examples": [
                             "500Gi"
                           ]
@@ -1540,7 +1542,8 @@ components:
                           "type": "integer",
                           "title": "The cpu schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": 0,
+                          "default": 2,
+                          "minimum": 1,
                           "examples": [
                             2
                           ]
@@ -1550,7 +1553,8 @@ components:
                           "type": "integer",
                           "title": "The memory schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": 0,
+                          "default": 1,
+                          "minimum": 1,
                           "examples": [
                             1
                           ]
@@ -1581,11 +1585,6 @@ components:
                       }
                     }
                   ],
-                  "required": [
-                    "limits",
-                    "defaults",
-                    "overcommit"
-                  ],
                   "properties": {
                     "limits": {
                       "$id": "#/properties/namespaces/items/properties/pod/properties/limits",
@@ -1609,7 +1608,8 @@ components:
                           "type": "integer",
                           "title": "The cpu schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": 0,
+                          "default": 4,
+                          "minimum": 1,
                           "examples": [
                             4
                           ]
@@ -1619,7 +1619,7 @@ components:
                           "type": "string",
                           "title": "The memory schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": "",
+                          "default": "8Gi",
                           "examples": [
                             "8Gi"
                           ]
@@ -1648,7 +1648,7 @@ components:
                           "type": "string",
                           "title": "The cpu schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": "",
+                          "default": "200m",
                           "examples": [
                             "200m"
                           ]
@@ -1658,7 +1658,7 @@ components:
                           "type": "string",
                           "title": "The memory schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": "",
+                          "default": "200Mi",
                           "examples": [
                             "200Mi"
                           ]
@@ -1687,7 +1687,8 @@ components:
                           "type": "integer",
                           "title": "The cpu schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": 0,
+                          "default": 10,
+                          "minimum": 1,
                           "examples": [
                             10
                           ]
@@ -1697,7 +1698,8 @@ components:
                           "type": "integer",
                           "title": "The memory schema",
                           "description": "An explanation about the purpose of this instance.",
-                          "default": 0,
+                          "default": 2,
+                          "minimum": 1,
                           "examples": [
                             2
                           ]
