@@ -1323,8 +1323,8 @@ components:
           "metaData": {}
         }
       ]
-  - name: System
-    variable: system
+  - name: Namespaces
+    variable: Namespaces
     category: system
     logo: 'https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/system.png'
     description: ''
@@ -1333,7 +1333,7 @@ components:
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "system",
+        "$id": "namespaces",
         "type": "object",
         "default": {},
         "examples": [
@@ -1717,7 +1717,7 @@ components:
       [
         {
           "schemaIDs": [
-            "system"
+            "namespaces"
           ],
           "uiSchema": {},
           "metaData": {}
