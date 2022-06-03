@@ -1452,7 +1452,6 @@ components:
                   "$id": "#/properties/namespaces/items/properties/namespace",
                   "type": "object",
                   "title": "The namespace schema",
-                  "description": "An explanation about the purpose of this instance.",
                   "default": {},
                   "examples": [
                     {
@@ -1564,7 +1563,6 @@ components:
                   "$id": "#/properties/namespaces/items/properties/pod",
                   "type": "object",
                   "title": "The pod schema",
-                  "description": "An explanation about the purpose of this instance.",
                   "default": {},
                   "examples": [
                     {
