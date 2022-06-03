@@ -1490,7 +1490,7 @@ components:
                         "cpu": {
                           "$id": "#/properties/namespaces/items/properties/namespace/properties/budget/properties/cpu",
                           "type": "string",
-                          "title": "The cpu schema",
+                          "title": "CPU",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "32",
                           "examples": [
@@ -1500,7 +1500,7 @@ components:
                         "memory": {
                           "$id": "#/properties/namespaces/items/properties/namespace/properties/budget/properties/memory",
                           "type": "string",
-                          "title": "The memory schema",
+                          "title": "Memory",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "64Gi",
                           "examples": [
@@ -1510,7 +1510,7 @@ components:
                         "storage": {
                           "$id": "#/properties/namespaces/items/properties/namespace/properties/budget/properties/storage",
                           "type": "string",
-                          "title": "The storage schema",
+                          "title": "Storage",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "500Gi",
                           "examples": [
@@ -1539,7 +1539,7 @@ components:
                         "cpu": {
                           "$id": "#/properties/namespaces/items/properties/namespace/properties/overcommit/properties/cpu",
                           "type": "string",
-                          "title": "The cpu schema",
+                          "title": "CPU",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "2",
                           "examples": [
@@ -1549,7 +1549,7 @@ components:
                         "memory": {
                           "$id": "#/properties/namespaces/items/properties/namespace/properties/overcommit/properties/memory",
                           "type": "string",
-                          "title": "The memory schema",
+                          "title": "Memory",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "1",
                           "examples": [
@@ -1603,7 +1603,7 @@ components:
                         "cpu": {
                           "$id": "#/properties/namespaces/items/properties/pod/properties/limits/properties/cpu",
                           "type": "string",
-                          "title": "The cpu schema",
+                          "title": "CPU",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "4",
                           "examples": [
@@ -1613,7 +1613,7 @@ components:
                         "memory": {
                           "$id": "#/properties/namespaces/items/properties/pod/properties/limits/properties/memory",
                           "type": "string",
-                          "title": "The memory schema",
+                          "title": "Memory",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "8Gi",
                           "examples": [
@@ -1642,7 +1642,7 @@ components:
                         "cpu": {
                           "$id": "#/properties/namespaces/items/properties/pod/properties/defaults/properties/cpu",
                           "type": "string",
-                          "title": "The cpu schema",
+                          "title": "CPU",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "200m",
                           "examples": [
@@ -1652,7 +1652,7 @@ components:
                         "memory": {
                           "$id": "#/properties/namespaces/items/properties/pod/properties/defaults/properties/memory",
                           "type": "string",
-                          "title": "The memory schema",
+                          "title": "Memory",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "200Mi",
                           "examples": [
@@ -1681,7 +1681,7 @@ components:
                         "cpu": {
                           "$id": "#/properties/namespaces/items/properties/pod/properties/overcommit/properties/cpu",
                           "type": "string",
-                          "title": "The cpu schema",
+                          "title": "CPU",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "10",
                           "examples": [
@@ -1691,7 +1691,7 @@ components:
                         "memory": {
                           "$id": "#/properties/namespaces/items/properties/pod/properties/overcommit/properties/memory",
                           "type": "string",
-                          "title": "The memory schema",
+                          "title": "Memory",
                           "description": "An explanation about the purpose of this instance.",
                           "default": "2",
                           "examples": [
