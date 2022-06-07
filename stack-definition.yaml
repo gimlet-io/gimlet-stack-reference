@@ -469,6 +469,43 @@ components:
           "metaData": {}
         }
       ]
+  - name: Opsgenie
+    variable: opsgenie
+    category: logging
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/opsgenie.png
+    description: ''
+    onePager: |-
+      Install Opsgenie to export Kubernetes events for obsverability or alerting purposes.
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#opsgenie",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "clusterName": {
+            "$id": "#/properties/clusterName",
+            "type": "string",
+            "title": "Cluster Name",
+            "description": "A unique cluster identifier that is attached to labels shipped by this Prometheus. You can use this later on for querying."
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#opsgenie"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
   - name: Prometheus
     variable: prometheus
     category: metrics
