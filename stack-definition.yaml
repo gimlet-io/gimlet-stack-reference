@@ -962,8 +962,6 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#oauth2Proxy",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
