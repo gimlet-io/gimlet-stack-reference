@@ -469,6 +469,37 @@ components:
           "metaData": {}
         }
       ]
+  - name: Event Exporter
+    variable: eventExporter
+    category: logging
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/opsgenie.png
+    description: ''
+    onePager: |-
+      Install Kubernetes Event Exporter to log all Kubernetes events.
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#eventExporter",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#eventExporter"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
   - name: Prometheus
     variable: prometheus
     category: metrics
@@ -925,8 +956,6 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#oauth2Proxy",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
