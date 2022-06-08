@@ -469,17 +469,17 @@ components:
           "metaData": {}
         }
       ]
-  - name: Opsgenie
-    variable: opsgenie
+  - name: Event Exporter
+    variable: eventExporter
     category: logging
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/opsgenie.png
     description: ''
     onePager: |-
-      Install Opsgenie to export Kubernetes events for observability or alerting purposes.
+      Install Kubernetes Event Exporter to log all Kubernetes events.
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#opsgenie",
+        "$id": "#eventExporter",
         "type": "object",
         "properties": {
           "enabled": {
@@ -499,7 +499,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#opsgenie"
+            "#eventExporter"
           ],
           "uiSchema": {
           },
