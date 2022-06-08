@@ -486,12 +486,6 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
-          },
-          "clusterName": {
-            "$id": "#/properties/clusterName",
-            "type": "string",
-            "title": "Cluster Name",
-            "description": "A unique cluster identifier that is attached to labels shipped by this Prometheus. You can use this later on for querying."
           }
         }
       }
