@@ -1,4 +1,4 @@
-{{ if .opsgenie.enabled -}}
+{{ if .eventExporter.enabled -}}
 apiVersion: v1
 kind: Namespace
 metadata:
