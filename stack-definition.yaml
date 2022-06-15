@@ -1324,19 +1324,9 @@ components:
 
 
 changeLog: |
-  - 🍏 Cert Manager upgraded from 1.7.1 to 1.8.0
-  - 🍏 External Secrets upgraded from 0.4.4 to 0.5.3
-  - 🍏 Grafana upgraded from 8.4.2 to 8.5.3
-  - 🍏 Ingress-nginx upgraded from 1.1.2 to 1.2.0
-  - 🍏 Kyverno upgraded from v1.6.0 to v1.6.2
-  - 🍏 Loki upgraded from 2.4.2 to 2.5.0
-  - 🍏 Prometheus upgraded from 2.31.1 to 2.34.0
-    Classic UI got removed.
-  - 🍏 Promtail upgraded from 2.4.2 to 2.5.0
-  - 🍏 Gimlet Dashboard and Gimletd updated to 0.7.0 and 0.11.0 respectively
-    Ability to create api keys on the dashboard: #131
-    Gitops status bar
-    Gimletd is able to write to multiple repositories. Config is set per environment #129
+  - 🍏 Gimlet Dashboard upgraded from 0.7.0 to 0.8.0
+  - 🆕 Event exporter added to store Kubernetes events through logging
+  - 🆕 Flux dashboards added for better visibility
 
 message: |
 
