@@ -12,7 +12,7 @@ spec:
   releaseName: namespaces
   chart:
     spec:
-      chart: .charts/namespaces
+      chart: namespaces
       version: 0.36.0
       sourceRef:
         kind: HelmRepository
