@@ -6,16 +6,6 @@ metadata:
   name: loki
   namespace: infrastructure
 spec:
-  interval: 60m
-  releaseName: loki
-  chart:
-    spec:
-      chart: loki
-      version: 2.11.1
-      sourceRef:
-        kind: HelmRepository
-        name: grafana
-      interval: 10m
   values:
     {{ if .loki.persistence -}}
     persistence:
