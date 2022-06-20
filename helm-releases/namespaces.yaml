@@ -20,6 +20,6 @@ spec:
       interval: 10m
   values:
     {{- range $idx, $namespace := .namespaces.namespaces }}
-    namespace: {{ $namespace }}
+    namespace: {{ $namespace.name }}
     {{- end }}
 {{- end }}
