@@ -18,7 +18,8 @@ spec:
       interval: 10m
   values:
     namespaces:
-      - name: production
+      {{- range $idx, $namespace := .namespaces.namespaces }}
+      - name: {{ $namespace.name }}
         namespace:
           budget:
             cpu: 32
@@ -57,4 +58,5 @@ spec:
       overcommit:
         cpu: 10
         memory: 2
+      {{- end }}
 {{- end }}
