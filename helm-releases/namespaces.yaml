@@ -17,9 +17,6 @@ spec:
         name: onechart
       interval: 10m
   values:
-    # {{- range $idx, $namespace := .namespaces.namespaces }}
-    # {{ $idx }}-namespace: {{ $namespace.name }}
-    # {{- end }}
     namespaces:
       - name: production 
 {{- end }}
