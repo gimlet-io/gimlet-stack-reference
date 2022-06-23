@@ -1345,7 +1345,7 @@ components:
           "namespaces": {
             "$id": "#/properties/namespaces",
             "type": "array",
-            "title": "The namespaces schema",
+            "title": "Namespaces",
             "default": [],
             "additionalItems": true,
             "items": {
@@ -1358,8 +1358,7 @@ components:
                 "name": {
                   "$id": "#/properties/namespaces/items/properties/name",
                   "type": "string",
-                  "title": "Namespace",
-                  "default": "staging"
+                  "title": "Namespace"
                 }
               }
             }
