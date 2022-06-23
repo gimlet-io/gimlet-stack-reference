@@ -1,4 +1,5 @@
-{{ if gt (len .namespaces.namespaces) 0 }}
+{{ $length := len .namespaces.namespaces }}
+{{ if gt $length 0 }}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
