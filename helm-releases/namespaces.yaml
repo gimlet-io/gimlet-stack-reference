@@ -1,4 +1,4 @@
-{{ if eq (len .namespaces.namespaces) not 0 }}
+{{ if gt (len .namespaces.namespaces) 0 }}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
