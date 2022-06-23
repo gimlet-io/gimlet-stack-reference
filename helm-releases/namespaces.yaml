@@ -1,4 +1,5 @@
-{{- if namespaces.namespaces.name }}
+{{- range .namespaces.namespaces }}
+{{- if .name }}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -21,4 +22,5 @@ spec:
       {{- range $idx, $namespace := .namespaces.namespaces }}
       - name: {{ $namespace.name }}
       {{- end }}
+{{- end }}
 {{- end }}
