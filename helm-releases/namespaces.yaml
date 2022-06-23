@@ -1,5 +1,5 @@
-{{- range .namespaces }}
-{{- if .namespaces.name }}
+{{- range .Namespaces }}
+{{- if .Namespaces }}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
