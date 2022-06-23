@@ -1337,11 +1337,6 @@ components:
         "type": "object",
         "default": {},
         "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
           "namespaces": {
             "$id": "#/properties/namespaces",
             "type": "array",

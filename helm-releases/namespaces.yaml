@@ -1,4 +1,3 @@
-{{ if .namespaces.enabled -}}
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -39,4 +38,4 @@ spec:
             cpu: 10
             memory: 2
       {{- end }}
-{{- end }}
+      {{- end }}
