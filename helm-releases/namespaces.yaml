@@ -23,4 +23,3 @@ spec:
       - name: {{ $namespace.name }}
       {{- end }}
 {{- end }}
-{{- end }}
