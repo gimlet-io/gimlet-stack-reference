@@ -20,6 +20,8 @@ categories:
     id: policy
   - name: "⚙️ Gimlet"
     id: gimlet
+  - name: "🖥️ System"
+    id: system
 components:
   - name: CIVO
     variable: civo
@@ -1321,7 +1323,53 @@ components:
           "metaData": {}
         }
       ]
+  - name: Namespaces
+    variable: namespaces
+    category: system
+    logo: 'https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/system.png'
+    description: ''
+    onePager: |-
 
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "namespaces",
+        "type": "object",
+        "default": {},
+        "properties": {
+          "namespaces": {
+            "$id": "#/properties/namespaces",
+            "type": "array",
+            "title": "Namespaces",
+            "default": [],
+            "additionalItems": true,
+            "items": {
+              "$id": "#/properties/namespaces/items",
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "$id": "#/properties/namespaces/items/properties/name",
+                  "type": "string",
+                  "title": "Namespace"
+                }
+              }
+            }
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "namespaces"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
 
 changeLog: |
   - 🍏 Gimlet Dashboard upgraded from 0.7.0 to 0.8.0
