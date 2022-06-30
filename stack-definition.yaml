@@ -1372,7 +1372,7 @@ components:
       ]
 
 changeLog: |
-  - 🍏 Gimlet Dashboard upgraded from 0.7.0 to 0.8.0
+  - 🍏 External Secrets upgraded from 0.5.3 to 0.5.7
   - 🆕 Event exporter added to store Kubernetes events through logging
   - 🆕 Flux dashboards added for better visibility
 
