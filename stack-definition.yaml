@@ -1376,6 +1376,7 @@ changeLog: |
   - 🆕 Grafana upgraded from 8.5.3 to 9.0.1
   - 🍏 Ingress NGINX upgraded from 1.2.0 to 1.2.1
   - 🍏 Kyverno upgraded from 1.6.2 to 1.7.1
+  - 🍏 Policy Reporter upgraded from 2.4.0 to 2.6.2
 
 message: |
 
