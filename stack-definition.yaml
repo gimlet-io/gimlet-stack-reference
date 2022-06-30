@@ -1399,6 +1399,7 @@ changeLog: |
   - 🆕 PostgreSQL upgraded from 14.3.0 to 14.4.0
     - An optimization added in v14 caused CREATE INDEX ... CONCURRENTLY and REINDEX ... CONCURRENTLY to sometimes miss indexing rows that were updated during the index build.
       Revert that optimization. It is recommended that any indexes made with the CONCURRENTLY option be rebuilt after installing this update. (Alternatively, rebuild them without CONCURRENTLY.)
+  - 🍏 Sealed Secrets upgraded from 0.17.5 to 0.18.0
 
 message: |
 
