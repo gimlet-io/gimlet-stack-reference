@@ -1373,7 +1373,7 @@ components:
 
 changeLog: |
   - 🍏 External Secrets upgraded from 0.5.3 to 0.5.7
-  - 🆕 Event exporter added to store Kubernetes events through logging
+  - 🆕 Grafana upgraded from 8.5.3 to 9.0.1
   - 🆕 Flux dashboards added for better visibility
 
 message: |
