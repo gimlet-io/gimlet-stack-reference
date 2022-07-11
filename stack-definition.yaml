@@ -1373,55 +1373,13 @@ components:
 
 changeLog: |
   - 🍏 External Secrets upgraded from 0.5.3 to 0.5.7
-  - 🆕 Grafana upgraded from 8.5.3 to 9.0.2
+  - 🍏 Grafana upgraded from 8.5.3 to 9.0.2
   - 🍏 Ingress NGINX upgraded from 1.2.0 to 1.2.1
   - 🍏 Kyverno upgraded from 1.6.2 to 1.7.1
   - 🍏 Policy Reporter upgraded from 2.4.0 to 2.6.2
-  - 🆕 Loki upgraded from 2.4.2 to 2.5.0
-    - In version 2.12.0, we enabled memberlist by default and added additional kubernetes service used for members communication.
-      If you already use memberlist, just review the config (.Values.config.memberlist) to make sure new memberlist config matches with your current configuration.
-      If you use another implementation(etcd, consul, inmemory) for the ring, you can disable memberlist with setting .Values.config.memberlist to null.
-      It prevents from enabling memberlist and creating additional kubernetes service.
-    - The most likely impact many people will see is Loki failing to start because of a change in the YAML configuration for split_queries_by_interval.
-      It was previously possible to define this value in two places.
-
-      query_range:
-        split_queries_by_interval: 10m
-
-      and/or
-
-      limits_config:
-        split_queries_by_interval: 10m
-
-      In 2.5.0 it can only be defined in the limits_config section.
-      Loki will fail to start if you do not remove the split_queries_by_interval configuration parameter from the query_range section.
-      Additionally, it has a new default value of 30m rather than 0.
-      The CLI flag is not changed and remains querier.split-queries-by-interval.
-  - 🆕 PostgreSQL upgraded from 14.3.0 to 14.4.0
-    - An optimization added in v14 caused CREATE INDEX ... CONCURRENTLY and REINDEX ... CONCURRENTLY to sometimes miss indexing rows that were updated during the index build.
-      Revert that optimization. It is recommended that any indexes made with the CONCURRENTLY option be rebuilt after installing this update. (Alternatively, rebuild them without CONCURRENTLY.)
+  - 🍏 Loki upgraded from 2.4.2 to 2.5.0
   - 🍏 Sealed Secrets upgraded from 0.17.5 to 0.18.0
-  - 🆕 Tempo upgraded from 1.3.2 to 1.4.1
-    - After this rollout the distributors will use a new API endpoint on the ingesters to push spans.
-      Please rollout all ingesters before rolling the distributors to prevent downtime.
-      Also, during this period, the ingesters will use considerably more resources and should be scaled up (or incoming traffic should be heavily throttled).
-      Once all distributors and ingesters have rolled performance will return to normal. Internally we have observed ~1.5x CPU load on the ingesters during the rollout.
-      Querier options related to search have moved under a search block:
-
-        querier:
-          search_query_timeout: 30s
-          search_external_endpoints: []
-          search_prefer_self: 2
-
-      becomes
-
-        querier:
-          search:
-            query_timeout: 30s
-            prefer_self: 2
-            external_endpoints: []
-            
-      - Dropped tempo-search-retention-duration parameter on the vulture.
+  - 🍏 Tempo upgraded from 1.3.2 to 1.4.1
 
 message: |
 
