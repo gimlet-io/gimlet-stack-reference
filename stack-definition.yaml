@@ -1372,6 +1372,7 @@ components:
       ]
 
 changeLog: |
+  - 🍏 Gimelt Dashboard upgraded to v0.8.0
   - 🍏 External Secrets upgraded from 0.5.3 to 0.5.7
   - 🍏 Grafana upgraded from 8.5.3 to 9.0.2
   - 🍏 Ingress NGINX upgraded from 1.2.0 to 1.2.1
@@ -1380,6 +1381,9 @@ changeLog: |
   - 🍏 Loki upgraded from 2.4.2 to 2.5.0
   - 🍏 Sealed Secrets upgraded from 0.17.5 to 0.18.0
   - 🍏 Tempo upgraded from 1.3.2 to 1.4.1
+  - 🆕 Event Exporter to have a searchable audit log of all Kubernetes events
+  - 🆕 Flux Grafana Dashboards for easier gitops troubleshooting
+  - 🆕 Configurable namespaces
 
 message: |
 
