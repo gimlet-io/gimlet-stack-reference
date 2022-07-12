@@ -1326,7 +1326,7 @@ components:
   - name: Namespaces
     variable: namespaces
     category: system
-    logo: 'https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/system.png'
+    logo: 'https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/system.svg'
     description: ''
     onePager: |-
 
