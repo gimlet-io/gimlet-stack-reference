@@ -44,7 +44,6 @@ spec:
       HOST: {{ .gimletAgent.dashboardAddress }}
       AGENT_KEY: {{ .gimletAgent.agentKey }}
       ENV: {{ .gimletAgent.environment }}
-    debugSidecarEnabled: true
     resources:
       requests:
         cpu: "100m"
