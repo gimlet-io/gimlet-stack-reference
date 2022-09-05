@@ -20,7 +20,7 @@ spec:
     containerPort: 9000
     image:
       repository: ghcr.io/gimlet-io/gimlet-dashboard
-      tag: v0.8.0
+      tag: v0.9.0
       pullPolicy: Always
     probe:
       enabled: true
@@ -47,7 +47,11 @@ spec:
       JWT_SECRET: {{ .gimletDashboard.jwtSecret }}
       GITHUB_ORG: {{ .gimletDashboard.githubOrg }}
       {{- if .gimletd.enabled }}
+      {{- if .gimletDashboard.gimletdURL }}
+      GIMLETD_URL: {{ .gimletDashboard.gimletdURL }}
+      {{- else }}
       GIMLETD_URL: https://gimletd.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}
+      {{- end }}
       GIMLETD_TOKEN: "{{ .gimletDashboard.gimletdToken }}"
       {{- end }}
       GITHUB_APP_ID: {{ .gimletDashboard.githubAppId }}
