@@ -43,7 +43,11 @@ spec:
       host: gimlet.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}
       tlsEnabled: true
     vars:
+      {{- if .gimletDashboard.host }}
+      HOST: {{ .gimletDashboard.host }}
+      {{- else }}
       HOST: https://gimlet.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}
+      {{- end }}
       JWT_SECRET: {{ .gimletDashboard.jwtSecret }}
       GITHUB_ORG: {{ .gimletDashboard.githubOrg }}
       {{- if .gimletd.enabled }}
