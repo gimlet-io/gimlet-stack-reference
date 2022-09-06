@@ -118,10 +118,10 @@ components:
 
       You need to create now DNS entry for this IP. A wildcard DNS on `*.yourdomain.com` is preferred for this purpose.
 
-      To validate the ingress, let's use xip.io, which is a dynamic DNS service: it provides wildcard DNS for any IP address. Say your LAN IP address is 10.0.0.1.
-      Using xip.io, 10.0.0.1.xip.io resolves to 10.0.0.1
+      To validate the ingress, let's use nip.io, which is a dynamic DNS service: it provides wildcard DNS for any IP address. Say your LAN IP address is 10.0.0.1.
+      Using nip.io, 10.0.0.1.nip.io resolves to 10.0.0.1
 
-      Now try [https://test.<<yourIP>>.xip.io](https://test.<<yourIP>>.xip.io) which will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
+      Now try [https://test.<<yourIP>>.nip.io](https://test.<<yourIP>>.nip.io) which will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
 
       Next steps:
       - add a wildcard DNS entry that points to the `nginx-nginx-ingress-controller` service's IP
