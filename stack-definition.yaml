@@ -1196,18 +1196,6 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "gitopsRepo": {
-            "$id": "#/properties/gitopsRepo",
-            "type": "string",
-            "title": "Default Gitops Repository",
-            "description": "Repository owner and name (owner/name) where GimletD writes the application manifests if it can't find environment specific config"
-          },
-          "deployKey": {
-            "$id": "#/properties/deployKey",
-            "type": "string",
-            "title": "Default Deploy Key",
-            "description": "The private key of the deploy key pair to access the Default Gitops Repository on Github"
-          },
           "environments": {
             "$id": "#/properties/environments",
             "type": "array",
@@ -1222,7 +1210,7 @@ components:
                   "$id": "#/properties/environments/items/properties/name",
                   "type": "string",
                   "title": "Environment Name",
-                  "description": "The name of the environment. Should match the `env` field in gimlet manifests"
+                  "description": "The name of the environment. Should match with the `env` field in Gimlet manifests"
                 },
                 "repoPerEnv": {
                   "$id": "#/properties/environments/items/repoPerEnv",
@@ -1235,7 +1223,7 @@ components:
                   "$id": "#/properties/environments/items/gitopsRepo",
                   "type": "string",
                   "title": "Gitops Repository",
-                  "description": "Repository owner and name (owner/name) where GimletD writes the application manifests for this environment"
+                  "description": "Repository owner and name (owner/name) where Gimletd writes the application manifests for this environment"
                 },
                 "deployKey": {
                   "$id": "#/properties/environments/items/deployKey",
