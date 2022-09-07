@@ -23,71 +23,7 @@ categories:
   - name: "🖥️ System"
     id: system
 components:
-  - name: CIVO
-    variable: civo
-    category: cloud
-    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/civo.svg
-    description: 'Enable CIVO Cloud defaults to better integrate into the CIVO landscape'
-    onePager: |-
-      Enable CIVO Cloud defaults to better integrate into the CIVO landscape
-    schema: |-
-      {
-        "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#civo",
-        "type": "object",
-        "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
-          "usingBuiltInTraefikIngress": {
-            "$id": "#/properties/usingBuiltInTraefikIngress",
-            "type": "boolean",
-            "title": "Use the Traefik Ingress from the CIVO marketplace"
-          }
-        },
-        "dependencies": {
-          "usingBuiltInTraefikIngress": {
-            "oneOf": [
-              {
-                "properties": {
-                  "usingBuiltInTraefikIngress": {
-                    "const": false
-                  }
-                }
-              },
-              {
-                "properties": {
-                  "usingBuiltInTraefikIngress": {
-                    "const": true
-                  },
-                  "host": {
-                    "$id": "#/properties/host",
-                    "type": "string",
-                    "title": "Host",
-                    "description": "Your company domain you will expose your services on"
-                  }
-                },
-                "required": [
-                  "host"
-                ]
-              }
-            ]
-          }
-        }
-      }
-    uiSchema: |-
-      [
-        {
-          "schemaIDs": [
-            "#civo"
-          ],
-          "uiSchema": {},
-          "metaData": {}
-        }
-      ]
-  - name: Local k3s / k3d / Rancher desktop
+  - name: K3s / K3d / Rancher Desktop
     variable: k3s
     category: cloud
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/configurable-gimlet-url/assets/k3s.svg
@@ -147,6 +83,70 @@ components:
         {
           "schemaIDs": [
             "#k3s"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
+  - name: CIVO
+    variable: civo
+    category: cloud
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/civo.svg
+    description: 'Enable CIVO Cloud defaults to better integrate into the CIVO landscape'
+    onePager: |-
+      Enable CIVO Cloud defaults to better integrate into the CIVO landscape
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#civo",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "usingBuiltInTraefikIngress": {
+            "$id": "#/properties/usingBuiltInTraefikIngress",
+            "type": "boolean",
+            "title": "Use the Traefik Ingress from the CIVO marketplace"
+          }
+        },
+        "dependencies": {
+          "usingBuiltInTraefikIngress": {
+            "oneOf": [
+              {
+                "properties": {
+                  "usingBuiltInTraefikIngress": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "usingBuiltInTraefikIngress": {
+                    "const": true
+                  },
+                  "host": {
+                    "$id": "#/properties/host",
+                    "type": "string",
+                    "title": "Host",
+                    "description": "Your company domain you will expose your services on"
+                  }
+                },
+                "required": [
+                  "host"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#civo"
           ],
           "uiSchema": {},
           "metaData": {}
