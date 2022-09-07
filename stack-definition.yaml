@@ -103,13 +103,13 @@ components:
           "enabled": {
             "$id": "#/properties/enabled",
             "type": "boolean",
-            "title": "Enabled",
-            "default": true
+            "title": "Enabled"
           },
           "usingBuiltInTraefikIngress": {
             "$id": "#/properties/usingBuiltInTraefikIngress",
             "type": "boolean",
-            "title": "Use the Traefik Ingress"
+            "title": "Use the Traefik Ingress",
+            "default": true
           }
         },
         "dependencies": {
