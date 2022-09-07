@@ -87,6 +87,71 @@ components:
           "metaData": {}
         }
       ]
+  - name: Local k3s / k3d / Rancher desktop
+    variable: k3s
+    category: cloud
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/configurable-gimlet-url/assets/k3s.svg
+    description: 'Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop'
+    onePager: |-
+      Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#k3s",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled",
+            "default": true
+          },
+          "usingBuiltInTraefikIngress": {
+            "$id": "#/properties/usingBuiltInTraefikIngress",
+            "type": "boolean",
+            "title": "Use the Traefik Ingress"
+          }
+        },
+        "dependencies": {
+          "usingBuiltInTraefikIngress": {
+            "oneOf": [
+              {
+                "properties": {
+                  "usingBuiltInTraefikIngress": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "usingBuiltInTraefikIngress": {
+                    "const": true
+                  },
+                  "host": {
+                    "$id": "#/properties/host",
+                    "type": "string",
+                    "title": "Host",
+                    "description": "Your company domain you will expose your services on"
+                  }
+                },
+                "required": [
+                  "host"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#k3s"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
   - name: Nginx
     variable: nginx
     category: ingress
