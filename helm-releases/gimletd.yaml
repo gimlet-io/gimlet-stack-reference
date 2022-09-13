@@ -41,7 +41,7 @@ spec:
         {{- if .certManager.enabled }}
         cert-manager.io/cluster-issuer: letsencrypt
         {{- end }}
-      {{- if certManager.enabled }}
+      {{- if .certManager.enabled }}
       tlsEnabled: true
       {{- end }}
       {{- end }}
