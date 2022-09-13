@@ -23,6 +23,71 @@ categories:
   - name: "🖥️ System"
     id: system
 components:
+  - name: K3s / K3d / Rancher Desktop
+    variable: k3s
+    category: cloud
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/configurable-gimlet-url/assets/k3s.svg
+    description: 'Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop'
+    onePager: |-
+      Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#k3s",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "usingBuiltInTraefikIngress": {
+            "$id": "#/properties/usingBuiltInTraefikIngress",
+            "type": "boolean",
+            "title": "Use the Traefik Ingress",
+            "default": true
+          }
+        },
+        "dependencies": {
+          "usingBuiltInTraefikIngress": {
+            "oneOf": [
+              {
+                "properties": {
+                  "usingBuiltInTraefikIngress": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "usingBuiltInTraefikIngress": {
+                    "const": true
+                  },
+                  "host": {
+                    "$id": "#/properties/host",
+                    "type": "string",
+                    "title": "Host",
+                    "description": "Your company domain you will expose your services on"
+                  }
+                },
+                "required": [
+                  "host"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#k3s"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
   - name: CIVO
     variable: civo
     category: cloud
@@ -118,10 +183,10 @@ components:
 
       You need to create now DNS entry for this IP. A wildcard DNS on `*.yourdomain.com` is preferred for this purpose.
 
-      To validate the ingress, let's use xip.io, which is a dynamic DNS service: it provides wildcard DNS for any IP address. Say your LAN IP address is 10.0.0.1.
-      Using xip.io, 10.0.0.1.xip.io resolves to 10.0.0.1
+      To validate the ingress, let's use nip.io, which is a dynamic DNS service: it provides wildcard DNS for any IP address. Say your LAN IP address is 10.0.0.1.
+      Using nip.io, 10.0.0.1.nip.io resolves to 10.0.0.1
 
-      Now try [https://test.<<yourIP>>.xip.io](https://test.<<yourIP>>.xip.io) which will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
+      Now try [https://test.<<yourIP>>.nip.io](https://test.<<yourIP>>.nip.io) which will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
 
       Next steps:
       - add a wildcard DNS entry that points to the `nginx-nginx-ingress-controller` service's IP
@@ -1196,18 +1261,6 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "gitopsRepo": {
-            "$id": "#/properties/gitopsRepo",
-            "type": "string",
-            "title": "Default Gitops Repository",
-            "description": "Repository owner and name (owner/name) where GimletD writes the application manifests if it can't find environment specific config"
-          },
-          "deployKey": {
-            "$id": "#/properties/deployKey",
-            "type": "string",
-            "title": "Default Deploy Key",
-            "description": "The private key of the deploy key pair to access the Default Gitops Repository on Github"
-          },
           "environments": {
             "$id": "#/properties/environments",
             "type": "array",
@@ -1222,7 +1275,7 @@ components:
                   "$id": "#/properties/environments/items/properties/name",
                   "type": "string",
                   "title": "Environment Name",
-                  "description": "The name of the environment. Should match the `env` field in gimlet manifests"
+                  "description": "The name of the environment. Should match with the `env` field in Gimlet manifests"
                 },
                 "repoPerEnv": {
                   "$id": "#/properties/environments/items/repoPerEnv",
@@ -1235,7 +1288,7 @@ components:
                   "$id": "#/properties/environments/items/gitopsRepo",
                   "type": "string",
                   "title": "Gitops Repository",
-                  "description": "Repository owner and name (owner/name) where GimletD writes the application manifests for this environment"
+                  "description": "Repository owner and name (owner/name) where Gimletd writes the application manifests for this environment"
                 },
                 "deployKey": {
                   "$id": "#/properties/environments/items/deployKey",

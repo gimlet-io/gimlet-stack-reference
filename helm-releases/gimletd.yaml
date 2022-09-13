@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/gimlet-io/gimletd
-      tag: v0.11.0
+      tag: v0.13.0
       pullPolicy: Always
     containerPort: 8888
     probe:
@@ -35,13 +35,17 @@ spec:
         path: /tmp/gimletd
         size: 5Gi
     ingress:
+      {{- if not .k3s.enabled}}
       annotations:
-        kubernetes.io/ingress.class:  {{ default false .nginx.enabled | ternary "nginx" "traefik" }}
+        kubernetes.io/ingress.class: {{ default false .nginx.enabled | ternary "nginx" "traefik" }}
         {{- if .certManager.enabled }}
         cert-manager.io/cluster-issuer: letsencrypt
         {{- end }}
-      host: gimletd.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}
+      {{- if .certManager.enabled }}
       tlsEnabled: true
+      {{- end }}
+      {{- end }}
+      host: gimletd.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}
     vars:
       PRINT_ADMIN_TOKEN: true
       {{- if .gimletd.gitopsRepo }}
