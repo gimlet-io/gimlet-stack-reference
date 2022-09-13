@@ -26,7 +26,7 @@ components:
   - name: K3s / K3d / Rancher Desktop
     variable: k3s
     category: cloud
-    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/configurable-gimlet-url/assets/k3s.svg
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/k3s.svg
     description: 'Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop'
     onePager: |-
       Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop
