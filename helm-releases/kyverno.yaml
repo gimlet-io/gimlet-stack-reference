@@ -34,7 +34,7 @@ spec:
   chart:
     spec:
       chart: kyverno-policies
-      version: v2.5.1
+      version: v2.5.5
       sourceRef:
         kind: HelmRepository
         name: kyverno
@@ -54,7 +54,7 @@ spec:
   chart:
     spec:
       chart: policy-reporter
-      version: 2.9.5
+      version: 2.13.0
       sourceRef:
         kind: HelmRepository
         name: kyverno-policy-reporter
