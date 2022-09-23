@@ -1089,6 +1089,12 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
+          "host": {
+            "$id": "#/properties/host",
+            "type": "string",
+            "title": "Host name",
+            "description": "The hostname the dashboard is accessible. Together with the protocol eg.: https://gimlet.mycompany.com"
+          },
           "jwtSecret": {
             "$id": "#/properties/org",
             "type": "string",
