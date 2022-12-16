@@ -67,6 +67,9 @@ spec:
       DATABASE_DRIVER: postgres
       DATABASE_CONFIG: "postgres://{{ default "gimletd" .gimletd.postgresql.user }}:{{ .gimletd.postgresql.password }}@{{ default "postgres:5432" .gimletd.postgresql.hostAndPort }}/{{ default "gimletd" .gimletd.postgresql.db }}?sslmode=disable"
       {{- end }}
+      {{- if .gimletd.gitSSHAddressFormat }}
+      GIT_SSH_ADDRESS_FORMAT: {{ .gimletd.gitSSHAddressFormat }}
+      {{- end }}
     {{- if or .gimletd.deployKey .gimletd.environments }}
     fileSecrets:
       - name:  github-gitops-deploy-key

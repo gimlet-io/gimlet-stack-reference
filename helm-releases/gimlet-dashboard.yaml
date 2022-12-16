@@ -62,12 +62,20 @@ spec:
       {{- end }}
       GIMLETD_TOKEN: "{{ .gimletDashboard.gimletdToken }}"
       {{- end }}
+      {{- if .gimletDashboard.githubAppId }}
       GITHUB_APP_ID: {{ .gimletDashboard.githubAppId }}
       GITHUB_INSTALLATION_ID: "{{ .gimletDashboard.githubInstallationId }}"
       GITHUB_PRIVATE_KEY: |
 {{  indent 8 .gimletDashboard.githubPrivateKey }}
       GITHUB_CLIENT_ID: "{{ .gimletDashboard.githubClientId }}"
       GITHUB_CLIENT_SECRET: "{{ .gimletDashboard.githubClientSecret }}"
+      {{- end }}
+      {{- if .gimletDashboard.gitlabClientId }}
+      GITLAB_CLIENT_ID: {{ .gimletDashboard.gitlabClientId }}
+      GITLAB_CLIENT_SECRET: {{ .gimletDashboard.gitlabClientSecret }}
+      GITLAB_ORG: {{ .gimletDashboard.gitlabOrg }}
+      GITLAB_ADMIN_TOKEN: {{ .gimletDashboard.gitlabAdminToken }}
+      {{- end }}
       WEBHOOK_SECRET: "{{ .gimletDashboard.webhookSecret }}"
       RELEASE_HISTORY_SINCE_DAYS: 7
       {{- if .gimletDashboard.bootstrapEnv }}

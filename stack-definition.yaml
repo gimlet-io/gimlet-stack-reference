@@ -1093,7 +1093,7 @@ components:
             "$id": "#/properties/host",
             "type": "string",
             "title": "Host name",
-            "description": "The hostname the dashboard is accessible. Together with the protocol eg.: https://gimlet.mycompany.com"
+            "description": "The hostname the dashboard is accessible on. Together with the protocol eg.: https://gimlet.mycompany.com"
           },
           "jwtSecret": {
             "$id": "#/properties/jwtSecret",
