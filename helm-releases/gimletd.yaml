@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/gimlet-io/gimletd
-      tag: v0.13.0
+      tag: v0.16.0-rc.1
       pullPolicy: Always
     containerPort: 8888
     probe:
