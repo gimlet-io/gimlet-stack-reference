@@ -75,6 +75,7 @@ spec:
       GITLAB_CLIENT_SECRET: {{ .gimletDashboard.gitlabClientSecret }}
       GITLAB_ORG: {{ .gimletDashboard.gitlabOrg }}
       GITLAB_ADMIN_TOKEN: {{ .gimletDashboard.gitlabAdminToken }}
+      GITLAB_URL: {{ .gimletDashboard.gitlabUrl }}
       {{- end }}
       WEBHOOK_SECRET: "{{ .gimletDashboard.webhookSecret }}"
       RELEASE_HISTORY_SINCE_DAYS: 7
