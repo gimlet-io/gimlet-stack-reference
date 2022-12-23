@@ -20,7 +20,7 @@ spec:
     containerPort: 9000
     image:
       repository: ghcr.io/gimlet-io/gimlet-dashboard
-      tag: v0.13.0-rc.3
+      tag: v0.13.0-rc.4
       pullPolicy: Always
     probe:
       enabled: true
