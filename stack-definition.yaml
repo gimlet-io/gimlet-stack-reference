@@ -4,7 +4,7 @@ description: |
   Logging, metrics, ingress and more - all delivered with gitops.
 
 categories:
-  - name: "☁️ Cloud Provider"
+  - name: "☁️ Cloud Provider2"
     id: cloud
   - name: "⬅️Ingress"
     id: ingress
