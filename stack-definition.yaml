@@ -4,12 +4,14 @@ description: |
   Logging, metrics, ingress and more - all delivered with gitops.
 
 categories:
-  - name: "☁️ Cloud Provider2"
+  - name: "☁️ Cloud Provider"
     id: cloud
   - name: "⬅️Ingress"
     id: ingress
   - name: "📑 Logging"
     id: logging
+  - name: "🔄 Autoscaling"
+    id: autoscaling  
   - name: "🔢 Metrics"
     id: metrics
   - name: "🔐 Secrets"
@@ -1429,7 +1431,36 @@ components:
           "metaData": {}
         }
       ]
-
+  - name: KEDA
+    variable: keda
+    category: autoscaling
+    logo: https://keda.sh/img/logos/keda-horizontal-color.png
+    description: ''
+    onePager: "KEDA is an alternative solution for Prometheus Adapter, it gives you a simple, straightforward and efficient approach to autoscale your application."
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#keda",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#keda"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
 changeLog: |
   - 🍏 Gimlet Dashbord updated to 0.13.0
   - 🍏 Gimletd updated to 0.16.0

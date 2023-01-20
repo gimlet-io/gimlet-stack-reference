@@ -1,0 +1,11 @@
+{{ if or .keda.enabled -}}
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: keda
+  namespace: infrastructure
+spec:
+  interval: 60m
+  url: https://kedacore.github.io/charts
+{{- end }}
