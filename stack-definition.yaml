@@ -25,7 +25,7 @@ categories:
   - name: "🖥️ System"
     id: system
 components:
-  - name: K3s / K3d / Rancher Desktop / hi from gimlet
+  - name: K3s / K3d / Rancher Desktop
     variable: k3s
     category: cloud
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/k3s.svg
