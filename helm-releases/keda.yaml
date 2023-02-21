@@ -16,4 +16,4 @@ spec:
         kind: HelmRepository
         name: keda
       interval: 10m
-{{- end }}      
+{{- end }}

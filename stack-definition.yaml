@@ -1463,6 +1463,8 @@ components:
       ]
 changeLog: |
   - 🍏 Gimlet Agent RBAC role update
+  - 🆕 KEDA is part of Gimlet now
+  - 🐛 Fixed Promtail's Loki config
 
 message: |
 
