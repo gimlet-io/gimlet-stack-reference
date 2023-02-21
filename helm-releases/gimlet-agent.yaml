@@ -6,6 +6,27 @@ metadata:
   namespace: infrastructure
 ---
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gimlet-agent
+rules:
+- apiGroups:
+    - networking.k8s.io
+    - apps
+    - ""
+  resources:
+    - pods
+    - pods/log
+    - ingresses
+    - deployments
+    - services
+    - events
+  verbs:
+    - get
+    - watch
+    - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: gimlet-agent
@@ -15,7 +36,7 @@ subjects:
     namespace: infrastructure
 roleRef:
   kind: ClusterRole
-  name: cluster-admin
+  name: gimlet-agent
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1

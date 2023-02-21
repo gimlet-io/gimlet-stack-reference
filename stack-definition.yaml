@@ -1462,8 +1462,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Gimlet Dashbord updated to 0.13.0
-  - 🍏 Gimletd updated to 0.16.0
+  - 🍏 Gimlet Agent RBAC role update
 
 message: |
 
