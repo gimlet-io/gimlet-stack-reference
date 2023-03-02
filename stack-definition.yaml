@@ -192,7 +192,7 @@ components:
       The EXTERNAL-IP field is set within a couple of minutes.
 
       **k3s/k3d or Rancher Desktop**
-      
+
       By default a Traefik ingress controller is installed, and k3s/k3d supports only a single EXTERNAL-IP in the cluster.
       
       To make the Nginx ingress work start the k3s/k3d cluster with the `k3d cluster create deleteme --k3s-arg "--disable=traefik@server:0"` switch to turn off Traefik.
@@ -208,14 +208,16 @@ components:
 
       ### Creating a dummy ingress to validate the Nginx ingress controller
 
-      To validate the ingress, we will use nip.io in this guide. Nip.io is a dynamic DNS service: let say your LAN IP address is 10.0.0.1.
+      To validate the ingress, we will use nip.io in this guide.
+      
+      Nip.io is a dynamic DNS service: let say your LAN IP address is 10.0.0.1.
       Using nip.io, 10.0.0.1.nip.io resolves to 10.0.0.1
 
       ```
       kubectl create ingress ingress --rule="nosuchapp.<<your-EXTERNAL-IP>>.nip.io/=gimlet-sample-app:80"
       ```
 
-      Accessing [http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io](http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io) will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
+      Accessing [http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io](http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io) will return HTTP 404, served by the just deployed Nginx ingress controller. Indicating that the ingress controller works.
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
