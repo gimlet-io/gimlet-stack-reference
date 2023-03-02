@@ -192,15 +192,17 @@ components:
       The EXTERNAL-IP field is set within a couple of minutes.
 
       **k3s/k3d or Rancher Desktop**
-      By default a Traefik ingress controller is installed, and k3s/k3d supports onyl a single EXTERNAL-IP in the cluster. To make the Nginx ingress work
-      start the k3s/k3d cluster with the `k3d cluster create deleteme --k3s-arg "--disable=traefik@server:0"` switch to turn off Traefik.
+      
+      By default a Traefik ingress controller is installed, and k3s/k3d supports only a single EXTERNAL-IP in the cluster.
+      
+      To make the Nginx ingress work start the k3s/k3d cluster with the `k3d cluster create deleteme --k3s-arg "--disable=traefik@server:0"` switch to turn off Traefik.
       If you do so, the EXTERNAL-IP for the nginx service will be filled with a LAN IP address that you can use with nip.io as you can see bellow.
 
       **Docker Desktop**
 
       **Minikube**
 
-      **kind
+      **kind**
 
       Create a DNS entry for the EXTERNAL-IP now. A wildcard DNS on `*.yourdomain.com` is recommended.
 
