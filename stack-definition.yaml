@@ -177,22 +177,43 @@ components:
       service/nginx-nginx-ingress-default-backend   ClusterIP      10.43.176.181   <none>        80/TCP                       114s
       ```
 
-      It started the ingress controller pod and the default-backend pod that is served on HTTP 404 requests.
-
       ### Pointing a DNS entry to the ingress IP address
 
-      Locate the external IP of the `nginx-nginx-ingress-controller` service. On local clusters this will always be `Pending`, but on managed Kubernetes providers, the IP is set within a couple of minutes.
+      To point a DNS entry to the ingress controller's IP address, let's find the IP first.
+            
+      ```
+      $ kubectl get services --namespace infrastructure
+      
+      NAME                                          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+      service/nginx-nginx-ingress-controller        LoadBalancer   10.43.199.76    1.2.3.4       80:30377/TCP,443:31126/TCP   114s
+      ```
+      
+      **Using a real Kubernetes cluster**
+      The EXTERNAL-IP field is set within a couple of minutes.
 
-      You need to create now DNS entry for this IP. A wildcard DNS on `*.yourdomain.com` is preferred for this purpose.
+      **k3s/k3d or Rancher Desktop**
+      By default a Traefik ingress controller is installed, and k3s/k3d supports onyl a single EXTERNAL-IP in the cluster. To make the Nginx ingress work
+      start the k3s/k3d cluster with the `k3d cluster create deleteme --k3s-arg "--disable=traefik@server:0"` switch to turn off Traefik.
+      If you do so, the EXTERNAL-IP for the nginx service will be filled with a LAN IP address that you can use with nip.io as you can see bellow.
 
-      To validate the ingress, let's use nip.io, which is a dynamic DNS service: it provides wildcard DNS for any IP address. Say your LAN IP address is 10.0.0.1.
+      **Docker Desktop**
+
+      **Minikube**
+
+      **kind
+
+      Create a DNS entry for the EXTERNAL-IP now. A wildcard DNS on `*.yourdomain.com` is recommended.
+
+      ### Creating a dummy ingress to validate the Nginx ingress controller
+
+      To validate the ingress, we will use nip.io in this guide. Nip.io is a dynamic DNS service: let say your LAN IP address is 10.0.0.1.
       Using nip.io, 10.0.0.1.nip.io resolves to 10.0.0.1
 
-      Now try [https://test.<<yourIP>>.nip.io](https://test.<<yourIP>>.nip.io) which will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
+      ```
+      kubectl create ingress ingress --rule="nosuchapp.<<your-EXTERNAL-IP>>.nip.io/=gimlet-sample-app:80"
+      ```
 
-      Next steps:
-      - add a wildcard DNS entry that points to the `nginx-nginx-ingress-controller` service's IP
-      - add a [Kubernetes ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) object to one of your applications.
+      Accessing [http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io](http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io) will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
