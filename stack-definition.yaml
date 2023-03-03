@@ -191,33 +191,28 @@ components:
       **Using a real Kubernetes cluster**
       The EXTERNAL-IP field is set within a couple of minutes.
 
-      **k3s/k3d or Rancher Desktop**
-
-      By default a Traefik ingress controller is installed, and k3s/k3d supports only a single EXTERNAL-IP in the cluster.
+      **k3s/k3d or Rancher Desktop / Docker Desktop / Minikube / kind**
       
-      To make the Nginx ingress work start the k3s/k3d cluster with the `k3d cluster create deleteme --k3s-arg "--disable=traefik@server:0"` switch to turn off Traefik.
-      If you do so, the EXTERNAL-IP for the nginx service will be filled with a LAN IP address that you can use with nip.io as you can see bellow.
+      
+      
+      To make the Nginx ingress works you have to port forward your nginx controller `kubectl port-forward  -n infrastructure svc/ingress-nginx-controller 8080:80`.
+      If you do so, your nginx service will be filled with a `127.0.0.1` address that you can use with nip.io as you can see bellow.
+      
 
-      **Docker Desktop**
-
-      **Minikube**
-
-      **kind**
-
-      Create a DNS entry for the EXTERNAL-IP now. A wildcard DNS on `*.yourdomain.com` is recommended.
+      Create a DNS entry for the EXTERNAL-IP now or for your LOCALHOST-IP if you are experimenting locally. A wildcard DNS on `*.yourdomain.com` is recommended.
 
       ### Creating a dummy ingress to validate the Nginx ingress controller
 
       To validate the ingress, we will use nip.io in this guide.
       
-      Nip.io is a dynamic DNS service: let say your LAN IP address is 10.0.0.1.
+      Nip.io is a dynamic DNS service: let say your IP address is 10.0.0.1.
       Using nip.io, 10.0.0.1.nip.io resolves to 10.0.0.1
 
       ```
-      kubectl create ingress ingress --rule="nosuchapp.<<your-EXTERNAL-IP>>.nip.io/=gimlet-sample-app:80"
+      kubectl create ingress ingress --rule="nosuchapp.<<your-EXTERNAL-IP or YOUR-LOCALHOST-IP>>.nip.io/*=gimlet-sample-app:80"
       ```
 
-      Accessing [http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io](http://nosuchapp.<<your-EXTERNAL-IP>>.nip.io) will return HTTP 404, served by the just deployed Nginx ingress controller. Indicating that the ingress controller works.
+      Accessing [http://nosuchapp.<<your-EXTERNAL-IP or YOUR-LOCALHOST-IP>>.nip.io](http://nosuchapp.<<your-EXTERNAL-IP or YOUR-LOCALHOST-IP>>.nip.io) will return HTTP 404, served by the just deployed Nginx ingress controller. Indicating that the ingress controller works.
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
