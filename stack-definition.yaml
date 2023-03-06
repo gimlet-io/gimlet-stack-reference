@@ -190,17 +190,19 @@ components:
       
       **Using a real Kubernetes cluster** the EXTERNAL-IP field is set within a couple of minutes by your cloud provider.
 
-      Once the EXTERNAL-IP is visible, point a wildcard DNS entry `*.yourdomain.com` that address.
+      Once the EXTERNAL-IP is visible, point a wildcard DNS entry `*.yourdomain.com` to that address.
 
       **Using a local Kubernetes cluster like k3s/k3d or Rancher / Docker Desktop / Minikube / kind** testing the ingress requires a few steps.
 
       First, port forward the nginx controller to your laptop with the `kubectl port-forward -n infrastructure svc/ingress-nginx-controller 8080:80` command.
       This will make the ingress controller reachable on the `127.0.0.1` address. However ingresses require DNS names, so we will use the nip.io dynamic DNS service for it.
       
-      Nip.io is a dynamic DNS service: let say your IP address is 10.0.0.1.
-      Using nip.io, 10.0.0.1.nip.io resolves to 10.0.0.1, similarly 127.0.0.1.nip.io will resolve to 127.0.0.1
+      Using nip.io
+      - 10.0.0.1.nip.io resolves to 10.0.0.1
+      - similarly 127.0.0.1.nip.io will resolve to 127.0.0.1
+      - even wildcard names work: xyz.1.2.3.4.nip.io resolves to 1.2.3.4
 
-      Let's create a dummy ingress now that points to a non existing app in the cluster, and uses the nip.io based DNS name:
+      Let's create a dummy ingress now that points to a non-existing app in the cluster, and uses the nip.io based DNS name:
 
       ```
       kubectl create ingress dummy-ingress --rule="nosuchapp.127.0.0.1.nip.io/*=nosuchapp:80"
