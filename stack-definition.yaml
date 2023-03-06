@@ -177,22 +177,38 @@ components:
       service/nginx-nginx-ingress-default-backend   ClusterIP      10.43.176.181   <none>        80/TCP                       114s
       ```
 
-      It started the ingress controller pod and the default-backend pod that is served on HTTP 404 requests.
-
       ### Pointing a DNS entry to the ingress IP address
 
-      Locate the external IP of the `nginx-nginx-ingress-controller` service. On local clusters this will always be `Pending`, but on managed Kubernetes providers, the IP is set within a couple of minutes.
+      To point a DNS entry to the ingress controller's IP address, let's find the IP first.
+            
+      ```
+      $ kubectl get services --namespace infrastructure
+      
+      NAME                                          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+      service/nginx-nginx-ingress-controller        LoadBalancer   10.43.199.76    1.2.3.4       80:30377/TCP,443:31126/TCP   114s
+      ```
+      
+      **Using a real Kubernetes cluster** the EXTERNAL-IP field is set within a couple of minutes by your cloud provider.
 
-      You need to create now DNS entry for this IP. A wildcard DNS on `*.yourdomain.com` is preferred for this purpose.
+      Once the EXTERNAL-IP is visible, point a wildcard DNS entry `*.yourdomain.com` to that address.
 
-      To validate the ingress, let's use nip.io, which is a dynamic DNS service: it provides wildcard DNS for any IP address. Say your LAN IP address is 10.0.0.1.
-      Using nip.io, 10.0.0.1.nip.io resolves to 10.0.0.1
+      **Using a local Kubernetes cluster like k3s/k3d or Rancher / Docker Desktop / Minikube / kind** testing the ingress requires a few steps.
 
-      Now try [https://test.<<yourIP>>.nip.io](https://test.<<yourIP>>.nip.io) which will return HTTP 404, served by the just deployed default backend. Indicating that the ingress controller works.
+      First, port forward the nginx controller to your laptop with the `kubectl port-forward -n infrastructure svc/ingress-nginx-controller 8080:80` command.
+      This will make the ingress controller reachable on the `127.0.0.1` address. However ingresses require DNS names, so we will use the nip.io dynamic DNS service for it.
+      
+      Using nip.io
+      - 10.0.0.1.nip.io resolves to 10.0.0.1
+      - similarly 127.0.0.1.nip.io will resolve to 127.0.0.1
+      - even wildcard names work: xyz.1.2.3.4.nip.io resolves to 1.2.3.4
 
-      Next steps:
-      - add a wildcard DNS entry that points to the `nginx-nginx-ingress-controller` service's IP
-      - add a [Kubernetes ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) object to one of your applications.
+      Let's create a dummy ingress now that points to a non-existing app in the cluster, and use the nip.io based DNS name:
+
+      ```
+      kubectl create ingress dummy-ingress --rule="nosuchapp.127.0.0.1.nip.io/*=nosuchapp:80"
+      ```
+
+      Accessing [http://nosuchapp.127.0.0.1.nip.io](http://nosuchapp.127.0.0.1.nip.io) will return HTTP 404, served by the just deployed Nginx ingress controller. Indicating that the ingress controller works.
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
@@ -1462,9 +1478,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Gimlet Agent RBAC role update
-  - 🆕 KEDA is part of Gimlet now
-  - 🐛 Fixed Promtail's Loki config
+  - 🍏 Updated the Nginx getting started one-pager
 
 message: |
 
