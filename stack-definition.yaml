@@ -202,7 +202,7 @@ components:
       - similarly 127.0.0.1.nip.io will resolve to 127.0.0.1
       - even wildcard names work: xyz.1.2.3.4.nip.io resolves to 1.2.3.4
 
-      Let's create a dummy ingress now that points to a non-existing app in the cluster, and uses the nip.io based DNS name:
+      Let's create a dummy ingress now that points to a non-existing app in the cluster, and use the nip.io based DNS name:
 
       ```
       kubectl create ingress dummy-ingress --rule="nosuchapp.127.0.0.1.nip.io/*=nosuchapp:80"
@@ -1478,9 +1478,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Gimlet Agent RBAC role update
-  - 🆕 KEDA is part of Gimlet now
-  - 🐛 Fixed Promtail's Loki config
+  - 🍏 Updated the Nginx getting started one-pager
 
 message: |
 
