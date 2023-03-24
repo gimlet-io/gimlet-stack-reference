@@ -1,0 +1,94 @@
+{{ if .gimletd.enabled -}}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gimletd
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: gimletd
+  chart:
+    spec:
+      chart: onechart
+      version: 0.38.0
+      sourceRef:
+        kind: HelmRepository
+        name: onechart
+      interval: 10m
+  values:
+    image:
+      repository: ghcr.io/gimlet-io/gimletd
+      tag: v0.16.0
+      pullPolicy: Always
+    containerPort: 8888
+    probe:
+      enabled: true
+      path: /
+    volumes:
+      {{- if not .gimletd.postgresql.password }}
+      - name: data
+        path: /var/lib/gimletd
+        size: 1Gi
+      {{- end }}
+      - name: repo-cache
+        path: /tmp/gimletd
+        size: 5Gi
+    ingress:
+      {{- if not .k3s.enabled}}
+      annotations:
+        kubernetes.io/ingress.class: {{ default false .nginx.enabled | ternary "nginx" "traefik" }}
+        {{- if .certManager.enabled }}
+        cert-manager.io/cluster-issuer: letsencrypt
+        {{- end }}
+      {{- if .certManager.enabled }}
+      tlsEnabled: true
+      {{- end }}
+      {{- end }}
+      host: gimletd.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}
+    vars:
+      PRINT_ADMIN_TOKEN: true
+      {{- if .gimletd.gitopsRepo }}
+      GITOPS_REPO: {{ .gimletd.gitopsRepo }}
+      {{- end }}
+      {{- if .gimletd.deployKey }}
+      GITOPS_REPO_DEPLOY_KEY_PATH: /github/deploy.key
+      {{- end }}
+      {{- if .gimletd.environments }}
+      GITOPS_REPOS: 
+      {{- $length := len .gimletd.environments }}
+      {{- range $idx, $env := .gimletd.environments }}
+        {{- $idxplusone := add1 $idx }}
+        {{- printf "%senv=%s&repoPerEnv=%t&gitopsRepo=%s&deployKeyPath=/github/%s.key%s" (eq $idx 0 | ternary " " "") $env.name $env.repoPerEnv $env.gitopsRepo $env.name (eq $length $idxplusone | ternary "" ";") }}
+      {{- end}}
+      {{- end }}
+      ADMIN_TOKEN: {{ .gimletd.adminToken }}
+      {{- if .gimletd.postgresql.password }}
+      DATABASE_DRIVER: postgres
+      DATABASE_CONFIG: "postgres://{{ default "gimletd" .gimletd.postgresql.user }}:{{ .gimletd.postgresql.password }}@{{ default "postgres:5432" .gimletd.postgresql.hostAndPort }}/{{ default "gimletd" .gimletd.postgresql.db }}?sslmode=disable"
+      {{- end }}
+      {{- if .gimletd.gitSSHAddressFormat }}
+      GIT_SSH_ADDRESS_FORMAT: {{ .gimletd.gitSSHAddressFormat }}
+      {{- end }}
+    {{- if or .gimletd.deployKey .gimletd.environments }}
+    fileSecrets:
+      - name:  github-gitops-deploy-key
+        path: /github
+        secrets:
+          {{- if .gimletd.deployKey }}
+          deploy.key: |
+{{ indent 12 .gimletd.deployKey }}
+          {{- end }}
+          {{- range $idx, $env := .gimletd.environments }}
+          {{ $env.name }}.key: |
+{{ indent 12 $env.deployKey -}}
+          {{- end }}
+    {{- end }}
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "200Mi"
+      limits:
+        cpu: "2000m"
+        memory: "1000Mi"
+{{- end }}
