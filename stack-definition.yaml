@@ -1482,14 +1482,20 @@ changeLog: |
     The upgrade cover some feature enhancements and bug fixes   
     What's new in v9.4:
     https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v9-4/
+  - ❗Breaking change in the Gimlet component
+    With v0.14.0 Gimlet merged the Gimletd and Gimlet Dashboard components.
+    Migration:
+      - feel free to update to the latest stack if you don't use the Gimlet dashboard and gimletd
+      - if you want to update Gimlet later, the existing `gimletd` and `gimletDashboard` entries in stack.yaml will be ignored, and your Gimlet will run on your current version until you decide to upgrade.
+      - To upgrade Gimlet:
 
 message: |
 
-  Hey 👋 Laszlo here, the maker of Gimlet.
+  Hey 👋 Laszlo here, the founder of Gimlet.io
 
   Thank you for using Gimlet!
 
-  My goal is to help you
+  Our goal is to help you
 
   - to get started with your Kubernetes stack
   - to navigate new versions
