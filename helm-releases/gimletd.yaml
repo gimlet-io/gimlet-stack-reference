@@ -6,7 +6,7 @@ metadata:
   name: gimletd
   namespace: infrastructure
 spec:
-  interval: 61m
+  interval: 60m
   releaseName: gimletd
   chart:
     spec:
