@@ -59,7 +59,7 @@ spec:
     serviceAccount: gimlet-agent
     image:
       repository: ghcr.io/gimlet-io/gimlet-dashboard
-      tag: agent-v0.13.0
+      tag: agent-v0.15.1
       pullPolicy: Always
     vars:
       HOST: {{ .gimletAgent.dashboardAddress }}

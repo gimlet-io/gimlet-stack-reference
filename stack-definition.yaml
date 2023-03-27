@@ -1493,8 +1493,7 @@ changeLog: |
         - Run `gimlet stack generate`
           - You should see the gimlet-dashboard.yaml and gimletd.yaml  files dissappear and a gimlet.yaml created.
           - Once you deploy the new version, Gimlet will use the existing Gimlet Dashboards database
-          - To migrate data from Gimletd to the remaining `gimlet_dashboard` database:
-            - 
+          - To migrate data from Gimletd to the remaining `gimlet_dashboard` database follow the instructions in https://github.com/gimlet-io/gimlet/releases/tag/dashboard-v0.14.0
 
 message: |
 
