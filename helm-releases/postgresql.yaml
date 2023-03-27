@@ -19,7 +19,7 @@ data:
     {{- end }}
     {{ if .gimlet.postgresql.install }}
     CREATE DATABASE gimlet;
-    CREATE USER gimlet WITH ENCRYPTED PASSWORD '{{ .gimlet.postgresql.password }}';
+    CREATE USER gimlet WITH ENCRYPTED PASSWORD '{{ .gimletDashboard.postgresql.password }}';
     GRANT ALL PRIVILEGES ON DATABASE gimlet to gimlet;
     {{- end }}
 ---
@@ -41,7 +41,7 @@ spec:
       interval: 10m
   values:
     auth:
-      postgresPassword: "{{ default .gimletDashboard.postgresql.postgresPassword .gimletd.postgresql.postgresPassword .gimlet.postgresql.postgresPassword -}}"
+      postgresPassword: "{{  .gimlet.postgresql.postgresPassword | default .gimletd.postgresql.postgresPassword -}}"
     primary:
       initdb:
         scriptsConfigMap: postgres-init
