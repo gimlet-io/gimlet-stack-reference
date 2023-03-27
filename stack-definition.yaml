@@ -1219,6 +1219,130 @@ components:
           "metaData": {}
         }
       ]
+  - name: Gimlet
+    variable: gimlet
+    category: gimlet
+    logo: https://gimlet.io/logo.svg
+    description: ''
+    onePager: |-
+
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#gimlet",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "host": {
+            "$id": "#/properties/host",
+            "type": "string",
+            "title": "Host name",
+            "description": "The hostname the dashboard is accessible on. Together with the protocol eg.: https://gimlet.mycompany.com"
+          },
+          "jwtSecret": {
+            "$id": "#/properties/jwtSecret",
+            "type": "string",
+            "title": "JWT Secret",
+            "description": "Random string to seed JWT tokens, eg the output of `openssl rand -hex 32`"
+          },
+          "githubOrg": {
+            "$id": "#/properties/githubOrg",
+            "type": "string",
+            "title": "Github Organization",
+            "description": "Users that are members of this Github Organization will be able to authenticate to the dashboard"
+          },
+          "githubAppId": {
+            "$id": "#/properties/githubAppId",
+            "type": "string",
+            "title": "Github App ID",
+            "description": ""
+          },
+          "githubPrivateKey": {
+            "$id": "#/properties/githubPrivateKey",
+            "type": "string",
+            "title": "Github Private Key",
+            "description": ""
+          },
+          "githubClientId": {
+            "$id": "#/properties/githubClientId",
+            "type": "string",
+            "title": "Github Client ID",
+            "description": ""
+          },
+          "githubClientSecret": {
+            "$id": "#/properties/githubClientSecret",
+            "type": "string",
+            "title": "Github Client Secret",
+            "description": ""
+          },
+          "webhookSecret": {
+            "$id": "#/properties/webhookSecret",
+            "type": "string",
+            "title": "Webhook Secret",
+            "description": ""
+          },
+          "postgresql": {
+            "$id": "#/properties/postgresql",
+            "type": "object",
+            "title": "Postgresql settings",
+            "description": "",
+            "properties": {
+              "install": {
+                "$id": "#/properties/install",
+                "type": "boolean",
+                "title": "Install Postgresql",
+                "description": "Install a Postgresql instance to host Gimlet data"
+              },
+              "postgresPassword": {
+                "$id": "#/properties/postgresPassword",
+                "type": "string",
+                "title": "Postgresql Admin Password",
+                "description": "Fill it if you install Postgresql together with Gimlet"
+              },
+              "hostAndPort": {
+                "$id": "#/properties/hostAndPort",
+                "type": "string",
+                "title": "Postgresql Host and Port",
+                "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
+                "default": "postgres:5432"
+              },
+              "db": {
+                "$id": "#/properties/database",
+                "type": "string",
+                "title": "Postgresql Database Name",
+                "default": "gimlet_dasboard"
+              },
+              "user": {
+                "$id": "#/properties/user",
+                "type": "string",
+                "title": "Postgresql User",
+                "description": "",
+                "default": "gimlet_dashboard"
+              },
+              "password": {
+                "$id": "#/properties/password",
+                "type": "string",
+                "title": "Postgresql Password",
+                "description": ""
+              }
+            }
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#gimlet"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
   - name: Gimlet Agent
     variable: gimletAgent
     category: gimlet
@@ -1494,7 +1618,6 @@ changeLog: |
           - You should see the gimlet-dashboard.yaml and gimletd.yaml  files dissappear and a gimlet.yaml created.
           - Once you deploy the new version, Gimlet will use the existing Gimlet Dashboards database
           - To migrate data from Gimletd to the remaining `gimlet_dashboard` database follow the instructions in https://github.com/gimlet-io/gimlet/releases/tag/dashboard-v0.14.0
-
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
