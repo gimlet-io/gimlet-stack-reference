@@ -58,7 +58,7 @@ spec:
   values:
     serviceAccount: gimlet-agent
     image:
-      repository: ghcr.io/gimlet-io/gimlet-dashboard
+      repository: ghcr.io/gimlet-io/gimlet
       tag: agent-v0.15.1
       pullPolicy: Always
     vars:
