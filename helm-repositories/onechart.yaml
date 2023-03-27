@@ -1,4 +1,4 @@
-{{ if (or (or .gimletDashboard.enabled (or .gimletd.enabled .gimletAgent.enabled))) .gimlet.enabled -}}
+{{ if or .gimlet.enabled (or .gimletDashboard.enabled (or .gimletd.enabled .gimletAgent.enabled)) -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
