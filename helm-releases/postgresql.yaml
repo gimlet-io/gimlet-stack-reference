@@ -1,4 +1,4 @@
-{{ if or .gimletd.postgresql.install .gimletDashboard.postgresql.install -}}
+{{ if or (or .gimletd.postgresql.install .gimletDashboard.postgresql.install) .gimlet.postgresql.install -}}
 ---
 apiVersion: v1
 kind: ConfigMap
