@@ -19,7 +19,7 @@ data:
     {{- end }}
     {{ if .gimlet.postgresql.install }}
     CREATE DATABASE gimlet;
-    CREATE USER gimlet WITH ENCRYPTED PASSWORD '{{ .gimletDashboard.postgresql.password }}';
+    CREATE USER gimlet WITH ENCRYPTED PASSWORD '{{ .gimlet.postgresql.password }}';
     GRANT ALL PRIVILEGES ON DATABASE gimlet to gimlet;
     {{- end }}
 ---
