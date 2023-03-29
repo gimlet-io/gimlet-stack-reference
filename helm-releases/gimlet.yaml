@@ -34,7 +34,7 @@ spec:
       - name: repo-cache
         path: /tmp/gimlet-dashboard
         size: 5Gi
-    {{- if or .nginx.enabled .civo.enabled }}
+    {{- if or .nginx.enabled .civo.usingBuiltInTraefikIngress }}
     ingress:
       annotations:
         kubernetes.io/ingress.class: {{ default false .nginx.enabled | ternary "nginx" "traefik" }}
