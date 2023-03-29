@@ -18,6 +18,6 @@ spec:
       interval: 10m
   values:
     config:
-       clients:
-         - url: "http://loki:3100/loki/api/v1/push"
+      clients:
+        - url: "http://loki:3100/loki/api/v1/push"
 {{- end }}
