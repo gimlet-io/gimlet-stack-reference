@@ -1602,22 +1602,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Upgrade Grafana version from 9.0.2 to 9.4.3
-    The upgrade cover some feature enhancements and bug fixes   
-    What's new in v9.4:
-    https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v9-4/
-  - ❗Gimlet updated to v0.15.0
-    In v0.14.0, Gimlet merged the Gimletd and Gimlet Dashboard components.
-    Migration:
-      - If you want to update Gimlet later, feel free to update the stack, v0.15.0 is introduced as a new field in stack.yaml, so no changes will be made to your Gimlet unless you migrate
-      - To upgrade Gimlet:
-        - Warning: if you don't use Postgresql to store your Gimlet data, your Gimlet data will be reset. Ask on Discord how you can prevent that.
-        - Rename the `gimletDashboard` field to `gimlet`
-        - Remove the `gimletd` field.
-        - Run `gimlet stack generate`
-          - You should see the gimlet-dashboard.yaml and gimletd.yaml  files dissappear and a gimlet.yaml created.
-          - Once you deploy the new version, Gimlet will use the existing Gimlet Dashboards database
-          - To migrate data from Gimletd to the remaining `gimlet_dashboard` database follow the instructions in https://github.com/gimlet-io/gimlet/releases/tag/dashboard-v0.14.0
+  - 🐛 Fixing Gimlet ingress
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
