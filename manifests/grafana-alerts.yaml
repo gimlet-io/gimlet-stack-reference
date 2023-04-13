@@ -63,8 +63,8 @@ data:
                     maxDataPoints: 43200
                     refId: B
                     type: classic_conditions
-              dashboardUid: bM0FLQ0Gk
-              panelId: 44
+              dashboardUid: AA9GWPtiz1
+              panelId: 33
               noDataState: NoData
               execErrState: Error
               for: 5m
@@ -129,15 +129,15 @@ data:
                     maxDataPoints: 43200
                     refId: B
                     type: classic_conditions
-              dashboardUid: bM0FLQ0Gk
-              panelId: 38
+              dashboardUid: AA9GWPtiz1
+              panelId: 12
               noDataState: NoData
               execErrState: Error
               for: 5m
               annotations:
                 __alertId__: "4"
-                __dashboardUid__: bM0FLQ0Gk
-                __panelId__: "38"
+                __dashboardUid__: AA9GWPtiz1
+                __panelId__: "12"
                 message: The load is high, check out what's going on
               labels:
                 rule_uid: 8TSdZYS4z
@@ -195,14 +195,14 @@ data:
                     maxDataPoints: 43200
                     refId: B
                     type: classic_conditions
-              dashboardUid: 9wxeLQ0Gk
+              dashboardUid: AA9GWPtiz1
               panelId: 30
               noDataState: NoData
               execErrState: Error
               for: 5m
               annotations:
                 __alertId__: "6"
-                __dashboardUid__: 9wxeLQ0Gk
+                __dashboardUid__: AA9GWPtiz1
                 __panelId__: "30"
                 message: Persistent volume is almost full
               labels:
@@ -261,14 +261,14 @@ data:
                     maxDataPoints: 43200
                     refId: B
                     type: classic_conditions
-              dashboardUid: 9wxeLQ0Gk
+              dashboardUid: AA9GWPtiz1
               panelId: 10
               noDataState: NoData
               execErrState: Error
               for: 15m
               annotations:
                 __alertId__: "7"
-                __dashboardUid__: 9wxeLQ0Gk
+                __dashboardUid__: AA9GWPtiz1
                 __panelId__: "10"
                 message: A pod restarted too often, check out what's going on
               labels:
@@ -327,14 +327,14 @@ data:
                     maxDataPoints: 43200
                     refId: B
                     type: classic_conditions
-              dashboardUid: 9wxeLQ0Gk
+              dashboardUid: AA9GWPtiz1
               panelId: 27
               noDataState: NoData
               execErrState: Error
               for: 30m
               annotations:
                 __alertId__: "9"
-                __dashboardUid__: 9wxeLQ0Gk
+                __dashboardUid__: AA9GWPtiz1
                 __panelId__: "27"
                 message: Cluster is filling up, check capacity
               labels:
@@ -393,14 +393,14 @@ data:
                     maxDataPoints: 43200
                     refId: B
                     type: classic_conditions
-              dashboardUid: 9wxeLQ0Gk
+              dashboardUid: AA9GWPtiz1
               panelId: 28
               noDataState: NoData
               execErrState: Error
               for: 30m
               annotations:
                 __alertId__: "8"
-                __dashboardUid__: 9wxeLQ0Gk
+                __dashboardUid__: AA9GWPtiz1
                 __panelId__: "28"
                 message: Cluster is filling up, check capacity
               labels:
