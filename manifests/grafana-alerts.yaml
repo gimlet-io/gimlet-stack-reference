@@ -64,14 +64,14 @@ data:
                     refId: B
                     type: classic_conditions
               dashboardUid: AA9GWPtiz1
-              panelId: 33
+              panelId: 22
               noDataState: NoData
               execErrState: Error
               for: 5m
               annotations:
                 __alertId__: "5"
-                __dashboardUid__: bM0FLQ0Gk
-                __panelId__: "44"
+                __dashboardUid__: AA9GWPtiz1
+                __panelId__: "22"
                 message: Disk space is too low
               labels:
                 rule_uid: UTIdZLIVzz
