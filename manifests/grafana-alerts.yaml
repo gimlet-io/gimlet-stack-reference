@@ -1,0 +1,409 @@
+{{ if .prometheus.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-alerting
+  namespace: infrastructure
+  labels:
+    grafanaResource: alerting
+data:
+  alerting.yaml: |-
+    apiVersion: 1
+    groups:
+        - orgId: 1
+          name: Disk Free Space too low
+          folder: General Alerting
+          interval: 1m
+          rules:
+            - uid: zpqAPrLVk
+              title: Disk Free Space too low
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: 100*((node_filesystem_avail_bytes{device=~"/dev/.*",}/node_filesystem_size_bytes{device=~"/dev/.*"}))
+                    hide: false
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: true
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 8
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - A
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: ""
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: classic_conditions
+              dashboardUid: bM0FLQ0Gk
+              panelId: 44
+              noDataState: NoData
+              execErrState: Error
+              for: 5m
+              annotations:
+                __alertId__: "5"
+                __dashboardUid__: bM0FLQ0Gk
+                __panelId__: "44"
+                message: Disk space is too low
+              labels:
+                rule_uid: UTIdZLIVzz
+              isPaused: false
+        - orgId: 1
+          name: Load is high
+          folder: General Alerting
+          interval: 1m
+          rules:
+            - uid: fcFHP9YVz
+              title: Load is high
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: node_load1
+                    hide: false
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: true
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 25
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - A
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: ""
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: classic_conditions
+              dashboardUid: bM0FLQ0Gk
+              panelId: 38
+              noDataState: NoData
+              execErrState: Error
+              for: 5m
+              annotations:
+                __alertId__: "4"
+                __dashboardUid__: bM0FLQ0Gk
+                __panelId__: "38"
+                message: The load is high, check out what's going on
+              labels:
+                rule_uid: 8TSdZYS4z
+              isPaused: false
+        - orgId: 1
+          name: Persistent Volume Usage - % alert
+          folder: General Alerting
+          interval: 1m
+          rules:
+            - uid: 5Ap9LrY4k
+              title: Persistent Volume Usage - % alert
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: kubelet_volume_stats_used_bytes/kubelet_volume_stats_capacity_bytes
+                    hide: false
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: true
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 0.85
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - A
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: ""
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: classic_conditions
+              dashboardUid: 9wxeLQ0Gk
+              panelId: 30
+              noDataState: NoData
+              execErrState: Error
+              for: 5m
+              annotations:
+                __alertId__: "6"
+                __dashboardUid__: 9wxeLQ0Gk
+                __panelId__: "30"
+                message: Persistent volume is almost full
+              labels:
+                rule_uid: _TSOWLSVk
+              isPaused: false
+        - orgId: 1
+          name: Pod maybe crashlooping
+          folder: General Alerting
+          interval: 1m
+          rules:
+            - uid: yyIBLrLVz
+              title: Pod maybe crashlooping
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: increase(kube_pod_container_status_restarts_total[5m])
+                    hide: false
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: true
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 3
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - A
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: ""
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: classic_conditions
+              dashboardUid: 9wxeLQ0Gk
+              panelId: 10
+              noDataState: NoData
+              execErrState: Error
+              for: 15m
+              annotations:
+                __alertId__: "7"
+                __dashboardUid__: 9wxeLQ0Gk
+                __panelId__: "10"
+                message: A pod restarted too often, check out what's going on
+              labels:
+                rule_uid: _oSOZYSVkz
+              isPaused: false
+        - orgId: 1
+          name: Total CPU cores booked alert
+          folder: General Alerting
+          interval: 1m
+          rules:
+            - uid: afw3arY4k
+              title: Total CPU cores booked alert
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: 100* sum(kube_pod_container_resource_requests{resource="cpu"}) / sum(kube_node_status_capacity{resource="cpu"})
+                    hide: false
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: true
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 90
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - A
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: ""
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: classic_conditions
+              dashboardUid: 9wxeLQ0Gk
+              panelId: 27
+              noDataState: NoData
+              execErrState: Error
+              for: 30m
+              annotations:
+                __alertId__: "9"
+                __dashboardUid__: 9wxeLQ0Gk
+                __panelId__: "27"
+                message: Cluster is filling up, check capacity
+              labels:
+                rule_uid: 9TSOZYIVz
+              isPaused: false
+        - orgId: 1
+          name: Total memory bookings alert
+          folder: General Alerting
+          interval: 1m
+          rules:
+            - uid: xyRvf9LVz
+              title: Total memory bookings alert
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: PBFA97CFB590B2093
+                  model:
+                    editorMode: code
+                    expr: 100* sum(kube_pod_container_resource_requests{resource="memory"}) / sum(kube_node_status_capacity{resource="memory"})
+                    hide: false
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: true
+                    refId: A
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 95
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - A
+                          reducer:
+                            params: []
+                            type: avg
+                          type: query
+                    datasource:
+                        name: Expression
+                        type: __expr__
+                        uid: __expr__
+                    expression: ""
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: classic_conditions
+              dashboardUid: 9wxeLQ0Gk
+              panelId: 28
+              noDataState: NoData
+              execErrState: Error
+              for: 30m
+              annotations:
+                __alertId__: "8"
+                __dashboardUid__: 9wxeLQ0Gk
+                __panelId__: "28"
+                message: Cluster is filling up, check capacity
+              labels:
+                rule_uid: XoSOWYI4z
+              isPaused: false
+{{- end }}
