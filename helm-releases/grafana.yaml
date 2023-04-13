@@ -18,7 +18,7 @@ spec:
       interval: 10m
   values:
     sidecar:
-      {{ if .prometheus.enabled }}
+      {{- if .prometheus.enabled }}
       alerts:
         enabled: true
         label: grafanaResource
