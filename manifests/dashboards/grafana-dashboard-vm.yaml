@@ -1390,12 +1390,12 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "100*(min by (mountpoint) (node_filesystem_avail_bytes{kubernetes_node=~\"$node\",device=~\"/dev/.*\",}/node_filesystem_size_bytes{kubernetes_node=~\"$node\",device=~\"/dev/.*\"}))",
+              "expr": "100*(min by (device, instance, kubernetes_node, node) (node_filesystem_avail_bytes{kubernetes_node=~\"$node\",device=~\"/dev/.*\",}/node_filesystem_size_bytes{kubernetes_node=~\"$node\",device=~\"/dev/.*\"}))",
               "format": "time_series",
               "hide": false,
               "interval": "",
               "intervalFactor": 2,
-              "legendFormat": "{{mountpoint}}",
+              "legendFormat": "{{device}} ({{instance}} {{kubernetes_node}} {{node}})",
               "refId": "A",
               "step": 4
             }
