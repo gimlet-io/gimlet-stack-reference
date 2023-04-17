@@ -1,4 +1,4 @@
-{{ if .prometheus.generalAlerts -}}
+{{ if .prometheus.genericAlerts -}}
 ---
 apiVersion: v1
 kind: ConfigMap
