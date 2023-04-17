@@ -43,9 +43,9 @@ data:
                     conditions:
                         - evaluator:
                             params:
-                                - 8
+                                - 20
                                 - 0
-                            type: gt
+                            type: lt
                           operator:
                             type: and
                           query:
