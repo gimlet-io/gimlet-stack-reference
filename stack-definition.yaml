@@ -643,6 +643,12 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
+          "genericAlerts": {
+            "$id": "#/properties/genericAlerts",
+            "type": "boolean",
+            "title": "Include Alerts",
+            "description": "Enable to include generic alerts on CPU / memory / disk usage"
+          },
           "retentionDays": {
             "$id": "#/properties/retentionDays",
             "type": "integer",

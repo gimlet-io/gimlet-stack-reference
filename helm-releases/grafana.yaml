@@ -18,6 +18,15 @@ spec:
       interval: 10m
   values:
     sidecar:
+      {{- if .prometheus.genericAlerts }}
+      alerts:
+        enabled: true
+        label: grafanaResource
+        labeValue: alerting
+        watchMethod: SLEEP
+        resource: configmap
+        searchNamespace: infrastructure
+      {{- end }}
       datasources:
         enabled: true
       dashboards:

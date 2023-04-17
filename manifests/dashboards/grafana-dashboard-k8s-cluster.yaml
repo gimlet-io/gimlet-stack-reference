@@ -1464,11 +1464,11 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "100*(min by (mountpoint,instance_name) (node_filesystem_avail_bytes{device=~\"/dev/.*\",}/node_filesystem_size_bytes{device=~\"/dev/.*\"}))",
+              "expr": "100*(min by (device, instance, kubernetes_node, node) (node_filesystem_avail_bytes{device=~\"/dev/.*\",}/node_filesystem_size_bytes{device=~\"/dev/.*\"}))",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
-              "legendFormat": "{{kubernetes_node}}",
+              "legendFormat": "{{device}} ({{instance}} {{kubernetes_node}} {{node}})",
               "refId": "A"
             }
           ],
