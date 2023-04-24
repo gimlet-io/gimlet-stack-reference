@@ -1608,7 +1608,8 @@ components:
         }
       ]
 changeLog: |
-  - 🐛 Fixing Gimlet ingress
+  - 🐛🍏 Updated Gimlet version from v0.15.1 to v0.15.6
+    Includes various bugfixes
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
