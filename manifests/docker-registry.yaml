@@ -1,0 +1,74 @@
+{{ if .dockerRegistry.enabled -}}
+---
+# Source: onechart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker
+  namespace: default
+  labels:
+    helm.sh/chart: onechart-0.49.0
+    app.kubernetes.io/name: onechart
+    app.kubernetes.io/instance: docker
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: http
+      protocol: TCP
+      name: http
+      nodePort: 32447
+    
+  selector:
+    app.kubernetes.io/name: onechart
+    app.kubernetes.io/instance: docker
+---
+# Source: onechart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker
+  namespace: default
+  labels:
+    helm.sh/chart: onechart-0.49.0
+    app.kubernetes.io/name: onechart
+    app.kubernetes.io/instance: docker
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    kubectl.kubernetes.io/default-container: docker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: onechart
+      app.kubernetes.io/instance: docker
+  template:
+    metadata:
+      annotations:
+        checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      labels:
+        app.kubernetes.io/name: onechart
+        app.kubernetes.io/instance: docker
+    spec:
+      securityContext:
+        fsGroup: 999
+      initContainers:      
+      containers:
+        - name: docker
+          securityContext: &securityContext
+            {}
+          image: "registry:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+            requests:
+              cpu: 200m
+              memory: 200Mi
+{{- end }}
