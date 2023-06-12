@@ -6,6 +6,8 @@ description: |
 categories:
   - name: "☁️ Cloud Provider"
     id: cloud
+  - name: "🗂️ Registry"
+    id: registry
   - name: "⬅️Ingress"
     id: ingress
   - name: "📑 Logging"
@@ -1607,9 +1609,38 @@ components:
           "metaData": {}
         }
       ]
+  - name: Docker Registry
+    variable: dockerRegistry
+    category: registry
+    logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
+    description: ''
+    onePager: "Docker registry is a storage and distribution system for named Docker images."
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#dockerRegistry",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#dockerRegistry"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
 changeLog: |
-  - 🐛🍏 Updated Gimlet version from v0.15.1 to v0.15.6
-    Includes various bugfixes
+  - 🐛🍏 Added Docker Registry 
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
