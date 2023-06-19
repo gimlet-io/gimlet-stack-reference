@@ -1532,6 +1532,38 @@ components:
           "metaData": {}
         }
       ]
+
+  - name: Image Builder
+    variable: imageBuilder
+    category: gimlet
+    logo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbJiWu_ey07H2VcwZetWj64wTaZbNynioWXQ&usqp=CAU
+    description: ''
+    onePager: "Docker registry is a storage and distribution system for named Docker images."
+
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#imageBuilder",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#dockerRegistry"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
   - name: Namespaces
     variable: namespaces
     category: system
@@ -1640,7 +1672,7 @@ components:
         }
       ]
 changeLog: |
-  - 🐛🍏 Added Docker Registry 
+  - 🐛🍏 Added Image builder 
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
