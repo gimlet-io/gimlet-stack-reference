@@ -1,0 +1,35 @@
+{{ if .imageBuilder.enabled -}}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: image-builder
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: image-builder
+  chart:
+    spec:
+      chart: onechart
+      version: 0.49.0
+      sourceRef:
+        kind: HelmRepository
+        name: onechart
+      interval: 10m
+  values:
+    containerPort: 9000
+    image:
+      repository: ghcr.io/gimlet-io/image-builder
+      tag: v0.2.0
+      pullPolicy: Always
+    probe:
+      enabled: true
+      path: /health
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "200Mi"
+      limits:
+        cpu: "500m"
+        memory: "500Mi"
+{{- end }}

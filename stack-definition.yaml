@@ -1532,6 +1532,38 @@ components:
           "metaData": {}
         }
       ]
+
+  - name: Image Builder
+    variable: imageBuilder
+    category: gimlet
+    logo: https://cncf-branding.netlify.app/img/projects/buildpacks/icon/black/buildpacks-icon-black.png
+    description: ''
+    onePager: "Image builder is a simple web server application that handles file uploads and builds images from it."
+
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#imageBuilder",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#imageBuilder"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
   - name: Namespaces
     variable: namespaces
     category: system
@@ -1640,7 +1672,7 @@ components:
         }
       ]
 changeLog: |
-  - 🐛🍏 Added Docker Registry 
+  - 🐛🍏 Added Image builder 
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
