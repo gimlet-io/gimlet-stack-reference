@@ -1536,9 +1536,9 @@ components:
   - name: Image Builder
     variable: imageBuilder
     category: gimlet
-    logo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbJiWu_ey07H2VcwZetWj64wTaZbNynioWXQ&usqp=CAU
+    logo: https://cncf-branding.netlify.app/img/projects/buildpacks/icon/black/buildpacks-icon-black.png
     description: ''
-    onePager: "Docker registry is a storage and distribution system for named Docker images."
+    onePager: "Image builder is a simple web server application that handles file uploads and builds images from it."
 
     schema: |-
       {
@@ -1557,7 +1557,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#dockerRegistry"
+            "#imageBuilder"
           ],
           "uiSchema": {
           },
