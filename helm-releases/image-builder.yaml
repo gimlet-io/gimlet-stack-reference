@@ -20,7 +20,7 @@ spec:
     containerPort: 9000
     image:
       repository: ghcr.io/gimlet-io/image-builder
-      tag: v0.2.0
+      tag: v0.2.10
       pullPolicy: Always
     probe:
       enabled: true
@@ -29,7 +29,4 @@ spec:
       requests:
         cpu: "100m"
         memory: "200Mi"
-      limits:
-        cpu: "500m"
-        memory: "500Mi"
 {{- end }}
