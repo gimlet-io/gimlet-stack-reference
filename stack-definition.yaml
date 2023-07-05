@@ -1672,7 +1672,8 @@ components:
         }
       ]
 changeLog: |
-  - 🐛🍏 Added Image builder 
+  - 🆕 Docker Image Regsitry added
+  - 🆕 Gimlet Image Builder added
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
