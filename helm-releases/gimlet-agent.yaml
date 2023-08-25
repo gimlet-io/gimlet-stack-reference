@@ -54,7 +54,7 @@ spec:
   chart:
     spec:
       chart: onechart
-      version: 0.38.0
+      version: 0.57.0
       sourceRef:
         kind: HelmRepository
         name: onechart
@@ -63,8 +63,8 @@ spec:
     serviceAccount: gimlet-agent
     image:
       repository: ghcr.io/gimlet-io/gimlet
-      tag: agent-v0.17.0-rc.19
-      pullPolicy: Always
+      tag: agent-v0.18.0
+      pullPolicy: IfNotPresent
     vars:
       HOST: {{ .gimletAgent.dashboardAddress }}
       AGENT_KEY: {{ .gimletAgent.agentKey }}
