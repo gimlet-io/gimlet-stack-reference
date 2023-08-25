@@ -14,6 +14,8 @@ rules:
     - networking.k8s.io
     - apps
     - ""
+    - source.toolkit.fluxcd.io
+    - kustomize.toolkit.fluxcd.io
   resources:
     - pods
     - pods/log
@@ -21,6 +23,8 @@ rules:
     - deployments
     - services
     - events
+    - gitrepositories
+    - kustomizations
   verbs:
     - get
     - watch
@@ -59,7 +63,7 @@ spec:
     serviceAccount: gimlet-agent
     image:
       repository: ghcr.io/gimlet-io/gimlet
-      tag: agent-v0.15.6
+      tag: agent-v0.17.0-rc.19
       pullPolicy: Always
     vars:
       HOST: {{ .gimletAgent.dashboardAddress }}
