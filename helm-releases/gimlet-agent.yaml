@@ -16,6 +16,7 @@ rules:
     - ""
     - source.toolkit.fluxcd.io
     - kustomize.toolkit.fluxcd.io
+    - helm.toolkit.fluxcd.io
   resources:
     - pods
     - pods/log
@@ -25,6 +26,7 @@ rules:
     - events
     - gitrepositories
     - kustomizations
+    - helmreleases
   verbs:
     - get
     - watch
