@@ -1408,8 +1408,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Gimlet upgraded to 0.18.0
-  - ❗ Old Gimlet config options are deprecated: .gimletDashboard and .gimletd
+  - 🍏 Gimlet upgraded to 0.19.0
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
