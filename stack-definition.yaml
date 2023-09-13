@@ -1408,7 +1408,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Gimlet upgraded to 0.19.1
+  - 🍏 Gimlet image builder upgraded to 0.4.2
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
