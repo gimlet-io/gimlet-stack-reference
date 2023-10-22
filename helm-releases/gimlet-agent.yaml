@@ -65,7 +65,7 @@ spec:
     serviceAccount: gimlet-agent
     image:
       repository: ghcr.io/gimlet-io/gimlet
-      tag: agent-v0.19.1
+      tag: agent-v0.20.0
       pullPolicy: IfNotPresent
     vars:
       HOST: {{ .gimletAgent.dashboardAddress }}
