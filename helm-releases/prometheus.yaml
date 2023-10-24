@@ -17,10 +17,6 @@ spec:
         name: prometheus
       interval: 10m
   values:
-    prometheus-node-exporter:
-      containerSecurityContext:
-          readOnlyRootFilesystem: true
-          allowPrivilegeEscalation: false
     prometheus-pushgateway:
       enabled: false
     alertmanager:
