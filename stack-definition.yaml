@@ -1408,9 +1408,9 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Updated Prometheus to v2.47.0
-    - Node Exporter has its own Helm release from now on
-    - Added `containerSecurityContext` fields for better compliance posture
+  - 🍏 Updated Gimlet to v0.21.0
+    ❗Check the release log before update:
+      https://github.com/gimlet-io/gimlet/releases/tag/gimlet-v0.21.0
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
