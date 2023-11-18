@@ -1408,9 +1408,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Updated Gimlet to v0.21.0
-    ❗Check the release log before update:
-      https://github.com/gimlet-io/gimlet/releases/tag/gimlet-v0.21.0
+  - 🍏 Updated Gimlet to v0.22.0
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
