@@ -17,6 +17,8 @@ spec:
         name: prometheus
       interval: 10m
   values:
+    prometheus-node-exporter:
+      enabled: false
     prometheus-pushgateway:
       enabled: false
     alertmanager:
