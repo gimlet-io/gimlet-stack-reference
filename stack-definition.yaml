@@ -1408,7 +1408,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Updated Gimlet to v0.22.0
+  - 🐛 Fixing a bug of pending Prometheus Node Exporter pods
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
