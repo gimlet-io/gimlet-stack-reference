@@ -408,7 +408,6 @@ data:
               labels:
                 rule_uid: XoSOWYI4z
               isPaused: false
-                  - orgId: 1
         {{- end }}
         {{- if .velero.backupAlerts }}
         - orgId: 1
