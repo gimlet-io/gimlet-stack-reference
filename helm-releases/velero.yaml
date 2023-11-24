@@ -1,0 +1,101 @@
+{{ if .velero.enabled -}}
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: infrastructure
+spec:
+  interval: 60m
+  releaseName: velero
+  chart:
+    spec:
+      chart: velero
+      version: 4.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+      interval: 10m
+  values:
+    containerSecurityContext:
+      readOnlyRootFilesystem: true
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    kubectl:
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 250Mi
+        requests:
+          cpu: 100m
+          memory: 250Mi
+      annotations:
+        linkerd.io/inject: disabled
+    podAnnotations:
+        linkerd.io/inject: disabled
+    initContainers:
+    - name: velero-plugin-for-microsoft-azure
+      image: velero/velero-plugin-for-microsoft-azure:v1.6.0
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 250Mi
+        requests:
+          cpu: 100m
+          memory: 250Mi
+    configuration:
+      backupStorageLocation:
+      - name: rafflepvbackupsstaging
+        provider: velero.io/azure
+        bucket: {{ .velero.backupStorageLocation.bucket }}
+        default: true
+        config:
+          resourceGroup: {{ .velero.backupStorageLocation.resourceGroup }}
+          subscriptionId: {{ .velero.backupStorageLocation.subscriptionId }}
+          storageAccount: {{ .velero.backupStorageLocation.storageAccount }}
+      # Parameters for the `default` VolumeSnapshotLocation. See
+      # https://velero.io/docs/v1.6/api-types/volumesnapshotlocation/
+      volumeSnapshotLocation:
+        # name is the name of the volume snapshot location where snapshots are being taken. Required.
+      - name: azure-vol-gitops-version
+        # provider is the name for the volume snapshot provider. If omitted
+        # `configuration.provider` will be used instead.
+        provider: azure
+        # credentials:
+        #   name: AKIAYAVAOM4Z5QAS37EQ
+        #   key: HqzIJzOhlB2zjuAp69lkFE5n05PHAzi7rVPYM3JZ  
+        # Additional provider-specific configuration. See link above
+        # for details of required/optional fields for your provider.
+        config:
+         resourceGroup: {{ .velero.volumeSnapshotLocation.storageAccount }}
+         subscriptionId: {{ .velero.volumeSnapshotLocation.storageAccount }}
+         incremental: true
+    credentials:
+     existingSecret: {{ .velero.credentials.secretName }} 
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  name: velero
+  namespace: infrastructure
+spec:
+  encryptedData:
+    cloud: {{ .velero.credentials.secretName }}
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      name: velero
+      namespace: infrastructure
+{{- end }}

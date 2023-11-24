@@ -16,6 +16,8 @@ categories:
     id: autoscaling  
   - name: "🔢 Metrics"
     id: metrics
+  - name: "💿 Backups"
+    id: backups
   - name: "🔐 Secrets"
     id: secrets
   - name: "🔍 Tracing"
@@ -1407,8 +1409,106 @@ components:
           "metaData": {}
         }
       ]
+  - name: Velero
+    variable: velero
+    category: backups
+    logo: https://velero.io/img/Velero.svg
+    description: ''
+    onePager: "Velero is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes."
+
+    schema: |-
+     {
+        "$schema":"http://json-schema.org/draft-07/schema",
+        "$id":"#velero",
+        "type":"object",
+        "properties":{
+            "enabled":{
+              "$id":"#/properties/enabled",
+              "type":"boolean",
+              "title":"Enabled"
+            },
+            "backupAlerts":{
+              "$id":"#/properties/genericAlerts",
+              "type":"boolean",
+              "title":"Include Alerts",
+              "description":"Enable to get notified about failed backups"
+            },
+            "backupStorageLocation":{
+              "$id":"#/properties/persistence",
+              "type":"object",
+              "title":"Backup Storage Location",
+              "properties":{
+                  "bucket":{
+                    "$id":"#/properties/bucket",
+                    "type":"string",
+                    "title":"Bucket"
+                  },
+                  "resourceGroup":{
+                    "$id":"#/properties/resourcegroup",
+                    "type":"string",
+                    "title":"Resource Group (Azure)"
+                  },
+                  "subscriptionId":{
+                    "$id":"#/properties/subscriptionid",
+                    "type":"string",
+                    "title":"Subscription Id (Azure)"
+                  },
+                  "storageAccount":{
+                    "$id":"#/properties/storageaccount",
+                    "type":"string",
+                    "title":"Storage Account (Azure)"
+                  }
+              }
+            },
+            "volumeSnapshotLocation":{
+              "$id":"#/properties/volumesnapshotlocation",
+              "type":"object",
+              "title":"Volume Snapshot Location",
+              "properties":{
+                  "resourceGroup":{
+                    "$id":"#/properties/resourcegroup",
+                    "type":"string",
+                    "title":"Resource Group (Azure)"
+                  },
+                  "subscriptionId":{
+                    "$id":"#/properties/subscriptionid",
+                    "type":"string",
+                    "title":"Subscription Id (Azure)"
+                  }
+              }
+            },
+            "credentials":{
+              "$id":"#/properties/credentials",
+              "type":"object",
+              "title":"Credentials",
+              "properties":{
+                  "secretName":{
+                    "$id":"#/properties/secretName",
+                    "type":"string",
+                    "title":"Secret Name"
+                  },
+                  "secretValue":{
+                    "$id":"#/properties/secretValue",
+                    "type":"string",
+                    "title":"Secret Value (Must be a sealed value)"
+                  }
+              }
+            }
+        }
+      }
+    uiSchema: |-
+     [
+        {
+          "schemaIDs": [
+            "#velero"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
 changeLog: |
-  - 🐛 Fixing a bug of pending Prometheus Node Exporter pods
+  - 🐛 Add velero to stack
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io

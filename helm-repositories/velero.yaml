@@ -1,0 +1,11 @@
+{{ if .velero.enabled -}}
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: velero
+  namespace: infrastructure
+spec:
+  interval: 60m
+  url: https://vmware-tanzu.github.io/helm-charts
+{{- end }}
