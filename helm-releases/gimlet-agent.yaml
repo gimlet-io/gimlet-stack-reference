@@ -45,7 +45,7 @@ roleRef:
   name: gimlet-agent
   apiGroup: rbac.authorization.k8s.io
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: gimlet-agent

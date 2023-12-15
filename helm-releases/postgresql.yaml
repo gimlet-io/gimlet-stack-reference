@@ -23,7 +23,7 @@ data:
     GRANT ALL PRIVILEGES ON DATABASE gimlet to gimlet;
     {{- end }}
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: postgresql

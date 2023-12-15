@@ -1,6 +1,6 @@
 {{ if .kyverno.enabled -}}
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: kyverno
@@ -23,7 +23,7 @@ spec:
     extraArgs:
     - --background-scan=30s
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: kyverno-policies
@@ -43,7 +43,7 @@ spec:
     podSecurityStandard: {{ .kyverno.podSecurityStandard }}
     validationFailureAction: audit
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: kyverno-policy-reporter
