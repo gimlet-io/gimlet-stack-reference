@@ -87,5 +87,7 @@ spec:
     {{- if .linkerd.enabled }}
     podAnnotations:
       linkerd.io/inject: disabled
+      prometheus.io/port: "9002"
+      prometheus.io/scrape: "true"
     {{- end }}
 {{- end }}
