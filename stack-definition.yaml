@@ -13,7 +13,7 @@ categories:
   - name: "📑 Logging"
     id: logging
   - name: "🔄 Autoscaling"
-    id: autoscaling  
+    id: autoscaling
   - name: "🔢 Metrics"
     id: metrics
   - name: "🔐 Secrets"
@@ -31,7 +31,7 @@ components:
     variable: k3s
     category: cloud
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/k3s.svg
-    description: 'Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop'
+    description: "Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop"
     onePager: |-
       Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop
     schema: |-
@@ -96,7 +96,7 @@ components:
     variable: civo
     category: cloud
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/civo.svg
-    description: 'Enable CIVO Cloud defaults to better integrate into the CIVO landscape'
+    description: "Enable CIVO Cloud defaults to better integrate into the CIVO landscape"
     onePager: |-
       Enable CIVO Cloud defaults to better integrate into the CIVO landscape
     schema: |-
@@ -160,7 +160,7 @@ components:
     variable: nginx
     category: ingress
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/nginx.png
-    description: 'An Nginx proxy server that routes traffic to your applications based on the host name or path.'
+    description: "An Nginx proxy server that routes traffic to your applications based on the host name or path."
     onePager: |-
       ### What do you get with Nginx?
 
@@ -185,11 +185,11 @@ components:
             
       ```
       $ kubectl get services --namespace infrastructure
-      
+
       NAME                                          TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
       service/nginx-nginx-ingress-controller        LoadBalancer   10.43.199.76    1.2.3.4       80:30377/TCP,443:31126/TCP   114s
       ```
-      
+
       **Using a real Kubernetes cluster** the EXTERNAL-IP field is set within a couple of minutes by your cloud provider.
 
       Once the EXTERNAL-IP is visible, point a wildcard DNS entry `*.yourdomain.com` to that address.
@@ -198,7 +198,7 @@ components:
 
       First, port forward the nginx controller to your laptop with the `kubectl port-forward -n infrastructure svc/ingress-nginx-controller 8080:80` command.
       This will make the ingress controller reachable on the `127.0.0.1` address. However ingresses require DNS names, so we will use the nip.io dynamic DNS service for it.
-      
+
       Using nip.io
       - 10.0.0.1.nip.io resolves to 10.0.0.1
       - similarly 127.0.0.1.nip.io will resolve to 127.0.0.1
@@ -268,7 +268,7 @@ components:
     variable: certManager
     category: ingress
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/certManager.png
-    description: ''
+    description: ""
     onePager: |-
       ### What do you get with Cert Manager?
 
@@ -382,7 +382,7 @@ components:
     variable: loki
     category: logging
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/loki.png
-    description: ''
+    description: ""
     onePager: |-
       ### What do you get with Loki?
 
@@ -431,48 +431,6 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "storage": {
-            "$id": "#/properties/storage",
-            "type": "object",
-            "title": "Storage",
-            "oneOf": [
-              {
-                "id": "#/properties/storage/oneOf/0",
-                "title": "Volume Storage",
-                "properties": {
-                  "retentionDays": {
-                    "type": "integer",
-                    "title": "Retentian (in days)",
-                    "minimum": 1
-                  }
-                },
-                "required": ["retentionDays"]
-              },
-              {
-                "id": "#/properties/storage/oneOf/1",
-                "title": "S3 Storage",
-                "type": "object",
-                "properties": {
-                  "s3Url": {
-                    "type": "string",
-                    "title": "S3 URL",
-                    "description": "The name of the volume. Used only to recognize the volumes purpose in the config later on",
-                    "default": "s3://<access_key>:<uri-encoded-secret-access-key>@<region>"
-                  },
-                  "bucketName": {
-                    "type": "string",
-                    "title": "Bucket Name",
-                    "description": "Use an existing PersistentVolumeClaim",
-                    "default": "my-bucket"
-                  }
-                },
-                "required": [
-                  "s3Url",
-                  "bucketName"
-                ]
-              }
-            ]
-          },
           "persistence": {
             "$id": "#/properties/persistence",
             "type": "boolean",
@@ -492,7 +450,6 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
-            "#/properties/storage",
             "#/properties/persistence",
             "#/properties/volumeSize"
           ],
@@ -505,7 +462,7 @@ components:
     variable: grafanaCloud
     category: logging
     logo: https://grafana.com/static/img/menu/grafana2.svg
-    description: ''
+    description: ""
     onePager: |-
       Install Promtail to ship logs to Grafana Cloud.
     schema: |-
@@ -560,7 +517,7 @@ components:
     variable: eventExporter
     category: logging
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/opsgenie.png
-    description: ''
+    description: ""
     onePager: |-
       Install Kubernetes Event Exporter to log all Kubernetes events.
     schema: |-
@@ -591,7 +548,7 @@ components:
     variable: prometheus
     category: metrics
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/prometheus.svg
-    description: ''
+    description: ""
     onePager: |-
       ### What do you get with Prometheus?
       - Infrastructure metrics and dashboards
@@ -731,7 +688,7 @@ components:
     variable: sealedSecrets
     category: secrets
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/sealedSecrets.svg
-    description: ''
+    description: ""
     onePager: |-
       ### What do you get with Sealed Secrets?
       - A secret manager that allows a simple secret workflow for gitops repositories.
@@ -836,7 +793,7 @@ components:
     variable: externalSecrets
     category: secrets
     logo: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-medium.png
-    description: ''
+    description: ""
     onePager: |-
       The project extends the Kubernetes API by adding an ExternalSecrets object using Custom Resource Definition and a controller to implement the behavior of the object itself.
 
@@ -876,7 +833,7 @@ components:
     variable: oauth2Proxy
     category: ingress
     logo: https://raw.githubusercontent.com/oauth2-proxy/oauth2-proxy/master/docs/static/img/logos/OAuth2_Proxy_icon.svg
-    description: ''
+    description: ""
     onePager: |-
       ### What do you get with OAuth2Proxy?
       - You can authenticate your internal services with Github
@@ -984,7 +941,7 @@ components:
     variable: gimlet
     category: gimlet
     logo: https://gimlet.io/logo.svg
-    description: ''
+    description: ""
     onePager: |-
 
     schema: |-
@@ -1108,7 +1065,7 @@ components:
     variable: gimletAgent
     category: gimlet
     logo: https://gimlet.io/logo.svg
-    description: ''
+    description: ""
     onePager: |-
 
     schema: |-
@@ -1156,7 +1113,7 @@ components:
     variable: imageBuilder
     category: gimlet
     logo: https://cncf-branding.netlify.app/img/projects/buildpacks/icon/black/buildpacks-icon-black.png
-    description: ''
+    description: ""
     onePager: "Image builder is a simple web server application that handles file uploads and builds images from it."
 
     schema: |-
@@ -1186,8 +1143,8 @@ components:
   - name: Namespaces
     variable: namespaces
     category: system
-    logo: 'https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/system.svg'
-    description: ''
+    logo: "https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/system.svg"
+    description: ""
     onePager: |-
 
     schema: |-
@@ -1234,7 +1191,7 @@ components:
     variable: keda
     category: autoscaling
     logo: https://keda.sh/img/logos/keda-horizontal-color.png
-    description: ''
+    description: ""
     onePager: "KEDA is an alternative solution for Prometheus Adapter, it gives you a simple, straightforward and efficient approach to autoscale your application."
     schema: |-
       {
@@ -1264,7 +1221,7 @@ components:
     variable: dockerRegistry
     category: registry
     logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
-    description: ''
+    description: ""
     onePager: "Docker registry is a storage and distribution system for named Docker images."
     schema: |-
       {
@@ -1291,7 +1248,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍎 Upgrading Sealed Secrets controller
+  - 🦋 Upgraded all stack components to latest version possible!
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
@@ -1306,7 +1263,7 @@ message: |
 
   Now that you generated Kubernetes resources from your stack, 
   maybe you are interested in how to manage it in the future
-  
+
   👉 https://gimlet.io/docs/managing-infrastructure-components
 
   Onwards!

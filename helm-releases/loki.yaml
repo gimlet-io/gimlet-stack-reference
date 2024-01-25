@@ -16,15 +16,6 @@ spec:
         kind: HelmRepository
         name: grafana
       interval: 10m
-  valuesFrom:
-  - kind: Secret
-    name: loki-azure-credentials
-    valuesKey: accountname
-    targetPath: loki.storage.azure.accountName
-  - kind: Secret
-    name: loki-azure-credentials
-    valuesKey: accountkey
-    targetPath: loki.storage.azure.accountKey
   values:
     test:
       enabled: false
@@ -53,35 +44,20 @@ spec:
       extraArgs:
         - -config.expand-env=true
       replicas: 1
-      resources:
-        limits:
-          cpu: 1000m
-          memory: 2000Mi
-        requests:
-          cpu: 100m
-          memory: 2000Mi
+      {{ if .loki.persistence -}}
+      persistence:
+        enabled: true
+        size: {{ default 10 .loki.volumeSize -}}Gi
+      {{- end }}
     loki:
-      podAnnotations:
-        linkerd.io/inject: disabled
       tracing:
         enabled: false
       containerSecurityContext:
         allowPrivilegeEscalation: false
-      {{ if .loki.config.authentication -}}
-      auth_enabled: {{ .loki.config.authentication.enabled }}
-      {{- end }}
+        readOnlyRootFilesystem: false
+      auth_enabled: false
       commonConfig:
-      {{ if .loki.config.replication_factor -}}
         replication_factor: 1
-      {{- end }}
-      {{ if .loki.storage -}}
-      storage:
-        {{ if .loki.storage.azure -}}
-        bucketNames:
-          chunks: {{ .loki.storage.azure.bucket }}
-        type: "azure"
-        {{- end }}
-      {{- end }}
       querier:
         engine:
           timeout: 5m
@@ -99,49 +75,16 @@ spec:
             replication_factor: 1
       limits_config:
         enforce_metric_name: false
-      memcached:
-        chunk_cache:
-          enabled: true
-          host: memcached.infrastructure.svc.cluster.local
-          service: memcache
-          batch_size: 2048
-          parallelism: 1
-        results_cache:
-          enabled: true
-          host: memcached.infrastructure.svc.cluster.local
-          service: "memcache"
-          timeout: "500ms"
       schemaConfig:
         configs:
         - from: "2020-10-24"
           store: boltdb-shipper
-          object_store: azure
+          object_store: filesystem
           schema: v11
           index:
             prefix: index_
             period: 24h
       compactor:
-        shared_store: azure
+        shared_store: filesystem
         compaction_interval: 100m
-{{- end }}
-{{ if .loki.storage.azure -}}
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  annotations:
-    sealedsecrets.bitnami.com/cluster-wide: "true"
-  creationTimestamp: null
-  name: loki-azure-credentials
-  namespace: infrastructure
-spec:
-  encryptedData:
-    accountname: {{ .loki.storage.azure.accountname }}
-    accountkey:  {{ .loki.storage.azure.accountkey }}
-  template:
-    metadata:
-      annotations:
-        sealedsecrets.bitnami.com/cluster-wide: "true"
-      creationTimestamp: null
-      name: loki-azure-credentials
-      namespace: infrastructure
 {{- end }}
