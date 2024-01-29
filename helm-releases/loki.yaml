@@ -50,11 +50,13 @@ spec:
         size: {{ default 10 .loki.volumeSize -}}Gi
       {{- end }}
     loki:
+      storage:
+        type: filesystem
+        filesystem:
+          chunks_directory: /var/loki/chunks
+          rules_directory: /var/loki/rules
       tracing:
         enabled: false
-      containerSecurityContext:
-        allowPrivilegeEscalation: false
-        readOnlyRootFilesystem: false
       auth_enabled: false
       commonConfig:
         replication_factor: 1
