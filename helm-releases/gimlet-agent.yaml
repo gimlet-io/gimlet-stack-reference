@@ -31,6 +31,12 @@ rules:
     - get
     - watch
     - list
+- apiGroups:
+    - batch
+  resources:
+    - jobs
+  verbs:
+    - create
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -65,7 +71,7 @@ spec:
     serviceAccount: gimlet-agent
     image:
       repository: ghcr.io/gimlet-io/gimlet
-      tag: agent-v0.23.0
+      tag: agent-v0.24.0
       pullPolicy: IfNotPresent
     vars:
       HOST: {{ .gimletAgent.dashboardAddress }}
@@ -81,5 +87,7 @@ spec:
     {{- if .linkerd.enabled }}
     podAnnotations:
       linkerd.io/inject: disabled
+      prometheus.io/port: "9002"
+      prometheus.io/scrape: "true"
     {{- end }}
 {{- end }}
