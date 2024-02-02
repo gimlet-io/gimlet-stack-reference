@@ -1408,7 +1408,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍎 Upgrading Sealed Secrets controller
+  - 🍎 The HelmRelease kind was promoted from v2beta1 to v2beta2.
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
