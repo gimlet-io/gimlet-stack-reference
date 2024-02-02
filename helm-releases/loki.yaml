@@ -11,65 +11,24 @@ spec:
   chart:
     spec:
       chart: loki
-      version: 5.41.7
+      version: 2.15.2
       sourceRef:
         kind: HelmRepository
         name: grafana
       interval: 10m
   values:
-    test:
-      enabled: false
-    minio:
-      enabled: false
-    gateway:
-      enabled: false
-    monitoring:
-      lokiCanary:
-        enabled: false
-      selfMonitoring:
-        enabled: false
-        grafanaAgent:
-          installOperator: false
-          enableConfigReadAPI: false
-      serviceMonitor:
-        enabled: false
-      alerts:
-        enabled: false
-      rules:
-        enabled: false
-        alerting: true
-      dashboards:
-        enabled: false
-    singleBinary:
-      extraArgs:
-        - -config.expand-env=true
-      replicas: 1
-      {{ if .loki.persistence -}}
-      persistence:
-        enabled: true
-        size: {{ default 10 .loki.volumeSize -}}Gi
-      {{- end }}
-    loki:
-      storage:
-        type: filesystem
-        filesystem:
-          chunks_directory: /var/loki/chunks
-          rules_directory: /var/loki/rules
-      tracing:
-        enabled: false
+    {{ if .loki.persistence -}}
+    persistence:
+      enabled: true
+      size: {{ default 10 .loki.volumeSize -}}Gi
+    {{- end }}
+    config:
       auth_enabled: false
-      commonConfig:
-        replication_factor: 1
-      querier:
-        engine:
-          timeout: 5m
-      limits:
-        query_timeout: 5m
       ingester:
-        chunk_idle_period: 60m
-        chunk_block_size: 200000000
-        chunk_target_size: 8000000
-        chunk_encoding: snappy
+        chunk_idle_period: 3m
+        chunk_block_size: 262144
+        chunk_retain_period: 1m
+        max_transfer_retries: 0
         lifecycler:
           ring:
             kvstore:
@@ -77,16 +36,47 @@ spec:
             replication_factor: 1
       limits_config:
         enforce_metric_name: false
-      schemaConfig:
+        reject_old_samples: true
+        reject_old_samples_max_age: 168h
+      schema_config:
         configs:
-        - from: "2020-10-24"
-          store: boltdb-shipper
-          object_store: filesystem
-          schema: v11
-          index:
-            prefix: index_
-            period: 24h
+          - from: "2020-10-24"
+            store: boltdb-shipper
+            object_store: filesystem
+            schema: v11
+            index:
+              prefix: index_
+              period: 24h
+      server:
+        http_listen_port: 3100
+      storage_config:
+        boltdb_shipper:
+          active_index_directory: /data/loki/boltdb-shipper-active
+          cache_location: /data/loki/boltdb-shipper-cache
+          cache_ttl: 24h         # Can be increased for faster performance over longer query periods, uses more disk space
+          {{ if .loki.storage.retentionDays -}}
+          shared_store: filesystem
+          {{- end }}
+          {{ if .loki.storage.s3Url -}}
+          shared_store: s3
+          {{- end }}
+        {{ if .loki.storage.retentionDays -}}
+        filesystem:
+          directory: /data/loki/chunks
+        {{- end }}
+        {{ if .loki.storage.s3Url -}}
+        aws:
+          s3: "{{ .loki.storage.s3Url }}"
+          bucketnames: {{ .loki.storage.bucketName }}
+        {{- end }}
+      chunk_store_config:
+        max_look_back_period: 0s
+      {{ if .loki.storage.retentionDays -}}
+      table_manager:
+        retention_deletes_enabled: true
+        retention_period: {{ mul 24 (default 14 .loki.storage.retentionDays) }}h
+      {{- end }}
       compactor:
+        working_directory: /data/loki/boltdb-shipper-compactor
         shared_store: filesystem
-        compaction_interval: 100m
 {{- end }}
