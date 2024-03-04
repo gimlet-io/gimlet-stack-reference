@@ -1283,7 +1283,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#dockerRegistry"
+            "#builtInRegistry"
           ],
           "uiSchema": {
           },
@@ -1294,7 +1294,7 @@ components:
     variable: builtinRegistry
     category: registry
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/custromRegistry.svg
-    description: ''
+    description: ""
     onePager: "TODO"
     schema: |-
       {
@@ -1307,18 +1307,18 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "registryLogin": {
-            "$id": "#/properties/registryLogin",
+          "login": {
+            "$id": "#/properties/login",
             "type": "string",
-            "title": "Registry Login",
+            "title": "Login",
             "description": "TODO"
           },
-          "registryKey": {
-            "$id": "#/properties/registryKey",
+          "token": {
+            "$id": "#/properties/token",
             "type": "string",
-            "title": "Registry Key",
+            "title": "Token",
             "description": "TODO"
-          },
+          }
         }
       }
     uiSchema: |-
