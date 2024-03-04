@@ -1,0 +1,11 @@
+{{ if .customRegistry.enabled -}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: infrastructure
+  name: custom-registry-config
+data:
+  REGISTRY_LOGIN: {{ .customRegistry.registryLogin }}
+  REGISTRY_KEY: {{ .customRegistry.registryKey }}
+{{- end }}

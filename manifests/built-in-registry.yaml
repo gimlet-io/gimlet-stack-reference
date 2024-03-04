@@ -1,4 +1,4 @@
-{{ if .dockerRegistry.enabled -}}
+{{ if .builtInRegistry.enabled -}}
 ---
 # Source: onechart/templates/service.yaml
 apiVersion: v1
