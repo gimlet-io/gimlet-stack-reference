@@ -1306,12 +1306,12 @@ components:
           "login": {
             "$id": "#/properties/login",
             "type": "string",
-            "title": "Login",
+            "title": "Login"
           },
           "token": {
             "$id": "#/properties/token",
             "type": "string",
-            "title": "Token",
+            "title": "Token"
           }
         }
       }
