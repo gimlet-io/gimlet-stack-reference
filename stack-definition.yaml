@@ -1291,7 +1291,7 @@ components:
         }
       ]
   - name: Custom Registry
-    variable: builtinRegistry
+    variable: customRegistry
     category: registry
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/custromRegistry.svg
     description: ""
