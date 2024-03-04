@@ -18,10 +18,6 @@ categories:
     id: metrics
   - name: "🔐 Secrets"
     id: secrets
-  - name: "🔍 Tracing"
-    id: tracing
-  - name: "📋 Policy"
-    id: policy
   - name: "⚙️ Gimlet"
     id: gimlet
   - name: "🖥️ System"
@@ -1261,15 +1257,15 @@ components:
         }
       ]
   - name: Built-in Registry
-    variable: builtInRegistry
+    variable: dockerRegistry
     category: registry
     logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
     description: ""
-    onePager: "Docker registry is a storage and distribution system for named Docker images."
+    onePager: "Built-in registry is a storage and distribution system for named Docker images."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#builtInRegistry",
+        "$id": "#dockerRegistry",
         "type": "object",
         "properties": {
           "enabled": {
@@ -1283,7 +1279,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#builtInRegistry"
+            "#dockerRegistry"
           ],
           "uiSchema": {
           },
@@ -1295,7 +1291,7 @@ components:
     category: registry
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/custromRegistry.svg
     description: ""
-    onePager: "TODO"
+    onePager: "Custom registry is a storage and distribution system for custom images."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
@@ -1311,13 +1307,11 @@ components:
             "$id": "#/properties/login",
             "type": "string",
             "title": "Login",
-            "description": "TODO"
           },
           "token": {
             "$id": "#/properties/token",
             "type": "string",
             "title": "Token",
-            "description": "TODO"
           }
         }
       }

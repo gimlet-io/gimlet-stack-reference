@@ -6,6 +6,6 @@ metadata:
   namespace: infrastructure
   name: custom-registry-config
 data:
-  REGISTRY_LOGIN: {{ .customRegistry.login }}
-  REGISTRY_KEY: {{ .customRegistry.token }}
+  LOGIN: {{ .customRegistry.login }}
+  TOKEN: {{ .customRegistry.token }}
 {{- end }}
