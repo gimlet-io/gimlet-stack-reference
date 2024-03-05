@@ -1,11 +1,23 @@
 {{ if .customRegistry.enabled -}}
 ---
-apiVersion: v1
-kind: ConfigMap
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
 metadata:
+  name: custom-registry-secret
   namespace: infrastructure
-  name: custom-registry-config
-data:
-  LOGIN: {{ .customRegistry.login }}
-  TOKEN: {{ .customRegistry.token }}
+  labels:
+    helm.sh/chart: onechart-0.64.0
+    app.kubernetes.io/name: onechart
+    app.kubernetes.io/instance: custom-registry-secret
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+spec:
+  encryptedData:
+    login: {{ .customRegistry.login }}
+    password: {{ .customRegistry.password }}
+  template:
+    metadata:
+      name: custom-registry-secret
+      namespace: infrastructure
 {{- end }}

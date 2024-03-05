@@ -1308,10 +1308,10 @@ components:
             "type": "string",
             "title": "Login"
           },
-          "token": {
-            "$id": "#/properties/token",
+          "password": {
+            "$id": "#/properties/password",
             "type": "string",
-            "title": "Token"
+            "title": "Password"
           }
         }
       }
