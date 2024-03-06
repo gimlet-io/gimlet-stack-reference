@@ -1286,16 +1286,16 @@ components:
           "metaData": {}
         }
       ]
-  - name: Custom Registry
-    variable: customRegistry
+  - name: Github Container Registry
+    variable: ghcrRegistry
     category: registry
-    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/custromRegistry.svg
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
     description: ""
-    onePager: "Custom registry is a storage and distribution system for custom images."
+    onePager: "Github Container Registry is a storage and distribution system for images."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#customRegistry",
+        "$id": "#ghcrRegistry",
         "type": "object",
         "properties": {
           "enabled": {
@@ -1308,10 +1308,10 @@ components:
             "type": "string",
             "title": "Login"
           },
-          "password": {
-            "$id": "#/properties/password",
+          "token": {
+            "$id": "#/properties/token",
             "type": "string",
-            "title": "Password"
+            "title": "Token"
           }
         }
       }
@@ -1319,14 +1319,59 @@ components:
       [
         {
           "schemaIDs": [
-            "#customRegistry"
+            "#ghcrRegistry"
+          ],
+          "uiSchema": {},
+          "metaData": {}
+        }
+      ]
+  - name: Docker Hub Registry
+    variable: dockerhubRegistry
+    category: registry
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
+    description: ""
+    onePager: "Docker Hub Registry is a storage and distribution system for images."
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#dockerhubRegistry",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "title": "Email"
+          }
+          "login": {
+            "$id": "#/properties/login",
+            "type": "string",
+            "title": "Login"
+          },
+          "token": {
+            "$id": "#/properties/token",
+            "type": "string",
+            "title": "Token"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#dockerhubRegistry"
           ],
           "uiSchema": {},
           "metaData": {}
         }
       ]
 changeLog: |
-  - 🆕 Custom Image Registry added
+  - 🆕 Github Container Registry support
+  - 🆕 Docker Hub Registry support
   - ❗ Docker Image Registry renamed to Built-in registry
 
 message: |
