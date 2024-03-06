@@ -1346,7 +1346,7 @@ components:
             "$id": "#/properties/email",
             "type": "string",
             "title": "Email"
-          }
+          },
           "login": {
             "$id": "#/properties/login",
             "type": "string",
