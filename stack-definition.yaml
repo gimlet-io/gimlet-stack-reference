@@ -1318,7 +1318,7 @@ components:
           ],
           "uiSchema": {
             "#/properties/encryptedDockerconfigjson": {
-              "ui:widget": "ghcrRegistryWidget"
+              "ui:field": "ghcrRegistryWidget"
             }
           },
           "metaData": {}
@@ -1356,7 +1356,7 @@ components:
           ],
           "uiSchema": {
             "#/properties/encryptedDockerconfigjson": {
-              "ui:widget": "dockerhubRegistryWidget"
+              "ui:field": "dockerhubRegistryWidget"
             }
           },
           "metaData": {}
