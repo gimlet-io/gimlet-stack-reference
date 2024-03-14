@@ -12,19 +12,26 @@ metadata:
 rules:
 - apiGroups:
     - networking.k8s.io
-    - apps
     - ""
   resources:
     - pods
     - pods/log
     - ingresses
-    - deployments
     - services
     - events
   verbs:
     - get
     - watch
     - list
+- apiGroups:
+    - apps
+  resources:
+    - deployments
+  verbs:
+    - get
+    - watch
+    - list
+    - patch # to allow restarting of deployments
 - apiGroups:
     - batch
   resources:
