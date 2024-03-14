@@ -1317,8 +1317,10 @@ components:
             "#ghcrRegistry"
           ],
           "uiSchema": {
-            "#/properties/encryptedDockerconfigjson": {
-              "ui:field": "registryWidget"
+            "additionalProperties": {
+              "#/properties/encryptedDockerconfigjson": {
+                "ui:field": "registryWidget"
+              }
             }
           },
           "metaData": {}
@@ -1355,8 +1357,10 @@ components:
             "#dockerhubRegistry"
           ],
           "uiSchema": {
-            "#/properties/encryptedDockerconfigjson": {
-              "ui:field": "registryWidget"
+            "additionalProperties": {
+              "#/properties/encryptedDockerconfigjson": {
+                "ui:field": "registryWidget"
+              }
             }
           },
           "metaData": {}
