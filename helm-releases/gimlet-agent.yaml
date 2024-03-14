@@ -14,9 +14,6 @@ rules:
     - networking.k8s.io
     - apps
     - ""
-    - source.toolkit.fluxcd.io
-    - kustomize.toolkit.fluxcd.io
-    - helm.toolkit.fluxcd.io
   resources:
     - pods
     - pods/log
@@ -24,9 +21,6 @@ rules:
     - deployments
     - services
     - events
-    - gitrepositories
-    - kustomizations
-    - helmreleases
   verbs:
     - get
     - watch
@@ -37,6 +31,21 @@ rules:
     - jobs
   verbs:
     - create
+- apiGroups:
+    - source.toolkit.fluxcd.io
+    - kustomize.toolkit.fluxcd.io
+    - helm.toolkit.fluxcd.io
+  resources:
+    - gitrepositories
+    - ocirepositories
+    - buckets
+    - kustomizations
+    - helmreleases
+  verbs:
+    - get
+    - watch
+    - list
+    - patch # to allow force reconciling by adding an annotation
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
