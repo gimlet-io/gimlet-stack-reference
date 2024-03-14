@@ -1316,7 +1316,11 @@ components:
           "schemaIDs": [
             "#ghcrRegistry"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#/properties/encryptedDockerconfigjson": {
+              "ui:field": "registryWidget"
+            },
+          },
           "metaData": {}
         }
       ]
@@ -1350,7 +1354,11 @@ components:
           "schemaIDs": [
             "#dockerhubRegistry"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#/properties/encryptedDockerconfigjson": {
+              "ui:field": "registryWidget"
+            },
+          },
           "metaData": {}
         }
       ]
