@@ -1317,6 +1317,9 @@ components:
             "#/properties/encryptedDockerconfigjson"
           ],
           "uiSchema": {
+            "#/properties/enabled": {
+              "ui:widget": "checkbox",
+            },
             "#/properties/encryptedDockerconfigjson": {
               "ui:field": "ghcrRegistryWidget"
             }
@@ -1355,6 +1358,9 @@ components:
             "#/properties/encryptedDockerconfigjson"
           ],
           "uiSchema": {
+            "#/properties/enabled": {
+              "ui:widget": "checkbox",
+            },
             "#/properties/encryptedDockerconfigjson": {
               "ui:field": "dockerhubRegistryWidget"
             }
