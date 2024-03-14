@@ -1303,15 +1303,10 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "login": {
-            "$id": "#/properties/login",
+          "encryptedDockerconfigjson": {
+            "$id": "#/properties/encryptedDockerconfigjson",
             "type": "string",
-            "title": "Login"
-          },
-          "token": {
-            "$id": "#/properties/token",
-            "type": "string",
-            "title": "Token"
+            "title": "encryptedDockerconfigjson"
           }
         }
       }
@@ -1342,20 +1337,10 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "email": {
-            "$id": "#/properties/email",
+          "encryptedDockerconfigjson": {
+            "$id": "#/properties/encryptedDockerconfigjson",
             "type": "string",
-            "title": "Email"
-          },
-          "login": {
-            "$id": "#/properties/login",
-            "type": "string",
-            "title": "Login"
-          },
-          "token": {
-            "$id": "#/properties/token",
-            "type": "string",
-            "title": "Token"
+            "title": "encryptedDockerconfigjson"
           }
         }
       }
