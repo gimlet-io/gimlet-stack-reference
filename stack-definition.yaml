@@ -1314,7 +1314,8 @@ components:
       [
         {
           "schemaIDs": [
-            #/properties/encryptedDockerconfigjson"
+            "#ghcrRegistry",
+            "#/properties/encryptedDockerconfigjson""
           ],
           "uiSchema": {
             "#/properties/encryptedDockerconfigjson": {
@@ -1352,6 +1353,7 @@ components:
       [
         {
           "schemaIDs": [
+            "#dockerhubRegistry",
             "#/properties/encryptedDockerconfigjson"
           ],
           "uiSchema": {
