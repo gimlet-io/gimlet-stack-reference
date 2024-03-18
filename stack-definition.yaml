@@ -1291,18 +1291,7 @@ components:
         }
       ]
 changeLog: |
-  - 🦋 Upgraded all stack components to latest version possible!
-  - 🍏 External Secrets upgraded to v0.9.11
-  - 🍏 Grafana upgraded to 10.3.1
-  - 🍏 Ingress Nginx upgraded to 1.9.6
-  - 🍏 Keda upgraded to 2.13.0
-  - 🍏 Prometheus Node Exporter upgraded to 1.7.0
-  - 🍏 Prometheus upgraded to v2.49.1
-  - 🍏 Promtail upgraded to 2.9.3
-  - 🍏 Sealed Secrets upgraded to 0.25.0 v1.13.3
-  - 🍏 Cert Manager upgraded to v1.13.3
-  - ❗ Deprication Alert:
-      -  Kyverno and Grafana tempo are depricated and no longer supported, existing users won't face any disruptions, but they won't receive any further updates either.
+  - 🍏 Upgraded Gimlet to v0.26.0
 
 message: |
 
