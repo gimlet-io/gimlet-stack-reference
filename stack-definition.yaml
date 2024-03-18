@@ -1291,7 +1291,7 @@ components:
     category: registry
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
     description: ""
-    onePager: "Github Container Registry is a storage and distribution system for images."
+    onePager: "The GitHub Container registry allows you to host and manage your Docker container images in your personal or organisation account on GitHub."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
@@ -1330,7 +1330,7 @@ components:
     category: registry
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
     description: ""
-    onePager: "Docker Hub Registry is a storage and distribution system for images."
+    onePager: "Docker Hub is a container registry built for developers and open source contributors to find, use, and share their container images."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
