@@ -1303,6 +1303,11 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
+          "login": {
+            "$id": "#/properties/login",
+            "type": "string",
+            "title": "Login"
+          },
           "encryptedDockerconfigjson": {
             "$id": "#/properties/encryptedDockerconfigjson",
             "type": "string",
@@ -1315,6 +1320,7 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
+            "#/properties/login",
             "#/properties/encryptedDockerconfigjson"
           ],
           "uiSchema": {
@@ -1342,6 +1348,11 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
+          "login": {
+            "$id": "#/properties/login",
+            "type": "string",
+            "title": "Login"
+          },
           "encryptedDockerconfigjson": {
             "$id": "#/properties/encryptedDockerconfigjson",
             "type": "string",
@@ -1354,6 +1365,7 @@ components:
         {
           "schemaIDs": [
             "#/properties/enabled",
+            "#/properties/login",
             "#/properties/encryptedDockerconfigjson"
           ],
           "uiSchema": {
