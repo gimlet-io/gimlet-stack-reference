@@ -1362,7 +1362,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#dockerhubRegistry",
+            "#dockerhubRegistry"
           ],
           "uiSchema": {
             "#dockerhubRegistry": {
