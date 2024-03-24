@@ -1319,12 +1319,10 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled",
-            "#/properties/login",
-            "#/properties/encryptedDockerconfigjson"
+            "#ghcrRegistry"
           ],
           "uiSchema": {
-            "#/properties/encryptedDockerconfigjson": {
+            "#ghcrRegistry": {
               "ui:field": "ghcrRegistryWidget"
             }
           },
@@ -1364,12 +1362,10 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled",
-            "#/properties/login",
-            "#/properties/encryptedDockerconfigjson"
+            "#dockerhubRegistry",
           ],
           "uiSchema": {
-            "#/properties/encryptedDockerconfigjson": {
+            "#dockerhubRegistry": {
               "ui:field": "dockerhubRegistryWidget"
             }
           },
