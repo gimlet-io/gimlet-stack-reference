@@ -1376,7 +1376,6 @@ changeLog: |
   - 🆕 Github Container Registry support
   - 🆕 Docker Hub Registry support
   - ❗ Docker Image Registry renamed to Built-in registry
-
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
