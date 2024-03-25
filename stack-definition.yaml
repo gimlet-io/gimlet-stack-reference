@@ -18,10 +18,6 @@ categories:
     id: metrics
   - name: "🔐 Secrets"
     id: secrets
-  - name: "🔍 Tracing"
-    id: tracing
-  - name: "📋 Policy"
-    id: policy
   - name: "⚙️ Gimlet"
     id: gimlet
   - name: "🖥️ System"
@@ -1155,7 +1151,7 @@ components:
   - name: Image Builder
     variable: imageBuilder
     category: gimlet
-    logo: https://cncf-branding.netlify.app/img/projects/buildpacks/icon/black/buildpacks-icon-black.png
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/buildPacks.svg
     description: ""
     onePager: "Image builder is a simple web server application that handles file uploads and builds images from it."
 
@@ -1260,12 +1256,12 @@ components:
           "metaData": {}
         }
       ]
-  - name: Docker Registry
+  - name: Built-in Registry
     variable: dockerRegistry
     category: registry
     logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
     description: ""
-    onePager: "Docker registry is a storage and distribution system for named Docker images."
+    onePager: "Built-in registry is a storage and distribution system for named Docker images."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
@@ -1290,9 +1286,96 @@ components:
           "metaData": {}
         }
       ]
+  - name: Github Container Registry
+    variable: ghcrRegistry
+    category: registry
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
+    description: ""
+    onePager: "The GitHub Container registry allows you to host and manage your Docker container images in your personal or organisation account on GitHub."
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#ghcrRegistry",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "login": {
+            "$id": "#/properties/login",
+            "type": "string",
+            "title": "Login"
+          },
+          "encryptedDockerconfigjson": {
+            "$id": "#/properties/encryptedDockerconfigjson",
+            "type": "string",
+            "title": "encryptedDockerconfigjson"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#ghcrRegistry"
+          ],
+          "uiSchema": {
+            "#ghcrRegistry": {
+              "ui:field": "ghcrRegistryWidget"
+            }
+          },
+          "metaData": {}
+        }
+      ]
+  - name: Docker Hub Registry
+    variable: dockerhubRegistry
+    category: registry
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
+    description: ""
+    onePager: "Docker Hub is a container registry built for developers and open source contributors to find, use, and share their container images."
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#dockerhubRegistry",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "login": {
+            "$id": "#/properties/login",
+            "type": "string",
+            "title": "Login"
+          },
+          "encryptedDockerconfigjson": {
+            "$id": "#/properties/encryptedDockerconfigjson",
+            "type": "string",
+            "title": "encryptedDockerconfigjson"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#dockerhubRegistry"
+          ],
+          "uiSchema": {
+            "#dockerhubRegistry": {
+              "ui:field": "dockerhubRegistryWidget"
+            }
+          },
+          "metaData": {}
+        }
+      ]
 changeLog: |
-  - 🍏 Upgraded Gimlet to v0.26.0
-
+  - 🆕 Github Container Registry support
+  - 🆕 Docker Hub Registry support
+  - ❗ Docker Image Registry renamed to Built-in registry
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
