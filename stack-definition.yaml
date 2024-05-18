@@ -3,6 +3,21 @@ name: Bootstrap curated Kubernetes stacks!
 description: |
   Logging, metrics, ingress and more - all delivered with gitops.
 
+categories:
+  - name: "Container Registry"
+    id: registry
+  - name: "Ingress"
+    id: ingress
+  - name: "Logging"
+    id: logging
+  - name: "Metrics"
+    id: metrics
+  - name: "Secrets"
+    id: secrets
+  - name: "Autoscaling"
+    id: autoscaling
+  - name: "Gimlet"
+    id: gimlet
 components:
   - name: Nginx
     variable: nginx
