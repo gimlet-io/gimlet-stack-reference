@@ -733,7 +733,7 @@ components:
         "$id": "#encryptedSecrets",
         "type": "object",
         "title": "Encrypted Secrets",
-        "description": "The root schema comprises the entire JSON document.",
+        "description": "",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -748,14 +748,13 @@ components:
           "schemaIDs": [
             "#encryptedSecrets"
           ],
-          "uiSchema": {
-            "#encryptedSecrets": {
-              "ui:options": {
-                "learnMoreLink": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/secrets"
-              }
+          "uiSchema": {},
+          "metaData": {
+            "link": {
+              "label": "Encrypted Secrets"
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/secrets"
             }
-          },
-          "metaData": {}
+          }
         }
       ]
   - name: ExternalSecrets
