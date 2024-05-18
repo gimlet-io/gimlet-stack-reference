@@ -1118,7 +1118,6 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled",
             "#ghcrRegistry"
           ],
           "uiSchema": {
@@ -1163,7 +1162,6 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled",
             "#dockerhubRegistry"
           ],
           "uiSchema": {
