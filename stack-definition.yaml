@@ -252,6 +252,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#existingIngress",
         "type": "object",
+        "title": "Existings Ingress",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
