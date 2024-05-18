@@ -276,7 +276,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#certManager"
+            "#existingIngress"
           ],
           "uiSchema": {
             "#/properties/ingressAnnotations": {
