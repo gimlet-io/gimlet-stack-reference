@@ -1078,17 +1078,17 @@ components:
             "type": "string",
             "title": "Display Name"
           },
-          "url": {
-            "$id": "#/properties/url",
-            "type": "string",
-            "title": "URL",
-            "description": "Host name of the registry, like `ghcr.io`"
-          },
           "credentials": {
             "$id": "#/properties/config",
             "type": "object",
             "title": "Credentials",
             "properties": {
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "URL",
+                "description": "Host name of the registry, like `ghcr.io`"
+              },
               "login": {
                 "$id": "#/properties/login",
                 "type": "string",
@@ -1138,17 +1138,17 @@ components:
             "title": "Display Name",
             "default": "Github Container Registry"
           },
-          "url": {
-            "$id": "#/properties/url",
-            "type": "string",
-            "title": "URL",
-            "default": "ghcr.io"
-          },
           "credentials": {
             "$id": "#/properties/config",
             "type": "object",
             "title": "Credentials",
             "properties": {
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "URL",
+                "default": "ghcr.io"
+              },
               "login": {
                 "$id": "#/properties/login",
                 "type": "string",
@@ -1203,17 +1203,17 @@ components:
             "title": "Display Name",
             "default": "Github Container Registry"
           },
-          "url": {
-            "$id": "#/properties/url",
-            "type": "string",
-            "title": "URL",
-            "default": "ghcr.io"
-          },
           "credentials": {
             "$id": "#/properties/config",
             "type": "object",
             "title": "Credentials",
             "properties": {
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "URL",
+                "default": "https://index.docker.io/v1/"
+              },
               "login": {
                 "$id": "#/properties/login",
                 "type": "string",
