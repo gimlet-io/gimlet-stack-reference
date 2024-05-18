@@ -1071,6 +1071,12 @@ components:
             "type": "string",
             "title": "Display Name"
           },
+          "url": {
+            "$id": "#/properties/url",
+            "type": "string",
+            "title": "URL",
+            "description": "Host name of the registry, like `ghcr.io`"
+          },
            "login": {
             "$id": "#/properties/login",
             "type": "string",
