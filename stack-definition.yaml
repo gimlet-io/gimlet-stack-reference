@@ -724,7 +724,7 @@ components:
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
+        "$id": "#encryptedSecrets",
         "type": "object",
         "title": "Encrypted Secrets",
         "description": "The root schema comprises the entire JSON document.",
@@ -740,9 +740,15 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled"
+            "#encryptedSecrets"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#encryptedSecrets": {
+              "ui:options": {
+                learnMoreLink: "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/secrets",
+              }
+            },
+          },
           "metaData": {}
         }
       ]
@@ -1122,8 +1128,11 @@ components:
           ],
           "uiSchema": {
             "#ghcrRegistry": {
-              "ui:field": "ghcrRegistryWidget"
-            }
+              "ui:field": "ghcrRegistryWidget",
+              "ui:options": {
+                learnMoreLink: "https://gimlet.io"
+              }
+            },
           },
           "metaData": {}
         }
