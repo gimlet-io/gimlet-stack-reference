@@ -280,7 +280,7 @@ components:
           ],
           "uiSchema": {
             "#/properties/ingressAnnotations": {
-              "ui:widget": "textarea",
+              "ui:widget": "textarea"
             }
           },
           "metaData": {}
