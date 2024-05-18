@@ -124,14 +124,13 @@ components:
           "schemaIDs": [
             "#nginx"
           ],
-          "uiSchema": {
-            "#nginx": {
-              "ui:options": {
-                "learnMoreLink": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/dns"
-              }
+          "uiSchema": {},
+          "metaData": {
+            "link": {
+              "label": "DNS",
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/dns"
             }
-          },
-          "metaData": {}
+          }
         }
       ]
   - name: cert-manager
@@ -1133,13 +1132,15 @@ components:
           ],
           "uiSchema": {
             "#ghcrRegistry": {
-              "ui:field": "ghcrRegistryWidget",
-              "ui:options": {
-                "learnMoreLink": "https://gimlet.io"
-              }
+              "ui:field": "ghcrRegistryWidget"
             }
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Github Container Registry",
+              "href": "https://gimlet.io"
+            }
+          }
         }
       ]
   - name: Docker Hub
