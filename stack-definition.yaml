@@ -1034,6 +1034,18 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
+          },
+          "displayName": {
+            "$id": "#/properties/displayName",
+            "type": "string",
+            "title": "Display Name",
+            "default": "Containerized Registry"
+          },
+          "url": {
+            "$id": "#/properties/url",
+            "type": "string",
+            "title": "URL",
+            "default": "127.0.0.1:32447"
           }
         }
       }
@@ -1061,11 +1073,6 @@ components:
         "type": "object",
         "title": "Custom Registry",
         "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
           "displayName": {
             "$id": "#/properties/displayName",
             "type": "string",
@@ -1077,9 +1084,10 @@ components:
             "title": "URL",
             "description": "Host name of the registry, like `ghcr.io`"
           },
-          "config": {
+          "credentials": {
             "$id": "#/properties/config",
             "type": "object",
+            "title": "Credentials",
             "properties": {
               "login": {
                 "$id": "#/properties/login",
@@ -1103,8 +1111,8 @@ components:
           ],
           "uiSchema": {
             "#customRegistry": {
-              "config": {
-                "ui:field": "ghcrRegistryWidget"
+              "credentials": {
+                "ui:field": "registryWidget"
               }
             }
           },
@@ -1124,20 +1132,34 @@ components:
         "type": "object",
         "title": "Github Container Registry",
         "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
-          "login": {
-            "$id": "#/properties/login",
+          "displayName": {
+            "$id": "#/properties/displayName",
             "type": "string",
-            "title": "Login"
+            "title": "Display Name",
+            "default": "Github Container Registry"
           },
-          "encryptedDockerconfigjson": {
-            "$id": "#/properties/encryptedDockerconfigjson",
+          "url": {
+            "$id": "#/properties/url",
             "type": "string",
-            "title": "encryptedDockerconfigjson"
+            "title": "URL",
+            "default": "ghcr.io"
+          },
+          "credentials": {
+            "$id": "#/properties/config",
+            "type": "object",
+            "title": "Credentials",
+            "properties": {
+              "login": {
+                "$id": "#/properties/login",
+                "type": "string",
+                "title": "Login"
+              },
+              "encryptedDockerconfigjson": {
+                "$id": "#/properties/encryptedDockerconfigjson",
+                "type": "string",
+                "title": "encryptedDockerconfigjson"
+              }
+            }
           }
         }
       }
@@ -1149,7 +1171,9 @@ components:
           ],
           "uiSchema": {
             "#ghcrRegistry": {
-              "ui:field": "ghcrRegistryWidget"
+              "credentials": {
+                "ui:field": "registryWidget"
+              }
             }
           },
           "metaData": {
@@ -1173,20 +1197,34 @@ components:
         "type": "object",
         "title": "Docker Hub",
         "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
-          "login": {
-            "$id": "#/properties/login",
+                    "displayName": {
+            "$id": "#/properties/displayName",
             "type": "string",
-            "title": "Login"
+            "title": "Display Name",
+            "default": "Github Container Registry"
           },
-          "encryptedDockerconfigjson": {
-            "$id": "#/properties/encryptedDockerconfigjson",
+          "url": {
+            "$id": "#/properties/url",
             "type": "string",
-            "title": "encryptedDockerconfigjson"
+            "title": "URL",
+            "default": "ghcr.io"
+          },
+          "credentials": {
+            "$id": "#/properties/config",
+            "type": "object",
+            "title": "Credentials",
+            "properties": {
+              "login": {
+                "$id": "#/properties/login",
+                "type": "string",
+                "title": "Login"
+              },
+              "encryptedDockerconfigjson": {
+                "$id": "#/properties/encryptedDockerconfigjson",
+                "type": "string",
+                "title": "encryptedDockerconfigjson"
+              }
+            }
           }
         }
       }
@@ -1198,7 +1236,9 @@ components:
           ],
           "uiSchema": {
             "#dockerhubRegistry": {
-              "ui:field": "dockerhubRegistryWidget"
+              "credentials": {
+                "ui:field": "registryWidget"
+              }
             }
           },
           "metaData": {}
