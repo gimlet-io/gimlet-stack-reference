@@ -1092,7 +1092,7 @@ components:
                 "title": "encryptedDockerconfigjson"
               }
             }
-          },
+          }
         }
       }
     uiSchema: |-
