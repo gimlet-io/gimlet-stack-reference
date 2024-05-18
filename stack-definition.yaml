@@ -1099,13 +1099,13 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/displayName",
-            "#/properties/url"
-            "#/properties/config"
+            "#customRegistry"
           ],
           "uiSchema": {
-            "#/properties/config": {
-              "ui:field": "ghcrRegistryWidget"
+            "#customRegistry": {
+              "config": {
+                "ui:field": "ghcrRegistryWidget"
+              }
             }
           },
           "metaData": {}
