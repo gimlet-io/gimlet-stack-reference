@@ -226,6 +226,51 @@ components:
           "metaData": {}
         }
       ]
+  - name: Existings Ingress
+    variable: existingIngress
+    category: ingress
+    logo: ""
+    description: ""
+    onePager: ""
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#existingIngress",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "ingressAnnotations": {
+            "$id": "#/properties/ingressAnnotations",
+            "type": "string",
+            "title": "Ingress Annotations"
+          },
+          "host": {
+            "$id": "#/properties/host",
+            "type": "string",
+            "title": "Host",
+            "description": "Your domain you will expose your services on"
+          }
+        },
+        "dependencies": {}
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#certManager"
+          ],
+          "uiSchema": {
+            "#/properties/ingressAnnotations": {
+              "ui:widget": "textarea",
+            }
+          },
+          "metaData": {}
+        }
+      ]
   - name: Loki
     variable: loki
     category: logging
@@ -876,7 +921,7 @@ components:
           "metaData": {}
         }
       ]
-  - name: Image Builder
+  - name: Gimlet Image Builder
     variable: imageBuilder
     category: gimlet
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/buildPacks.svg
@@ -961,6 +1006,51 @@ components:
         {
           "schemaIDs": [
             "#containerizedRegistry"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
+  - name: Custom Registry
+    variable: customRegistry
+    category: registry
+    logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
+    description: ""
+    onePager: "Custom Registry is an existing registry you want ot use in Gimlet"
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#customRegistry",
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "displayName": {
+            "$id": "#/properties/displayName",
+            "type": "string",
+            "title": "Display Name"
+          },
+           "login": {
+            "$id": "#/properties/login",
+            "type": "string",
+            "title": "Login"
+          },
+          "encryptedDockerconfigjson": {
+            "$id": "#/properties/encryptedDockerconfigjson",
+            "type": "string",
+            "title": "encryptedDockerconfigjson"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#customRegistry"
           ],
           "uiSchema": {
           },
@@ -1072,7 +1162,7 @@ message: |
   - and to give you best practices
 
   Now that you generated Kubernetes resources from your stack, 
-  maybe you are interested in how to manage it in the future
+  you can check out how to manage it in the future
 
   👉 https://gimlet.io/docs/managing-infrastructure-components
 
