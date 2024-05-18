@@ -1102,6 +1102,9 @@ components:
             "#customRegistry"
           ],
           "uiSchema": {
+            "#/properties/config": {
+              "ui:field": "ghcrRegistryWidget"
+            }
           },
           "metaData": {}
         }
