@@ -1256,16 +1256,16 @@ components:
           "metaData": {}
         }
       ]
-  - name: Built-in Registry
-    variable: dockerRegistry
+  - name: Containerized Registry
+    variable: containerizedRegistry
     category: registry
     logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
     description: ""
-    onePager: "Built-in registry is a storage and distribution system for named Docker images."
+    onePager: "Containerized registry deployed in the same cluster where the image is deployed."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#dockerRegistry",
+        "$id": "#containerizedRegistry",
         "type": "object",
         "properties": {
           "enabled": {
@@ -1279,7 +1279,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#dockerRegistry"
+            "#containerizedRegistry"
           ],
           "uiSchema": {
           },
@@ -1330,7 +1330,7 @@ components:
           "metaData": {}
         }
       ]
-  - name: Docker Hub Registry
+  - name: Docker Hub
     variable: dockerhubRegistry
     category: registry
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg

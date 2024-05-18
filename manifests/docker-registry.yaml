@@ -1,4 +1,4 @@
-{{ if .dockerRegistry.enabled -}}
+{{ if .containerizedRegistry.enabled -}}
 ---
 # Source: onechart/templates/service.yaml
 apiVersion: v1
@@ -71,4 +71,16 @@ spec:
             requests:
               cpu: 200m
               memory: 200Mi
+---
+apiVersion: bitnami.com/v1alpha1
+kind: Secret
+metadata:
+  name: containerized-registry-pushsecret
+  namespace: infrastructure
+spec:
+  stringData:
+    config.json: |
+      {
+        "auths": {},
+      }
 {{- end }}
