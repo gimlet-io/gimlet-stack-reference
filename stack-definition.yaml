@@ -1077,16 +1077,22 @@ components:
             "title": "URL",
             "description": "Host name of the registry, like `ghcr.io`"
           },
-           "login": {
-            "$id": "#/properties/login",
-            "type": "string",
-            "title": "Login"
+          "config": {
+            "$id": "#/properties/config",
+            "type": "object",
+            "properties": {
+              "login": {
+                "$id": "#/properties/login",
+                "type": "string",
+                "title": "Login"
+              },
+              "encryptedDockerconfigjson": {
+                "$id": "#/properties/encryptedDockerconfigjson",
+                "type": "string",
+                "title": "encryptedDockerconfigjson"
+              }
+            }
           },
-          "encryptedDockerconfigjson": {
-            "$id": "#/properties/encryptedDockerconfigjson",
-            "type": "string",
-            "title": "encryptedDockerconfigjson"
-          }
         }
       }
     uiSchema: |-
