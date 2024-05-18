@@ -751,7 +751,7 @@ components:
           "uiSchema": {},
           "metaData": {
             "link": {
-              "label": "Encrypted Secrets"
+              "label": "Encrypted Secrets",
               "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/secrets"
             }
           }
