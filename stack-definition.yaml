@@ -127,7 +127,7 @@ components:
           "uiSchema": {
             "#nginx": {
               "ui:options": {
-                learnMoreLink: "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/dns",
+                learnMoreLink: "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/dns"
               }
             }
           },
@@ -751,7 +751,7 @@ components:
           "uiSchema": {
             "#encryptedSecrets": {
               "ui:options": {
-                learnMoreLink: "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/secrets",
+                learnMoreLink: "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/secrets"
               }
             }
           },
