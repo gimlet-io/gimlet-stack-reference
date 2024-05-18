@@ -79,6 +79,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#nginx",
         "type": "object",
+        "title": "Nginx",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -127,7 +128,7 @@ components:
           "metaData": {}
         }
       ]
-  - name: CertManager
+  - name: cert-manager
     variable: certManager
     category: ingress
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/certManager.png
@@ -194,6 +195,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#certManager",
         "type": "object",
+        "title": "cert-manager",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -241,7 +243,7 @@ components:
           "metaData": {}
         }
       ]
-  - name: Existings Ingress
+  - name: Existing Ingress
     variable: existingIngress
     category: ingress
     logo: ""
@@ -252,7 +254,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#existingIngress",
         "type": "object",
-        "title": "Existings Ingress",
+        "title": "Existing Ingress",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -332,7 +334,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "http://example.com/example.json",
         "type": "object",
-        "title": "The root schema",
+        "title": "Loki",
         "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
@@ -422,6 +424,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#grafanaCloud",
         "type": "object",
+        "title": "Grafana Cloud",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -477,6 +480,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#eventExporter",
         "type": "object",
+        "title": "Event Exporter",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -548,6 +552,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#prometheus",
         "type": "object",
+        "title": "Prometheus",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -636,7 +641,7 @@ components:
           "metaData": {}
         }
       ]
-  - name: Sealed Secrets
+  - name: Encrypted Secrets
     variable: sealedSecrets
     category: secrets
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/sealedSecrets.svg
@@ -721,7 +726,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "http://example.com/example.json",
         "type": "object",
-        "title": "The root schema",
+        "title": "Encrypted Secrets",
         "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
@@ -761,7 +766,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "http://example.com/example.json",
         "type": "object",
-        "title": "The root schema",
+        "title": "External Secrets",
         "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
@@ -841,6 +846,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#oauth2Proxy",
         "type": "object",
+        "title": "OAuth2Proxy",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -901,6 +907,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#gimletAgent",
         "type": "object",
+        "title": "Gimlet Agent",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -949,6 +956,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#imageBuilder",
         "type": "object",
+        "title": "Gimlet Image Builder",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -979,6 +987,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#keda",
         "type": "object",
+        "title": "KEDA",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1009,6 +1018,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#containerizedRegistry",
         "type": "object",
+        "title": "Containerized Registry",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1039,6 +1049,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#customRegistry",
         "type": "object",
+        "title": "Custom Registry",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1084,6 +1095,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#ghcrRegistry",
         "type": "object",
+        "title": "Github Container Registry",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1128,6 +1140,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#dockerhubRegistry",
         "type": "object",
+        "title": "Docker Hub",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
