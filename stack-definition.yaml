@@ -1208,7 +1208,7 @@ components:
             "$id": "#/properties/displayName",
             "type": "string",
             "title": "Display Name",
-            "default": "Github Container Registry"
+            "default": "Docker Hub"
           },
           "credentials": {
             "$id": "#/properties/config",
