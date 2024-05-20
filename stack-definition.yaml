@@ -1125,10 +1125,10 @@ components:
             "#customRegistry": {
               "credentials": {
                 "ui:field": "registryWidget"
+              },
+              "#/properties/selfSignedCert": {
+                "ui:field": "encryptedWidget"
               }
-            },
-            "#/properties/selfSignedCert": {
-              "ui:field": "encryptedWidget"
             }
           },
           "metaData": {}
