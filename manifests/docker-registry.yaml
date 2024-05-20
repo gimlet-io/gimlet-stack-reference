@@ -75,7 +75,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: containerized-registry-pushsecret
+  name: containerizedregistry-pushsecret
   namespace: infrastructure
 spec:
   stringData:
