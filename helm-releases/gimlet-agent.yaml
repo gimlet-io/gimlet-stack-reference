@@ -19,6 +19,7 @@ rules:
     - ingresses
     - services
     - events
+    - secrets # image builder to know if it needs to mount self-signed registry certs
   verbs:
     - get
     - watch
