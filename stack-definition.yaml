@@ -1041,11 +1041,18 @@ components:
             "title": "Display Name",
             "default": "Containerized Registry"
           },
-          "url": {
-            "$id": "#/properties/url",
-            "type": "string",
-            "title": "URL",
-            "default": "127.0.0.1:32447"
+          "credentials": {
+            "$id": "#/properties/config",
+            "type": "object",
+            "title": "Credentials",
+            "properties": {
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "URL",
+                "default": "127.0.0.1:32447"
+              }
+            }
           }
         }
       }
