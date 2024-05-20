@@ -1107,6 +1107,11 @@ components:
                 "title": "encryptedDockerconfigjson"
               }
             }
+          },
+          "selfSignedCert": {
+            "$id": "#/properties/selfSignedCert",
+            "type": "string",
+            "title": "Self-Signed Certificate"
           }
         }
       }
@@ -1121,6 +1126,9 @@ components:
               "credentials": {
                 "ui:field": "registryWidget"
               }
+            },
+            "#/properties/selfSignedCert": {
+              "ui:field": "encryptedWidget"
             }
           },
           "metaData": {}
