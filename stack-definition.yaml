@@ -1126,7 +1126,7 @@ components:
               "credentials": {
                 "ui:field": "registryWidget"
               },
-              "#/properties/selfSignedCert": {
+              "selfSignedCert": {
                 "ui:field": "encryptedWidget"
               }
             }
