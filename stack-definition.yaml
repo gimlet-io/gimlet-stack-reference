@@ -266,6 +266,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#existingIngress",
         "type": "object",
+        "description": "Integrate an existing ingress controller with Gimlet",
         "title": "Existing Ingress",
         "properties": {
           "enabled": {
@@ -866,6 +867,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#oauth2Proxy",
         "type": "object",
+        "description": "Authenticate your internal apps with Github OAuth",
         "title": "OAuth2Proxy",
         "properties": {
           "enabled": {
