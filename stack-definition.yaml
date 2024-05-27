@@ -199,7 +199,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#certManager",
         "type": "object",
-        "description": "Free SSL certificates for all your applications from Let's Encrypt",
+        "description": "Free SSL certificates for all your applications from Let's Encrypt.",
         "title": "cert-manager",
         "properties": {
           "enabled": {
@@ -264,7 +264,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#existingIngress",
         "type": "object",
-        "description": "Integrate an existing ingress controller with Gimlet",
+        "description": "Integrate an existing ingress controller with Gimlet.",
         "title": "Existing Ingress",
         "properties": {
           "enabled": {
@@ -496,6 +496,7 @@ components:
         "$id": "#eventExporter",
         "type": "object",
         "title": "Event Exporter",
+        "description": "Install Kubernetes Event Exporter to log all Kubernetes events.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -512,7 +513,12 @@ components:
           ],
           "uiSchema": {
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Querying Kubernetes events",
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+            }
+          }
         }
       ]
   - name: Prometheus
