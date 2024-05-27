@@ -337,10 +337,10 @@ components:
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
+        "$id": "#loki",
         "type": "object",
         "title": "Loki",
-        "description": "The root schema comprises the entire JSON document.",
+        "description": "Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate. It does not index the contents of the logs, but rather a set of labels for each log stream.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -407,10 +407,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled",
-            "#/properties/storage",
-            "#/properties/persistence",
-            "#/properties/volumeSize"
+            "#loki"
           ],
           "uiSchema": {
           },
