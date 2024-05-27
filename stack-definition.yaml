@@ -106,7 +106,7 @@ components:
                     "$id": "#/properties/host",
                     "type": "string",
                     "title": "Host",
-                    "description": "Your company domain you will expose your services on"
+                    "description": "Your company domain name Gimlet will use to expose services under as subdomains."
                   }
                 },
                 "required": [
@@ -271,20 +271,43 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
-          },
-          "ingressAnnotations": {
-            "$id": "#/properties/ingressAnnotations",
-            "type": "string",
-            "title": "Ingress Annotations"
-          },
-          "host": {
-            "$id": "#/properties/host",
-            "type": "string",
-            "title": "Host",
-            "description": "Your domain you will expose your services on"
           }
         },
-        "dependencies": {}
+        "dependencies": {
+          "enabled": {
+            "oneOf": [
+              {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  },
+                  "host": {
+                    "$id": "#/properties/host",
+                    "type": "string",
+                    "title": "Host",
+                    "description": "Your company domain name Gimlet will use to expose services under as subdomains."
+                  },
+                  "ingressAnnotations": {
+                    "$id": "#/properties/ingressAnnotations",
+                    "type": "string",
+                    "description": "Gimlet will put these annotations on every ingress it creates",
+                    "title": "Ingress Annotations"
+                  }
+                },
+                "required": [
+                  "host"
+                ]
+              }
+            ]
+          }
+        }
       }
     uiSchema: |-
       [
