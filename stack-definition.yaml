@@ -137,9 +137,7 @@ components:
           "uiSchema": {
             "#nginx": {
               "ingressAnnotations": {
-                "additionalProperties": {
-                  "type": "string"
-                }
+                "ui:widget": "hidden"
               }
             }
           },
