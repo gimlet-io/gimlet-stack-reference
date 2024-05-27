@@ -23,7 +23,7 @@ components:
     variable: nginx
     category: ingress
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/nginx.png
-    description: "An Nginx proxy server that routes traffic to your applications based on the host name or path.",
+    description: "An Nginx proxy server that routes traffic to your applications based on the host name or path."
     onePager: |-
       ### What do you get with Nginx?
 
@@ -79,7 +79,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#nginx",
         "type": "object",
-        "description": "An Nginx proxy server that routes traffic to your applications based on the host name or path."
+        "description": "An Nginx proxy server that routes traffic to your applications based on the host name or path.",
         "title": "Nginx",
         "properties": {
           "enabled": {
