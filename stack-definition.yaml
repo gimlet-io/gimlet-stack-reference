@@ -106,7 +106,7 @@ components:
                     "$id": "#/properties/host",
                     "type": "string",
                     "title": "Host",
-                    "description": "Your company domain name Gimlet will use to expose services under as subdomains."
+                    "description": "Your company domain name Gimlet will use to expose services on as subdomains."
                   }
                 },
                 "required": [
@@ -292,12 +292,12 @@ components:
                     "$id": "#/properties/host",
                     "type": "string",
                     "title": "Host",
-                    "description": "Your company domain name Gimlet will use to expose services under as subdomains."
+                    "description": "Your company domain name Gimlet will use to expose services on as subdomains."
                   },
                   "ingressAnnotations": {
                     "$id": "#/properties/ingressAnnotations",
                     "type": "string",
-                    "description": "Gimlet will put these annotations on every ingress it creates",
+                    "description": "Gimlet will put these annotations on every ingress it creates.",
                     "title": "Ingress Annotations"
                   }
                 },
@@ -907,36 +907,57 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
-          },
-          "cookieSecret": {
-            "$id": "#/properties/cookieSecret",
-            "type": "string",
-            "title": "Cookie Secret",
-            "description": "A random seed string that is the base of cookie encryption. eg: the output of `openssl rand -hex 16`"
-          },
-          "org": {
-            "$id": "#/properties/org",
-            "type": "string",
-            "title": "Github Organization",
-            "description": "Github users member of this organization will be allowed to access your protected sites"
-          },
-          "user": {
-            "$id": "#/properties/user",
-            "type": "string",
-            "title": "Github User",
-            "description": "If you want to grant access per user basis, a comma separated list"
-          },
-          "clientID": {
-            "$id": "#/properties/clientID",
-            "type": "string",
-            "title": "Github ClientID",
-            "description": "ClientID of the Github OAuth application"
-          },
-          "clientSecret": {
-            "$id": "#/properties/clientSecret",
-            "type": "string",
-            "title": "Github Client Secret",
-            "description": "Client secret of the Github OAuth application"
+          }
+        },
+        "dependencies": {
+          "enabled": {
+            "oneOf": [
+              {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  },
+                  "cookieSecret": {
+                    "$id": "#/properties/cookieSecret",
+                    "type": "string",
+                    "title": "Cookie Secret",
+                    "description": "A random seed string that is the base of cookie encryption. eg: the output of `openssl rand -hex 16`"
+                  },
+                  "org": {
+                    "$id": "#/properties/org",
+                    "type": "string",
+                    "title": "Github Organization",
+                    "description": "Github users member of this organization will be allowed to access your protected sites"
+                  },
+                  "user": {
+                    "$id": "#/properties/user",
+                    "type": "string",
+                    "title": "Github User",
+                    "description": "If you want to grant access per user basis, a comma separated list"
+                  },
+                  "clientID": {
+                    "$id": "#/properties/clientID",
+                    "type": "string",
+                    "title": "Github ClientID",
+                    "description": "ClientID of the Github OAuth application"
+                  },
+                  "clientSecret": {
+                    "$id": "#/properties/clientSecret",
+                    "type": "string",
+                    "title": "Github Client Secret",
+                    "description": "Client secret of the Github OAuth application"
+                  }
+                },
+                "required": []
+              }
+            ]
           }
         }
       }
