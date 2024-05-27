@@ -23,7 +23,7 @@ components:
     variable: nginx
     category: ingress
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/nginx.png
-    description: "An Nginx proxy server that routes traffic to your applications based on the host name or path."
+    description: "An Nginx proxy server that routes traffic to your applications based on the host name or path.",
     onePager: |-
       ### What do you get with Nginx?
 
@@ -79,6 +79,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#nginx",
         "type": "object",
+        "description": "An Nginx proxy server that routes traffic to your applications based on the host name or path."
         "title": "Nginx",
         "properties": {
           "enabled": {
@@ -200,6 +201,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#certManager",
         "type": "object",
+        "description": "Free SSL certificates for all your applications from Let's Encrypt",
         "title": "cert-manager",
         "properties": {
           "enabled": {
@@ -350,7 +352,7 @@ components:
         "$id": "#loki",
         "type": "object",
         "title": "Loki",
-        "description": "Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate. https://grafana.com/oss/loki/",
+        "description": "Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
