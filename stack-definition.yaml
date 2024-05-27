@@ -1111,25 +1111,49 @@ components:
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
-          },
-          "displayName": {
-            "$id": "#/properties/displayName",
-            "type": "string",
-            "title": "Display Name",
-            "default": "Containerized Registry"
-          },
-          "credentials": {
-            "$id": "#/properties/config",
-            "type": "object",
-            "title": "Credentials",
-            "properties": {
-              "url": {
-                "$id": "#/properties/url",
-                "type": "string",
-                "title": "URL",
-                "default": "127.0.0.1:32447"
+          }
+        },
+        "dependencies": {
+          "enabled": {
+            "oneOf": [
+              {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  },
+                  "displayName": {
+                    "$id": "#/properties/displayName",
+                    "type": "string",
+                    "title": "Display Name",
+                    "default": "Containerized Registry"
+                  },
+                  "credentials": {
+                    "$id": "#/properties/config",
+                    "type": "object",
+                    "title": "Credentials",
+                    "properties": {
+                      "url": {
+                        "$id": "#/properties/url",
+                        "type": "string",
+                        "title": "URL",
+                        "default": "127.0.0.1:32447"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "displayName",
+                  "credentials"
+                ]
               }
-            }
+            ]
           }
         }
       }
