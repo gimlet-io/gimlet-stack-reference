@@ -743,7 +743,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#encryptedSecrets",
         "type": "object",
-        "description": "Store secrets next to your application source code in encrypted form."
+        "description": "Store secrets next to your application source code in encrypted form.",
         "title": "Encrypted Secrets",
         "description": "",
         "properties": {
@@ -789,7 +789,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#externalSecrets",
         "type": "object",
-        "description": "Integrate with cloud based secret managers"
+        "description": "Integrate with cloud based secret managers",
         "title": "External Secrets",
         "description": "The root schema comprises the entire JSON document.",
         "properties": {
