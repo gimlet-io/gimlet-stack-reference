@@ -745,7 +745,6 @@ components:
         "type": "object",
         "description": "Store secrets next to your application source code in encrypted form.",
         "title": "Encrypted Secrets",
-        "description": "",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -791,7 +790,6 @@ components:
         "type": "object",
         "description": "Integrate with cloud based secret managers",
         "title": "External Secrets",
-        "description": "The root schema comprises the entire JSON document.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
