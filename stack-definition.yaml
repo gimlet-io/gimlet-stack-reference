@@ -113,7 +113,11 @@ components:
                     "type": "object",
                     "description": "Gimlet will put these annotations on every ingress it creates.",
                     "title": "Ingress Annotations",
-                    "additionalProperties": true
+                    "additionalProperties": true,
+                    "default": {
+                      "kubernetes.io/ingress.class": "nginx",
+                      "cert-manager.io/cluster-issuer": "letsencrypt"
+                    }
                   }
                 },
                 "required": [
