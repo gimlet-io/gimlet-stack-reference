@@ -107,6 +107,13 @@ components:
                     "type": "string",
                     "title": "Host",
                     "description": "Your company domain name Gimlet will use to expose services on as subdomains."
+                  },
+                  "ingressAnnotations": {
+                    "$id": "#/properties/ingressAnnotations",
+                    "type": "object",
+                    "description": "Gimlet will put these annotations on every ingress it creates.",
+                    "title": "Ingress Annotations",
+                    "additionalProperties": true
                   }
                 },
                 "required": [
@@ -123,7 +130,15 @@ components:
           "schemaIDs": [
             "#nginx"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#nginx": {
+              "ingressAnnotations": {
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "metaData": {
             "link": {
               "label": "DNS",
