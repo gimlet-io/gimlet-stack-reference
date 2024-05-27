@@ -16,8 +16,6 @@ categories:
     id: secrets
   - name: "Autoscaling"
     id: autoscaling
-  - name: "Gimlet"
-    id: gimlet
 components:
   - name: Nginx
     variable: nginx
@@ -1021,7 +1019,7 @@ components:
         "$id": "#keda",
         "type": "object",
         "title": "KEDA",
-        "description": "Application autoscaling made simple",
+        "description": "Application autoscaling made simple.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
