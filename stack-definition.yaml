@@ -359,7 +359,8 @@ components:
                   "retentionDays": {
                     "type": "integer",
                     "title": "Retentian (in days)",
-                    "minimum": 1
+                    "minimum": 1,
+                    "default": 14
                   }
                 },
                 "required": ["retentionDays"]
@@ -418,7 +419,7 @@ components:
     variable: grafanaCloud
     category: logging
     logo: https://grafana.com/static/img/menu/grafana2.svg
-    description: ""
+    description: "Fully managed cloud observability platform built on the open source projects Grafana, Mimir, Loki, and Tempo. Free Forever plan available."
     onePager: |-
       Install Promtail to ship logs to Grafana Cloud.
     schema: |-
@@ -1061,7 +1062,12 @@ components:
           ],
           "uiSchema": {
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Containerized Registry",
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+            }
+          }
         }
       ]
   - name: Custom Registry
@@ -1128,7 +1134,12 @@ components:
               }
             }
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Custom Registries",
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+            }
+          }
         }
       ]
   - name: Github Container Registry
