@@ -920,7 +920,12 @@ components:
             "#oauth2Proxy"
           ],
           "uiSchema": {},
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "OAuth2 Proxy",
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+            }
+          }
         }
       ]
   - name: Gimlet Agent
@@ -1016,6 +1021,7 @@ components:
         "$id": "#keda",
         "type": "object",
         "title": "KEDA",
+        "description": "Application autoscaling made simple",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1032,7 +1038,12 @@ components:
           ],
           "uiSchema": {
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "KEDA",
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+            }
+          }
         }
       ]
   - name: Containerized Registry
