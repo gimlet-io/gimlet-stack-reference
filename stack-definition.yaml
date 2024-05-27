@@ -296,9 +296,10 @@ components:
                   },
                   "ingressAnnotations": {
                     "$id": "#/properties/ingressAnnotations",
-                    "type": "string",
+                    "type": "object",
                     "description": "Gimlet will put these annotations on every ingress it creates.",
-                    "title": "Ingress Annotations"
+                    "title": "Ingress Annotations",
+                    "additionalProperties": true
                   }
                 },
                 "required": [
@@ -316,8 +317,12 @@ components:
             "#existingIngress"
           ],
           "uiSchema": {
-            "#/properties/ingressAnnotations": {
-              "ui:widget": "textarea"
+            "#existingIngress": {
+              "ingressAnnotations": {
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
             }
           },
           "metaData": {
@@ -1149,8 +1154,7 @@ components:
                   }
                 },
                 "required": [
-                  "displayName",
-                  "credentials"
+                  "displayName"
                 ]
               }
             ]
