@@ -1,0 +1,13 @@
+{{ if .customRegistry.selfSignedCert -}}
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: customregistry-registrycert
+  namespace: infrastructure
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+spec:
+  encryptedData:
+    certificate.cert: {{ .customRegistry.selfSignedCert }}
+{{- end }}
