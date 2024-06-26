@@ -74,12 +74,15 @@ spec:
           args:
             - --provider=github
             - --email-domain=*
+            {{- if .oauth2Proxy.org }}
             - --github-org={{ .oauth2Proxy.org }}
+            {{- end }}
+            {{- if .oauth2Proxy.user }}
             - --github-user={{ .oauth2Proxy.user }}
+            {{- end }}
             - --upstream=file:///dev/null
             - --upstream=http://localhost/redirect/
             - --http-address=0.0.0.0:4180
-            - --cookie-domain=.{{ .nginx.host }}
             - --footer=-
           envFrom:
             - secretRef:
