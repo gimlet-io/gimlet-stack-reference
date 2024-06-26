@@ -108,22 +108,25 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  {{- if .certManager.enabled }}
   annotations:
+  {{- if .nginx.enabled }}
+    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt
+  {{- end }}
+  {{- if .existingIngress.enabled }}
+    {{ .existingIngress.ingressAnnotations | indent 4 }}
   {{- end }}
   name: oauth2-proxy
   namespace: infrastructure
 spec:
-  ingressClassName: {{ default false .nginx.enabled | ternary "nginx" "traefik" }}
   {{- if .certManager.enabled }}
   tls:
     - secretName: tls-oauth2-proxy
       hosts:
-        - "auth.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}"
+        - "auth{{ default false .nginx.enabled | ternary .nginx.host .existingIngress.host }}"
   {{- end }}
   rules:
-    - host: "auth.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}"
+    - host: "auth{{ default false .nginx.enabled | ternary .nginx.host .existingIngress.host }}"
       http:
         paths:
           - path: /
