@@ -1,4 +1,5 @@
 {{ if .oauth2Proxy.enabled -}}
+{{- $host := default false .nginx.enabled | ternary .nginx.host .existingIngress.host }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -83,7 +84,7 @@ spec:
             - --upstream=file:///dev/null
             - --upstream=http://localhost/redirect/
             - --http-address=0.0.0.0:4180
-            - --cookie-domain={{ default false .nginx.enabled | ternary .nginx.host .existingIngress.host | regexReplaceAll "^-[^.]*" . "" }}
+            - --cookie-domain={{ regexReplaceAll "^-[^.]*" $host "" }}
             - --footer=-
           envFrom:
             - secretRef:
@@ -109,6 +110,7 @@ spec:
   selector:
     k8s-app: oauth2-proxy
 ---
+{{ regexReplaceAll "^-[^.]*" $host "" }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -129,10 +131,10 @@ spec:
   tls:
     - secretName: tls-oauth2-proxy
       hosts:
-        - "auth{{ default false .nginx.enabled | ternary .nginx.host .existingIngress.host }}"
+        - "auth{{ $host }}"
   {{- end }}
   rules:
-    - host: "auth{{ default false .nginx.enabled | ternary .nginx.host .existingIngress.host }}"
+    - host: "auth{{ $host }}"
       http:
         paths:
           - path: /
