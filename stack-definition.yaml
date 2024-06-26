@@ -972,7 +972,17 @@ components:
           "schemaIDs": [
             "#oauth2Proxy"
           ],
-          "uiSchema": {},
+          "uiSchema": {
+            "#/properties/cookieSecret": {
+              "ui:field": "sealedSecretWidget"
+            },
+            "#/properties/clientID": {
+              "ui:field": "sealedSecretWidget"
+            },
+            "#/properties/clientSecret": {
+              "ui:field": "sealedSecretWidget"
+            }
+          },
           "metaData": {
             "link": {
               "label": "OAuth2 Proxy",

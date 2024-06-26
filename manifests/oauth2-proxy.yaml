@@ -134,13 +134,16 @@ spec:
                 port:
                   name: "http"
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
 metadata:
   name: oauth2-proxy
   namespace: infrastructure
-stringData:
-  OAUTH2_PROXY_CLIENT_ID: {{ .oauth2Proxy.clientID }}
-  OAUTH2_PROXY_CLIENT_SECRET: {{ .oauth2Proxy.clientSecret }}
-  OAUTH2_PROXY_COOKIE_SECRET: {{ .oauth2Proxy.cookieSecret }}
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+spec:
+  encryptedData:
+    OAUTH2_PROXY_CLIENT_ID: {{ .oauth2Proxy.clientID }}
+    OAUTH2_PROXY_CLIENT_SECRET: {{ .oauth2Proxy.clientSecret }}
+    OAUTH2_PROXY_COOKIE_SECRET: {{ .oauth2Proxy.cookieSecret }}
 {{- end }}
