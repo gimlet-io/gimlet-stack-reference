@@ -1,5 +1,5 @@
 {{ if .oauth2Proxy.enabled -}}
-{{- $host := default false .nginx.enabled | ternary .nginx.host .existingIngress.host }}
+{{ $host := default false .nginx.enabled | ternary .nginx.host .existingIngress.host -}}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -110,7 +110,6 @@ spec:
   selector:
     k8s-app: oauth2-proxy
 ---
-{{ regexReplaceAll "^-[^.]*" $host "" }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
