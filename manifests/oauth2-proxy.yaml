@@ -114,7 +114,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt
   {{- end }}
   {{- if .existingIngress.enabled }}
-    {{ .existingIngress.ingressAnnotations | indent "4" }}
+    {{ indent 4 .existingIngress.ingressAnnotations }}
   {{- end }}
   name: oauth2-proxy
   namespace: infrastructure
