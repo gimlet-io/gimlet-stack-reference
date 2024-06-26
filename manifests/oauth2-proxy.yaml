@@ -115,7 +115,7 @@ metadata:
   {{- end }}
   {{- if and .existingIngress.enabled .existingIngress.ingressAnnotations }}
     {{- range $key, $value := .existingIngress.ingressAnnotations }}
-    {{ indent 4 "$key: $value" }}
+    {{ printf "%s: %s" $key $value | indent 4 }}
     {{- end }}
   {{- end }}
   name: oauth2-proxy
