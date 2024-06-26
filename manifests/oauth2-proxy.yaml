@@ -83,7 +83,7 @@ spec:
             - --upstream=file:///dev/null
             - --upstream=http://localhost/redirect/
             - --http-address=0.0.0.0:4180
-            - --cookie-domain={{ default false .nginx.enabled | ternary .nginx.host .existingIngress.host | regexReplaceAll "^-[^.]*" "" }}"
+            - --cookie-domain={{ default false .nginx.enabled | ternary .nginx.host .existingIngress.host | regexReplaceAll "^-[^.]*" . "" }}
             - --footer=-
           envFrom:
             - secretRef:
