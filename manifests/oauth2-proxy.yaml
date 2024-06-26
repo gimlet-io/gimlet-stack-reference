@@ -113,8 +113,10 @@ metadata:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt
   {{- end }}
-  {{- if .existingIngress.enabled }}
-    {{ indent 4 .existingIngress.ingressAnnotations }}
+  {{- if and .existingIngress.enabled .existingIngress.ingressAnnotations }}
+    {{ range $key, $value := .existingIngress.ingressAnnotations }}
+    {{ indent 4 $key }}
+    {{- end }}
   {{- end }}
   name: oauth2-proxy
   namespace: infrastructure
