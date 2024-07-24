@@ -126,8 +126,8 @@ components:
           "uiSchema": {},
           "metaData": {
             "link": {
-              "label": "DNS",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/dns"
+              "label": "Setting DNS records",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/dns#configure-an-ingress-controller"
             }
           }
         }
@@ -248,7 +248,7 @@ components:
           "metaData": {
             "link": {
               "label": "cert-manager",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/https"
             }
           }
         }
@@ -328,7 +328,7 @@ components:
           "metaData": {
             "link": {
               "label": "Configuring existing ingress",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/dns#integrate-an-existing-ingress"
             }
           }
         }
@@ -451,7 +451,12 @@ components:
           ],
           "uiSchema": {
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Setting up and Querying Loki",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/monitoring/loki"
+            }
+          }
         }
       ]
   - name: Grafana Cloud
@@ -987,8 +992,8 @@ components:
           },
           "metaData": {
             "link": {
-              "label": "OAuth2 Proxy",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/social-authentication"
+              "label": "Social Authentication",
+              "href": https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/social-authentication"
             }
           }
         }
