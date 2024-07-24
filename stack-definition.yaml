@@ -692,7 +692,12 @@ components:
               "ui:widget": "range"
             }
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Setting up and Querying Prometheus",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/monitoring/prometheus"
+            }
+          }
         }
       ]
   - name: Encrypted Secrets
