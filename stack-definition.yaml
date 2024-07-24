@@ -805,7 +805,7 @@ components:
           "metaData": {
             "link": {
               "label": "Encrypted Secrets",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/deployment-settings/secrets"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/secrets"
             }
           }
         }
@@ -847,12 +847,7 @@ components:
             "#externalSecrets"
           ],
           "uiSchema": {},
-          "metaData": {
-            "link": {
-              "label": "External Secrets",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
-            }
-          }
+          "metaData": {}
         }
       ]
   - name: OAuth2Proxy
@@ -1113,12 +1108,7 @@ components:
           ],
           "uiSchema": {
           },
-          "metaData": {
-            "link": {
-              "label": "KEDA",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
-            }
-          }
+          "metaData": {}
         }
       ]
   - name: Containerized Registry
