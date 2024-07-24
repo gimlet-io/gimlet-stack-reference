@@ -1184,7 +1184,7 @@ components:
           "metaData": {
             "link": {
               "label": "Containerized Registry",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#built-in-registry"
             }
           }
         }
@@ -1256,7 +1256,7 @@ components:
           "metaData": {
             "link": {
               "label": "Custom Registries",
-              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#integrate-any-registry-under-custom-registry-configuration"
             }
           }
         }
@@ -1321,7 +1321,7 @@ components:
           "metaData": {
             "link": {
               "label": "Github Container Registry",
-              "href": "https://gimlet.io"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#git-hub-container-registry-settings-in-gimlet"
             }
           }
         }
@@ -1386,7 +1386,7 @@ components:
           "metaData": {
             "link": {
               "label": "Docker Hub",
-              "href": "https://gimlet.io"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#integrate-docker-hub"
             }
           }
         }
