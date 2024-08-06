@@ -993,7 +993,7 @@ components:
           "metaData": {
             "link": {
               "label": "Social Authentication",
-              "href": https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/social-authentication"
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/social-authentication"
             }
           }
         }
