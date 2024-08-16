@@ -52,7 +52,7 @@ spec:
       serviceAccountName: event-exporter
       containers:
         - name: event-exporter
-          image: ghcr.io/opsgenie/kubernetes-event-exporter:v1.7
+          image: ghcr.io/resmoio/kubernetes-event-exporter:v1.7
           imagePullPolicy: IfNotPresent
           args:
             - -conf=/data/config.yaml
