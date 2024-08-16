@@ -1393,7 +1393,7 @@ components:
       ]
 changeLog: |
 
-  - ❗ Fix image location for event-exporter
+  - 🍏 Upgrade event-exporter from version v0.11 to v1.7, transitioning to a forked version since the original repository has been archived.
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
