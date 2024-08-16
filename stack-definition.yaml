@@ -4,158 +4,19 @@ description: |
   Logging, metrics, ingress and more - all delivered with gitops.
 
 categories:
-  - name: "☁️ Cloud Provider"
-    id: cloud
-  - name: "🗂️ Registry"
+  - name: "Container Registry"
     id: registry
-  - name: "⬅️Ingress"
+  - name: "Ingress"
     id: ingress
-  - name: "📑 Logging"
+  - name: "Logging"
     id: logging
-  - name: "🔄 Autoscaling"
-    id: autoscaling
-  - name: "🔢 Metrics"
+  - name: "Metrics"
     id: metrics
-  - name: "🔐 Secrets"
+  - name: "Secrets"
     id: secrets
-  - name: "🔍 Tracing"
-    id: tracing
-  - name: "📋 Policy"
-    id: policy
-  - name: "⚙️ Gimlet"
-    id: gimlet
-  - name: "🖥️ System"
-    id: system
+  - name: "Autoscaling"
+    id: autoscaling
 components:
-  - name: K3s / K3d / Rancher Desktop
-    variable: k3s
-    category: cloud
-    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/k3s.svg
-    description: "Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop"
-    onePager: |-
-      Enable k3s defaults to better integrate with locally running K3s, K3d and Rancher Desktop
-    schema: |-
-      {
-        "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#k3s",
-        "type": "object",
-        "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
-          "usingBuiltInTraefikIngress": {
-            "$id": "#/properties/usingBuiltInTraefikIngress",
-            "type": "boolean",
-            "title": "Use the Traefik Ingress",
-            "default": true
-          }
-        },
-        "dependencies": {
-          "usingBuiltInTraefikIngress": {
-            "oneOf": [
-              {
-                "properties": {
-                  "usingBuiltInTraefikIngress": {
-                    "const": false
-                  }
-                }
-              },
-              {
-                "properties": {
-                  "usingBuiltInTraefikIngress": {
-                    "const": true
-                  },
-                  "host": {
-                    "$id": "#/properties/host",
-                    "type": "string",
-                    "title": "Host",
-                    "description": "Your company domain you will expose your services on"
-                  }
-                },
-                "required": [
-                  "host"
-                ]
-              }
-            ]
-          }
-        }
-      }
-    uiSchema: |-
-      [
-        {
-          "schemaIDs": [
-            "#k3s"
-          ],
-          "uiSchema": {},
-          "metaData": {}
-        }
-      ]
-  - name: CIVO
-    variable: civo
-    category: cloud
-    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/civo.svg
-    description: "Enable CIVO Cloud defaults to better integrate into the CIVO landscape"
-    onePager: |-
-      Enable CIVO Cloud defaults to better integrate into the CIVO landscape
-    schema: |-
-      {
-        "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#civo",
-        "type": "object",
-        "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
-          "usingBuiltInTraefikIngress": {
-            "$id": "#/properties/usingBuiltInTraefikIngress",
-            "type": "boolean",
-            "title": "Use the Traefik Ingress from the CIVO marketplace"
-          }
-        },
-        "dependencies": {
-          "usingBuiltInTraefikIngress": {
-            "oneOf": [
-              {
-                "properties": {
-                  "usingBuiltInTraefikIngress": {
-                    "const": false
-                  }
-                }
-              },
-              {
-                "properties": {
-                  "usingBuiltInTraefikIngress": {
-                    "const": true
-                  },
-                  "host": {
-                    "$id": "#/properties/host",
-                    "type": "string",
-                    "title": "Host",
-                    "description": "Your company domain you will expose your services on"
-                  }
-                },
-                "required": [
-                  "host"
-                ]
-              }
-            ]
-          }
-        }
-      }
-    uiSchema: |-
-      [
-        {
-          "schemaIDs": [
-            "#civo"
-          ],
-          "uiSchema": {},
-          "metaData": {}
-        }
-      ]
   - name: Nginx
     variable: nginx
     category: ingress
@@ -216,6 +77,8 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#nginx",
         "type": "object",
+        "description": "An Nginx proxy server that routes traffic to your applications based on the host name or path.",
+        "title": "Nginx",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -243,7 +106,7 @@ components:
                     "$id": "#/properties/host",
                     "type": "string",
                     "title": "Host",
-                    "description": "Your company domain you will expose your services on"
+                    "description": "Your company domain name Gimlet will use to expose services on as subdomains."
                   }
                 },
                 "required": [
@@ -261,14 +124,19 @@ components:
             "#nginx"
           ],
           "uiSchema": {},
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Setting DNS records",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/dns#configure-an-ingress-controller"
+            }
+          }
         }
       ]
-  - name: CertManager
+  - name: cert-manager
     variable: certManager
     category: ingress
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/certManager.png
-    description: ""
+    description: "Free SSL certificates for all your applications from Let's Encrypt"
     onePager: |-
       ### What do you get with Cert Manager?
 
@@ -331,6 +199,8 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#certManager",
         "type": "object",
+        "description": "Free SSL certificates for all your applications from Let's Encrypt.",
+        "title": "cert-manager",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -375,7 +245,92 @@ components:
             "#certManager"
           ],
           "uiSchema": {},
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "cert-manager",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/https"
+            }
+          }
+        }
+      ]
+  - name: Existing Ingress
+    variable: existingIngress
+    category: ingress
+    logo: ""
+    description: "Integrate an existing ingress controller with Gimlet"
+    onePager: ""
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#existingIngress",
+        "type": "object",
+        "description": "Integrate an existing ingress controller with Gimlet.",
+        "title": "Existing Ingress",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        },
+        "dependencies": {
+          "enabled": {
+            "oneOf": [
+              {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  },
+                  "host": {
+                    "$id": "#/properties/host",
+                    "type": "string",
+                    "title": "Host",
+                    "description": "Your company domain name Gimlet will use to expose services on as subdomains."
+                  },
+                  "ingressAnnotations": {
+                    "$id": "#/properties/ingressAnnotations",
+                    "type": "object",
+                    "description": "Gimlet will put these annotations on every ingress it creates.",
+                    "title": "Ingress Annotations",
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "host"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#existingIngress"
+          ],
+          "uiSchema": {
+            "#existingIngress": {
+              "ingressAnnotations": {
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "metaData": {
+            "link": {
+              "label": "Configuring existing ingress",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/dns#integrate-an-existing-ingress"
+            }
+          }
         }
       ]
   - name: Loki
@@ -421,10 +376,10 @@ components:
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
+        "$id": "#loki",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
+        "title": "Loki",
+        "description": "Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -449,20 +404,23 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled",
-            "#/properties/persistence",
-            "#/properties/volumeSize"
+            "#loki"
           ],
           "uiSchema": {
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Setting up and Querying Loki",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/monitoring/loki"
+            }
+          }
         }
       ]
   - name: Grafana Cloud
     variable: grafanaCloud
     category: logging
     logo: https://grafana.com/static/img/menu/grafana2.svg
-    description: ""
+    description: "Fully managed cloud observability platform built on the open source projects Grafana, Mimir, Loki, and Tempo. Free Forever plan available."
     onePager: |-
       Install Promtail to ship logs to Grafana Cloud.
     schema: |-
@@ -470,6 +428,8 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#grafanaCloud",
         "type": "object",
+        "description": "Fully managed cloud observability platform built on the open source projects Grafana, Mimir, Loki, and Tempo. Free Forever plan available.",
+        "title": "Grafana Cloud",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -525,6 +485,8 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#eventExporter",
         "type": "object",
+        "title": "Event Exporter",
+        "description": "Install Kubernetes Event Exporter to log all Kubernetes events.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -541,7 +503,12 @@ components:
           ],
           "uiSchema": {
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Querying Kubernetes events",
+              "href": "https://gimlet-documentation-home-page-revamp.gimlet.io/docs/xxx"
+            }
+          }
         }
       ]
   - name: Prometheus
@@ -596,6 +563,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#prometheus",
         "type": "object",
+        "title": "Prometheus",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -681,10 +649,15 @@ components:
               "ui:widget": "range"
             }
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Setting up and Querying Prometheus",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/monitoring/prometheus"
+            }
+          }
         }
       ]
-  - name: Sealed Secrets
+  - name: Encrypted Secrets
     variable: sealedSecrets
     category: secrets
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/sealedSecrets.svg
@@ -767,10 +740,10 @@ components:
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
+        "$id": "#encryptedSecrets",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
+        "description": "Store secrets next to your application source code in encrypted form.",
+        "title": "Encrypted Secrets",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -783,10 +756,15 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled"
+            "#encryptedSecrets"
           ],
           "uiSchema": {},
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Encrypted Secrets",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/secrets"
+            }
+          }
         }
       ]
   - name: ExternalSecrets
@@ -807,10 +785,10 @@ components:
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "http://example.com/example.json",
+        "$id": "#externalSecrets",
         "type": "object",
-        "title": "The root schema",
-        "description": "The root schema comprises the entire JSON document.",
+        "description": "Integrate with cloud based secret managers",
+        "title": "External Secrets",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -823,7 +801,7 @@ components:
       [
         {
           "schemaIDs": [
-            "#/properties/enabled"
+            "#externalSecrets"
           ],
           "uiSchema": {},
           "metaData": {}
@@ -833,7 +811,7 @@ components:
     variable: oauth2Proxy
     category: ingress
     logo: https://raw.githubusercontent.com/oauth2-proxy/oauth2-proxy/master/docs/static/img/logos/OAuth2_Proxy_icon.svg
-    description: ""
+    description: "Authenticate your internal services with Github"
     onePager: |-
       ### What do you get with OAuth2Proxy?
       - You can authenticate your internal services with Github
@@ -854,7 +832,7 @@ components:
       Follow the [Github guide](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
 
       - Set `https://auth.<<your-nginx-domain>>` for "Homepage URL"
-      - Set `https://auth.<<your-nginx-domain>>/oauth2/callback` for "Authorization callback URL"
+      - Set `https://auth.<<your-nginx-domain>>/oauth2/callback` for "Authorization callback URL."
 
       ### Add OAuth to your service
       To add authentication for your services, add the following annotations to your ingresses:
@@ -889,41 +867,64 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#oauth2Proxy",
         "type": "object",
+        "description": "Authenticate your internal apps with Github OAuth.",
+        "title": "OAuth2Proxy",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
-          },
-          "cookieSecret": {
-            "$id": "#/properties/cookieSecret",
-            "type": "string",
-            "title": "Cookie Secret",
-            "description": "A random seed string that is the base of cookie encryption. eg: the output of `openssl rand -hex 16`"
-          },
-          "org": {
-            "$id": "#/properties/org",
-            "type": "string",
-            "title": "Github Organization",
-            "description": "Github users member of this organization will be allowed to access your protected sites"
-          },
-          "user": {
-            "$id": "#/properties/user",
-            "type": "string",
-            "title": "Github User",
-            "description": "If you want to grant access per user basis, a comma separated list"
-          },
-          "clientID": {
-            "$id": "#/properties/clientID",
-            "type": "string",
-            "title": "Github ClientID",
-            "description": "ClientID of the Github OAuth application"
-          },
-          "clientSecret": {
-            "$id": "#/properties/clientSecret",
-            "type": "string",
-            "title": "Github Client Secret",
-            "description": "Client secret of the Github OAuth application"
+          }
+        },
+        "dependencies": {
+          "enabled": {
+            "oneOf": [
+              {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  },
+                  "cookieSecret": {
+                    "$id": "#/properties/cookieSecret",
+                    "type": "string",
+                    "title": "Cookie Secret",
+                    "description": "A random seed string that is the base of cookie encryption. eg: the output of `openssl rand -hex 16`"
+                  },
+                  "org": {
+                    "$id": "#/properties/org",
+                    "type": "string",
+                    "title": "Github Organization",
+                    "description": "Github users member of this organization will be allowed to access your protected sites"
+                  },
+                  "user": {
+                    "$id": "#/properties/user",
+                    "type": "string",
+                    "title": "Github User",
+                    "description": "If you want to grant access per user basis, a comma separated list"
+                  },
+                  "clientID": {
+                    "$id": "#/properties/clientID",
+                    "type": "string",
+                    "title": "Github ClientID",
+                    "description": "ClientID of the Github OAuth application"
+                  },
+                  "clientSecret": {
+                    "$id": "#/properties/clientSecret",
+                    "type": "string",
+                    "title": "Github Client Secret",
+                    "description": "Client secret of the Github OAuth application"
+                  }
+                },
+                "required": []
+              }
+            ]
           }
         }
       }
@@ -933,132 +934,25 @@ components:
           "schemaIDs": [
             "#oauth2Proxy"
           ],
-          "uiSchema": {},
-          "metaData": {}
-        }
-      ]
-  - name: Gimlet
-    variable: gimlet
-    category: gimlet
-    logo: https://gimlet.io/logo.svg
-    description: ""
-    onePager: |-
-
-    schema: |-
-      {
-        "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#gimlet",
-        "type": "object",
-        "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
-          "host": {
-            "$id": "#/properties/host",
-            "type": "string",
-            "title": "Host name",
-            "description": "The hostname the dashboard is accessible on. Together with the protocol eg.: https://gimlet.mycompany.com"
-          },
-          "jwtSecret": {
-            "$id": "#/properties/jwtSecret",
-            "type": "string",
-            "title": "JWT Secret",
-            "description": "Random string to seed JWT tokens, eg the output of `openssl rand -hex 32`"
-          },
-          "githubOrg": {
-            "$id": "#/properties/githubOrg",
-            "type": "string",
-            "title": "Github Organization",
-            "description": "Users that are members of this Github Organization will be able to authenticate to the dashboard"
-          },
-          "githubAppId": {
-            "$id": "#/properties/githubAppId",
-            "type": "string",
-            "title": "Github App ID",
-            "description": ""
-          },
-          "githubPrivateKey": {
-            "$id": "#/properties/githubPrivateKey",
-            "type": "string",
-            "title": "Github Private Key",
-            "description": ""
-          },
-          "githubClientId": {
-            "$id": "#/properties/githubClientId",
-            "type": "string",
-            "title": "Github Client ID",
-            "description": ""
-          },
-          "githubClientSecret": {
-            "$id": "#/properties/githubClientSecret",
-            "type": "string",
-            "title": "Github Client Secret",
-            "description": ""
-          },
-          "webhookSecret": {
-            "$id": "#/properties/webhookSecret",
-            "type": "string",
-            "title": "Webhook Secret",
-            "description": ""
-          },
-          "postgresql": {
-            "$id": "#/properties/postgresql",
-            "type": "object",
-            "title": "Postgresql settings",
-            "description": "",
-            "properties": {
-              "install": {
-                "$id": "#/properties/install",
-                "type": "boolean",
-                "title": "Install Postgresql",
-                "description": "Install a Postgresql instance to host Gimlet data"
+          "uiSchema": {
+            "#oauth2Proxy": {
+              "cookieSecret": {
+                "ui:field": "encryptedWidget"
               },
-              "postgresPassword": {
-                "$id": "#/properties/postgresPassword",
-                "type": "string",
-                "title": "Postgresql Admin Password",
-                "description": "Fill it if you install Postgresql together with Gimlet"
+              "clientID": {
+                "ui:field": "encryptedWidget"
               },
-              "hostAndPort": {
-                "$id": "#/properties/hostAndPort",
-                "type": "string",
-                "title": "Postgresql Host and Port",
-                "description": "If you install a postgresql together with Gimlet, then it is `postgres:5432`",
-                "default": "postgres:5432"
-              },
-              "db": {
-                "$id": "#/properties/database",
-                "type": "string",
-                "title": "Postgresql Database Name",
-                "default": "gimlet_dasboard"
-              },
-              "user": {
-                "$id": "#/properties/user",
-                "type": "string",
-                "title": "Postgresql User",
-                "description": "",
-                "default": "gimlet_dashboard"
-              },
-              "password": {
-                "$id": "#/properties/password",
-                "type": "string",
-                "title": "Postgresql Password",
-                "description": ""
+              "clientSecret": {
+                "ui:field": "encryptedWidget"
               }
             }
+          },
+          "metaData": {
+            "link": {
+              "label": "Social Authentication",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/social-authentication"
+            }
           }
-        }
-      }
-    uiSchema: |-
-      [
-        {
-          "schemaIDs": [
-            "#gimlet"
-          ],
-          "uiSchema": {},
-          "metaData": {}
         }
       ]
   - name: Gimlet Agent
@@ -1073,6 +967,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#gimletAgent",
         "type": "object",
+        "title": "Gimlet Agent",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1109,10 +1004,10 @@ components:
           "metaData": {}
         }
       ]
-  - name: Image Builder
+  - name: Gimlet Image Builder
     variable: imageBuilder
     category: gimlet
-    logo: https://cncf-branding.netlify.app/img/projects/buildpacks/icon/black/buildpacks-icon-black.png
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/buildPacks.svg
     description: ""
     onePager: "Image builder is a simple web server application that handles file uploads and builds images from it."
 
@@ -1121,6 +1016,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#imageBuilder",
         "type": "object",
+        "title": "Gimlet Image Builder",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1140,53 +1036,6 @@ components:
           "metaData": {}
         }
       ]
-  - name: Namespaces
-    variable: namespaces
-    category: system
-    logo: "https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/system.svg"
-    description: ""
-    onePager: |-
-
-    schema: |-
-      {
-        "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "namespaces",
-        "type": "object",
-        "default": {},
-        "properties": {
-          "namespaces": {
-            "$id": "#/properties/namespaces",
-            "type": "array",
-            "title": "Namespaces",
-            "default": [],
-            "additionalItems": true,
-            "items": {
-              "$id": "#/properties/namespaces/items",
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "name": {
-                  "$id": "#/properties/namespaces/items/properties/name",
-                  "type": "string",
-                  "title": "Namespace"
-                }
-              }
-            }
-          }
-        }
-      }
-    uiSchema: |-
-      [
-        {
-          "schemaIDs": [
-            "namespaces"
-          ],
-          "uiSchema": {},
-          "metaData": {}
-        }
-      ]
   - name: KEDA
     variable: keda
     category: autoscaling
@@ -1198,6 +1047,8 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#keda",
         "type": "object",
+        "title": "KEDA",
+        "description": "Application autoscaling made simple.",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1217,22 +1068,65 @@ components:
           "metaData": {}
         }
       ]
-  - name: Docker Registry
-    variable: dockerRegistry
+  - name: Containerized Registry
+    variable: containerizedRegistry
     category: registry
     logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
     description: ""
-    onePager: "Docker registry is a storage and distribution system for named Docker images."
+    onePager: "Containerized registry deployed in the same cluster where the image is deployed."
     schema: |-
       {
         "$schema": "http://json-schema.org/draft-07/schema",
-        "$id": "#dockerRegistry",
+        "$id": "#containerizedRegistry",
         "type": "object",
+        "title": "Containerized Registry",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
             "type": "boolean",
             "title": "Enabled"
+          }
+        },
+        "dependencies": {
+          "enabled": {
+            "oneOf": [
+              {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "enabled": {
+                    "const": true
+                  },
+                  "displayName": {
+                    "$id": "#/properties/displayName",
+                    "type": "string",
+                    "title": "Display Name",
+                    "default": "Containerized Registry"
+                  },
+                  "credentials": {
+                    "$id": "#/properties/config",
+                    "type": "object",
+                    "title": "Credentials",
+                    "properties": {
+                      "url": {
+                        "$id": "#/properties/url",
+                        "type": "string",
+                        "title": "URL",
+                        "default": "127.0.0.1:32447"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "displayName"
+                ]
+              }
+            ]
           }
         }
       }
@@ -1240,16 +1134,232 @@ components:
       [
         {
           "schemaIDs": [
-            "#dockerRegistry"
+            "#containerizedRegistry"
           ],
           "uiSchema": {
           },
-          "metaData": {}
+          "metaData": {
+            "link": {
+              "label": "Containerized Registry",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#built-in-registry"
+            }
+          }
+        }
+      ]
+  - name: Custom Registry
+    variable: customRegistry
+    category: registry
+    logo: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-registry-logo.png
+    description: ""
+    onePager: "Custom Registry is an existing registry you want ot use in Gimlet"
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#customRegistry",
+        "type": "object",
+        "title": "Custom Registry",
+        "properties": {
+          "displayName": {
+            "$id": "#/properties/displayName",
+            "type": "string",
+            "title": "Display Name"
+          },
+          "credentials": {
+            "$id": "#/properties/config",
+            "type": "object",
+            "title": "Credentials",
+            "properties": {
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "URL",
+                "description": "Host name of the registry, like `ghcr.io`"
+              },
+              "login": {
+                "$id": "#/properties/login",
+                "type": "string",
+                "title": "Login"
+              },
+              "encryptedDockerconfigjson": {
+                "$id": "#/properties/encryptedDockerconfigjson",
+                "type": "string",
+                "title": "encryptedDockerconfigjson"
+              }
+            }
+          },
+          "selfSignedCert": {
+            "$id": "#/properties/selfSignedCert",
+            "type": "string",
+            "title": "Self-Signed Certificate"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#customRegistry"
+          ],
+          "uiSchema": {
+            "#customRegistry": {
+              "credentials": {
+                "ui:field": "registryWidget"
+              },
+              "selfSignedCert": {
+                "ui:field": "encryptedWidget"
+              }
+            }
+          },
+          "metaData": {
+            "link": {
+              "label": "Custom Registries",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#integrate-any-registry-under-custom-registry-configuration"
+            }
+          }
+        }
+      ]
+  - name: Github Container Registry
+    variable: ghcrRegistry
+    category: registry
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
+    description: ""
+    onePager: "The GitHub Container registry allows you to host and manage your Docker container images in your personal or organisation account on GitHub."
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#ghcrRegistry",
+        "type": "object",
+        "title": "Github Container Registry",
+        "properties": {
+          "displayName": {
+            "$id": "#/properties/displayName",
+            "type": "string",
+            "title": "Display Name",
+            "default": "Github Container Registry"
+          },
+          "credentials": {
+            "$id": "#/properties/config",
+            "type": "object",
+            "title": "Credentials",
+            "properties": {
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "URL",
+                "default": "ghcr.io"
+              },
+              "login": {
+                "$id": "#/properties/login",
+                "type": "string",
+                "title": "Login"
+              },
+              "encryptedDockerconfigjson": {
+                "$id": "#/properties/encryptedDockerconfigjson",
+                "type": "string",
+                "title": "encryptedDockerconfigjson"
+              }
+            }
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#ghcrRegistry"
+          ],
+          "uiSchema": {
+            "#ghcrRegistry": {
+              "credentials": {
+                "ui:field": "registryWidget"
+              }
+            }
+          },
+          "metaData": {
+            "link": {
+              "label": "Github Container Registry",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#git-hub-container-registry-settings-in-gimlet"
+            }
+          }
+        }
+      ]
+  - name: Docker Hub
+    variable: dockerhubRegistry
+    category: registry
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/registry.svg
+    description: ""
+    onePager: "Docker Hub is a container registry built for developers and open source contributors to find, use, and share their container images."
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#dockerhubRegistry",
+        "type": "object",
+        "title": "Docker Hub",
+        "properties": {
+                    "displayName": {
+            "$id": "#/properties/displayName",
+            "type": "string",
+            "title": "Display Name",
+            "default": "Docker Hub"
+          },
+          "credentials": {
+            "$id": "#/properties/config",
+            "type": "object",
+            "title": "Credentials",
+            "properties": {
+              "url": {
+                "$id": "#/properties/url",
+                "type": "string",
+                "title": "URL",
+                "default": "https://index.docker.io/v1/"
+              },
+              "login": {
+                "$id": "#/properties/login",
+                "type": "string",
+                "title": "Login"
+              },
+              "encryptedDockerconfigjson": {
+                "$id": "#/properties/encryptedDockerconfigjson",
+                "type": "string",
+                "title": "encryptedDockerconfigjson"
+              }
+            }
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#dockerhubRegistry"
+          ],
+          "uiSchema": {
+            "#dockerhubRegistry": {
+              "credentials": {
+                "ui:field": "registryWidget"
+              }
+            }
+          },
+          "metaData": {
+            "link": {
+              "label": "Docker Hub",
+              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#integrate-docker-hub"
+            }
+          }
         }
       ]
 changeLog: |
-  - 🍏 Upgraded loki version to 2.9.3
-
+  - ❗ Upgraded Loki version to 2.9.3, we dropped support for S3 storage for the time being
+  - 🍏 Updated Ingress Nginx 1.9.5 => 1.11.1, just a regular update
+  - 🍏 Updated Cert-Manager v1.13.3 => v1.15.2, regular update with one caveat if you run strict compliance on your cluster
+       uses a new OCI image called "startupapicheck", instead of the ctl image. If you run in an environment in which images cannot be pulled, be sure to include the new image.
+  - 🍏 Prometheus v2.48.1 => v2.54.0
+  - 🍏 Upgrade event-exporter from version v0.11 to v1.7, transitioning to a forked version since the original repository has been archived.
+  - 🍏 Sealed Secrets update
+  - 🍏 External Secrets update
+  - 🆕 Github Container Registry support
+  - 🆕 Docker Hub Registry support
+  - ❗ Docker Image Registry renamed to Built-in registry
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
@@ -1263,8 +1373,8 @@ message: |
   - and to give you best practices
 
   Now that you generated Kubernetes resources from your stack, 
-  maybe you are interested in how to manage it in the future
+  you can check out how to manage it in the future
 
-  👉 https://gimlet.io/docs/managing-infrastructure-components
+  👉 https://gimlet.io/docs/environment-settings/component-updates
 
   Onwards!

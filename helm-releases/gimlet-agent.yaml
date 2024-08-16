@@ -12,31 +12,48 @@ metadata:
 rules:
 - apiGroups:
     - networking.k8s.io
-    - apps
     - ""
-    - source.toolkit.fluxcd.io
-    - kustomize.toolkit.fluxcd.io
-    - helm.toolkit.fluxcd.io
   resources:
     - pods
     - pods/log
     - ingresses
-    - deployments
     - services
     - events
-    - gitrepositories
-    - kustomizations
-    - helmreleases
+    - secrets # image builder to know if it needs to mount self-signed registry certs
   verbs:
     - get
     - watch
     - list
+- apiGroups:
+    - apps
+  resources:
+    - deployments
+  verbs:
+    - get
+    - watch
+    - list
+    - patch # to allow restarting of deployments
 - apiGroups:
     - batch
   resources:
     - jobs
   verbs:
     - create
+- apiGroups:
+    - source.toolkit.fluxcd.io
+    - kustomize.toolkit.fluxcd.io
+    - helm.toolkit.fluxcd.io
+  resources:
+    - gitrepositories
+    - ocirepositories
+    - buckets
+    - kustomizations
+    - helmreleases
+  verbs:
+    - get
+    - watch
+    - list
+    - patch # to allow force reconciling by adding an annotation
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -62,7 +79,7 @@ spec:
   chart:
     spec:
       chart: onechart
-      version: 0.60.0
+      version: 0.66.0
       sourceRef:
         kind: HelmRepository
         name: onechart
@@ -71,7 +88,7 @@ spec:
     serviceAccount: gimlet-agent
     image:
       repository: ghcr.io/gimlet-io/gimlet
-      tag: agent-v0.24.0
+      tag: agent-v1.0.0-beta.3
       pullPolicy: IfNotPresent
     vars:
       HOST: {{ .gimletAgent.dashboardAddress }}

@@ -26,15 +26,15 @@ metadata:
   namespace: infrastructure
 data:
   config.yaml: |
+    logLevel: trace
     logFormat: json
-    trottlePeriod: 5
     route:
       routes:
         - match:
             - receiver: "dump"
     receivers:
       - name: "dump"
-        stdout: { }
+        stdout: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -52,7 +52,7 @@ spec:
       serviceAccountName: event-exporter
       containers:
         - name: event-exporter
-          image: ghcr.io/opsgenie/kubernetes-event-exporter:v0.11
+          image: ghcr.io/resmoio/kubernetes-event-exporter:v1.7
           imagePullPolicy: IfNotPresent
           args:
             - -conf=/data/config.yaml

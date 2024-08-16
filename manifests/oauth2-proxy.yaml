@@ -1,4 +1,5 @@
 {{ if .oauth2Proxy.enabled -}}
+{{ $host := default false .nginx.enabled | ternary .nginx.host .existingIngress.host -}}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -70,16 +71,20 @@ spec:
             timeoutSeconds: 2
             failureThreshold: 2
         - name: oauth2-proxy
-          image: quay.io/oauth2-proxy/oauth2-proxy:v7.1.2
+          image: quay.io/oauth2-proxy/oauth2-proxy:v7.6.0
           args:
             - --provider=github
             - --email-domain=*
+            {{- if .oauth2Proxy.org }}
             - --github-org={{ .oauth2Proxy.org }}
+            {{- end }}
+            {{- if .oauth2Proxy.user }}
             - --github-user={{ .oauth2Proxy.user }}
+            {{- end }}
             - --upstream=file:///dev/null
             - --upstream=http://localhost/redirect/
             - --http-address=0.0.0.0:4180
-            - --cookie-domain=.{{ .nginx.host }}
+            - --cookie-domain={{ regexReplaceAll "^-[^.]*" $host "" }}
             - --footer=-
           envFrom:
             - secretRef:
@@ -108,22 +113,27 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  {{- if .certManager.enabled }}
   annotations:
+  {{- if .nginx.enabled }}
+    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt
+  {{- end }}
+  {{- if and .existingIngress.enabled .existingIngress.ingressAnnotations }}
+    {{- range $key, $value := .existingIngress.ingressAnnotations }}
+    {{ printf "%s: %s" $key $value }}
+    {{- end }}
   {{- end }}
   name: oauth2-proxy
   namespace: infrastructure
 spec:
-  ingressClassName: {{ default false .nginx.enabled | ternary "nginx" "traefik" }}
   {{- if .certManager.enabled }}
   tls:
     - secretName: tls-oauth2-proxy
       hosts:
-        - "auth.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}"
+        - "auth{{ $host }}"
   {{- end }}
   rules:
-    - host: "auth.{{ default false .nginx.enabled | ternary .nginx.host .civo.host }}"
+    - host: "auth{{ $host }}"
       http:
         paths:
           - path: /
@@ -134,13 +144,16 @@ spec:
                 port:
                   name: "http"
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
 metadata:
   name: oauth2-proxy
   namespace: infrastructure
-stringData:
-  OAUTH2_PROXY_CLIENT_ID: {{ .oauth2Proxy.clientID }}
-  OAUTH2_PROXY_CLIENT_SECRET: {{ .oauth2Proxy.clientSecret }}
-  OAUTH2_PROXY_COOKIE_SECRET: {{ .oauth2Proxy.cookieSecret }}
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+spec:
+  encryptedData:
+    OAUTH2_PROXY_CLIENT_ID: {{ .oauth2Proxy.clientID }}
+    OAUTH2_PROXY_CLIENT_SECRET: {{ .oauth2Proxy.clientSecret }}
+    OAUTH2_PROXY_COOKIE_SECRET: {{ .oauth2Proxy.cookieSecret }}
 {{- end }}
