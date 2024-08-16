@@ -1394,6 +1394,8 @@ components:
 changeLog: |
 
   - 🍏 Upgrade event-exporter from version v0.11 to v1.7, transitioning to a forked version since the original repository has been archived.
+  - 🆕 Docker Hub Registry support
+  - ❗ Docker Image Registry renamed to Built-in registry
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
