@@ -1396,6 +1396,7 @@ changeLog: |
   - 🍏 Updated Cert-Manager v1.13.3 => v1.15.2, regular update with one caveat if you run strict compliance on your cluster
        uses a new OCI image called "startupapicheck", instead of the ctl image. If you run in an environment in which images cannot be pulled, be sure to include the new image.
   - 🍏 Prometheus v2.48.1 => v2.54.0
+  - 🍏 Upgrade event-exporter from version v0.11 to v1.7, transitioning to a forked version since the original repository has been archived.
   - 🆕 Github Container Registry support
   - 🆕 Docker Hub Registry support
   - ❗ Docker Image Registry renamed to Built-in registry
