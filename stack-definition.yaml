@@ -1349,20 +1349,7 @@ components:
         }
       ]
 changeLog: |
-  - ❗ BREAKING CHANGE: this version of stack supports Gimlet v1.0.0-beta.1 and above
-  - ❗ Upgraded Loki version to 2.9.3, we dropped support for S3 storage for the time being
-  - ❗ Docker Image Registry renamed to Built-in registry
-  - 🍏 Updated Ingress Nginx 1.9.5 => 1.11.1, just a regular update
-  - 🍏 Updated Cert-Manager v1.13.3 => v1.15.2, regular update with one caveat if you run strict compliance on your cluster
-       uses a new OCI image called "startupapicheck", instead of the ctl image. If you run in an environment in which images cannot be pulled, be sure to include the new image.
-  - 🍏 Prometheus v2.48.1 => v2.54.0
-  - 🍏 Upgrade event-exporter from version v0.11 to v1.7, transitioning to a forked version since the original repository has been archived.
-  - 🍏 Sealed Secrets update
-  - 🍏 External Secrets update
-  - 🆕 Github Container Registry support
-  - 🆕 Docker Hub Registry support
-  - 🆕 Custom Registry support
-  - 🆕 Existing Ingress support
+  - ❗ FIX: Updated sealed-secrets version format 
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
