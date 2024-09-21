@@ -1419,7 +1419,7 @@ components:
           "uiSchema": {
             "#postgresql": {
               "encryptedPostgresPassword": {
-                "ui:field": "sealedSecretWidget"
+                "ui:field": "encryptedWidget"
               }
             }
           },
