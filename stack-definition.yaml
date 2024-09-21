@@ -127,7 +127,7 @@ components:
           "metaData": {
             "link": {
               "label": "Setting DNS records",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/dns#configure-an-ingress-controller"
+              "href": "https://gimlet.io/docs/deployment-settings/dns#configure-an-ingress-controller"
             }
           }
         }
@@ -248,7 +248,7 @@ components:
           "metaData": {
             "link": {
               "label": "cert-manager",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/https"
+              "href": "https://gimlet.io/docs/deployment-settings/https"
             }
           }
         }
@@ -328,7 +328,7 @@ components:
           "metaData": {
             "link": {
               "label": "Configuring existing ingress",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/dns#integrate-an-existing-ingress"
+              "href": "https://gimlet.io/docs/deployment-settings/dns#integrate-an-existing-ingress"
             }
           }
         }
@@ -411,7 +411,7 @@ components:
           "metaData": {
             "link": {
               "label": "Setting up and Querying Loki",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/monitoring/loki"
+              "href": "https://gimlet.io/docs/monitoring/loki"
             }
           }
         }
@@ -652,7 +652,7 @@ components:
           "metaData": {
             "link": {
               "label": "Setting up and Querying Prometheus",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/monitoring/prometheus"
+              "href": "https://gimlet.io/docs/monitoring/prometheus"
             }
           }
         }
@@ -762,7 +762,7 @@ components:
           "metaData": {
             "link": {
               "label": "Encrypted Secrets",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/secrets"
+              "href": "https://gimlet.io/docs/deployment-settings/secrets"
             }
           }
         }
@@ -950,7 +950,7 @@ components:
           "metaData": {
             "link": {
               "label": "Social Authentication",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/social-authentication"
+              "href": "https://gimlet.io/docs/deployment-settings/social-authentication"
             }
           }
         }
@@ -1141,7 +1141,7 @@ components:
           "metaData": {
             "link": {
               "label": "Containerized Registry",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#built-in-registry"
+              "href": "https://gimlet.io/docs/deployment-settings/registries#built-in-registry"
             }
           }
         }
@@ -1213,7 +1213,7 @@ components:
           "metaData": {
             "link": {
               "label": "Custom Registries",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#integrate-any-registry-under-custom-registry-configuration"
+              "href": "https://gimlet.io/docs/deployment-settings/registries#integrate-any-registry-under-custom-registry-configuration"
             }
           }
         }
@@ -1278,7 +1278,7 @@ components:
           "metaData": {
             "link": {
               "label": "Github Container Registry",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#git-hub-container-registry-settings-in-gimlet"
+              "href": "https://gimlet.io/docs/deployment-settings/registries#git-hub-container-registry-settings-in-gimlet"
             }
           }
         }
@@ -1343,7 +1343,7 @@ components:
           "metaData": {
             "link": {
               "label": "Docker Hub",
-              "href": "https://gimlet-documentation-home-page-revamp-emxxuioo.gimlet.app/docs/deployment-settings/registries#integrate-docker-hub"
+              "href": "https://gimlet.io/docs/deployment-settings/registries#integrate-docker-hub"
             }
           }
         }
