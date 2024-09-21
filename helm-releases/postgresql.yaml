@@ -1,9 +1,9 @@
 {{ if .postgresql.enabled -}}
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: redis
+  name: postgresql
   namespace: infrastructure
 spec:
   interval: 60m

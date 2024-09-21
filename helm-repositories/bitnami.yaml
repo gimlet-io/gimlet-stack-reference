@@ -8,4 +8,4 @@ metadata:
 spec:
   interval: 60m
   url: https://charts.bitnami.com/bitnami
-{{- end }}
+{{ end }}
