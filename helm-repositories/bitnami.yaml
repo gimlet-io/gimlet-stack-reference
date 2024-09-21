@@ -1,4 +1,4 @@
-{{ if or .gimlet.postgresql.install (or .gimletd.postgresql.install .gimletDashboard.postgresql.install) -}}
+{{ if .postgresql.enabled -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository

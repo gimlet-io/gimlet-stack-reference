@@ -18,6 +18,8 @@ categories:
     id: autoscaling
   - name: "Terraform"
     id: terraform
+  - name: "Databases"
+    id: databases
 components:
   - name: Nginx
     variable: nginx
@@ -1298,7 +1300,7 @@ components:
         "type": "object",
         "title": "Docker Hub",
         "properties": {
-                    "displayName": {
+          "displayName": {
             "$id": "#/properties/displayName",
             "type": "string",
             "title": "Display Name",
@@ -1362,7 +1364,7 @@ components:
         "$id": "#tofuController",
         "type": "object",
         "title": "Terraform/OpenTofu workflows",
-        "description": "A GitOps OpenTofu and Terraform controller for Flux",
+        "description": "A gitops OpenTofu and Terraform controller for Flux",
         "properties": {
           "enabled": {
             "$id": "#/properties/enabled",
@@ -1382,9 +1384,52 @@ components:
           "metaData": {}
         }
       ]
+  - name: PostgreSQL
+    variable: postgresql
+    category: databases
+    logo: https://www.postgresql.org/media/img/about/press/elephant.png
+    description: ""
+    onePager: ""
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#postgresql",
+        "type": "object",
+        "title": "PostgreSQL",
+        "description": "",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "encryptedPostgresPassword": {
+            "$id": "#/properties/encryptedPostgresPassword",
+            "type": "string",
+            "title": "Password for the postgres user"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#postgresql"
+          ],
+          "uiSchema": {
+            "#postgresql": {
+              "encryptedPostgresPassword": {
+                "ui:field": "sealedSecretWidget"
+              }
+            }
+          },
+          "metaData": {}
+        }
+      ]
 changeLog: |
   - ❗ FIX: Updated sealed-secrets version format 
   - 🆕 tofu-controller for Terraform/Tofu workflows
+  - 🆕 PostgreSQL added. See https://gimlet.io/docs/databases/postgresql for workflow
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
