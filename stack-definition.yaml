@@ -16,6 +16,8 @@ categories:
     id: secrets
   - name: "Autoscaling"
     id: autoscaling
+  - name: "Terraform"
+    id: terraform
 components:
   - name: Nginx
     variable: nginx
@@ -1348,8 +1350,41 @@ components:
           }
         }
       ]
+  - name: Terraform/OpenTofu workflows
+    variable: tofuController
+    category: terraform
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/tofu.png
+    description: ""
+    onePager: ""
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#tofuController",
+        "type": "object",
+        "title": "Terraform/OpenTofu workflows",
+        "description": "A GitOps OpenTofu and Terraform controller for Flux",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#tofuController"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
 changeLog: |
   - ❗ FIX: Updated sealed-secrets version format 
+  - 🆕 tofu-controller for Terraform/Tofu workflows
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
