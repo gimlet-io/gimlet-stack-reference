@@ -10,10 +10,12 @@ spec:
   releaseName: tofu-controller
   chart:
     spec:
-      chart: tofu-controller
+      chart: tf-controller
       version: v0.16.0-rc.4
       sourceRef:
         kind: HelmRepository
         name: tofu-controller
       interval: 10m
+  values:
+    fullnameOverride: tofu-controller
 {{- end }}
