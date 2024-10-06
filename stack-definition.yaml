@@ -1349,7 +1349,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Gimlet Agent to beta.14, if deployed with Gimlet beta.14 enables support for Docker build contexts and error handling
+  - 🍏 Gimlet Agent to beta.14, if deployed with Gimlet beta.14 enables support for Docker build contexts and better error handling
   - 🐛 fix: updated sealed-secrets version format 
 message: |
 
