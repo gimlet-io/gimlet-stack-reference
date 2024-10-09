@@ -1349,8 +1349,7 @@ components:
         }
       ]
 changeLog: |
-  - 🍏 Gimlet Agent to beta.14, if deployed with Gimlet beta.14 enables support for Docker build contexts and better error handling
-  - 🐛 fix: updated sealed-secrets version format 
+  - 🐛 fix: Sealed Secrets CRD moved to dependencies. It often prevented applying the gitops repo on new clusters.
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
