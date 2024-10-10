@@ -1349,7 +1349,7 @@ components:
         }
       ]
 changeLog: |
-  - 🐛 fix: Sealed Secrets CRD moved to dependencies. It often prevented applying the gitops repo on new clusters.
+  - 🐛 fix: added missing permissions that are needed by the Gimlet footer.
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
