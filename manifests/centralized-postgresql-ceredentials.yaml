@@ -4,10 +4,9 @@ kind: ConfigMap
 metadata:
   name: centralized-postgresql-admin-creds
   namespace: flux-system
-spec:
-  data:
-    host: {{ .centralizedPostgresql.host }}
-    admin_username: {{ .centralizedPostgresql.adminUsername }}
+data:
+  host: {{ .centralizedPostgresql.host }}
+  admin_username: {{ .centralizedPostgresql.adminUsername }}
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
