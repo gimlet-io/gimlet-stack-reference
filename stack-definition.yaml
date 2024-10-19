@@ -1383,7 +1383,7 @@ components:
         }
       ]
   - name: Centralized PostgreSQL
-    variable: postgresqlDatabase
+    variable: centralizedPostgresql
     category: tofu
     logo: https://www.postgresql.org/media/img/about/press/elephant.png
     description: "Access details of yoru centralized Postgresql instance"
@@ -1396,16 +1396,11 @@ components:
         "title": "Centralized PostgreSQL",
         "description": "",
         "properties": {
-          "enabled": {
-            "$id": "#/properties/enabled",
-            "type": "boolean",
-            "title": "Enabled"
-          },
           "host": {
             "$id": "#/properties/host",
             "type": "string",
             "title": "Host address",
-            "description": "IP address or host name without port"
+            "description": "IP address or host name without port."
           },
           "adminUsername": {
             "$id": "#/properties/adminUsername",
