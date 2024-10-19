@@ -1405,7 +1405,7 @@ components:
             "$id": "#/properties/host",
             "type": "string",
             "title": "Host address",
-            "description": "eg.: TODO"
+            "description": "IP address or host name without port"
           },
           "adminUsername": {
             "$id": "#/properties/adminUsername",
