@@ -1404,7 +1404,7 @@ components:
           "host": {
             "$id": "#/properties/host",
             "type": "string",
-            "title": "Host address"
+            "title": "Host address",
             "description": "eg.: TODO"
           },
           "adminUsername": {
