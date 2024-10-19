@@ -16,7 +16,7 @@ categories:
     id: secrets
   - name: "Autoscaling"
     id: autoscaling
-  - name: "Tofu"
+  - name: "OpenTofu"
     id: tofu
 components:
   - name: Nginx
@@ -1393,7 +1393,7 @@ components:
         "$schema": "http://json-schema.org/draft-07/schema",
         "$id": "#postgresql",
         "type": "object",
-        "title": "PostgreSQL",
+        "title": "Centralized PostgreSQL",
         "description": "",
         "properties": {
           "enabled": {
@@ -1404,7 +1404,8 @@ components:
           "host": {
             "$id": "#/properties/host",
             "type": "string",
-            "title": "Host address, eg.: TODO"
+            "title": "Host address"
+            "description": "eg.: TODO"
           },
           "adminUsername": {
             "$id": "#/properties/adminUsername",
@@ -1427,7 +1428,7 @@ components:
           "uiSchema": {
             "#postgresql": {
               "adminPassword": {
-                "ui:field": "encryptedWidget"
+                "ui:field": "encryptedSingleLineWidget"
               }
             }
           },
