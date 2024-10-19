@@ -16,5 +16,6 @@ metadata:
   annotations:
     sealedsecrets.bitnami.com/cluster-wide: "true"
 spec:
-  admin_password: {{ .centralizedPostgresql.adminPassword }}
+  encryptedData:
+    admin_password: {{ .centralizedPostgresql.adminPassword }}
 {{- end }}
