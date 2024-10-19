@@ -16,10 +16,8 @@ categories:
     id: secrets
   - name: "Autoscaling"
     id: autoscaling
-  - name: "Terraform"
-    id: terraform
-  - name: "Databases"
-    id: databases
+  - name: "Tofu"
+    id: tofu
 components:
   - name: Nginx
     variable: nginx
@@ -1352,9 +1350,9 @@ components:
           }
         }
       ]
-  - name: Terraform/OpenTofu workflows
+  - name: OpenTofu workflows
     variable: tofuController
-    category: terraform
+    category: tofu
     logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/tofu.png
     description: ""
     onePager: ""
@@ -1384,11 +1382,11 @@ components:
           "metaData": {}
         }
       ]
-  - name: PostgreSQL
-    variable: postgresql
-    category: databases
+  - name: Centralized PostgreSQL
+    variable: postgresqlDatabase
+    category: tofu
     logo: https://www.postgresql.org/media/img/about/press/elephant.png
-    description: ""
+    description: "Access details of yoru centralized Postgresql instance"
     onePager: ""
     schema: |-
       {
@@ -1403,10 +1401,20 @@ components:
             "type": "boolean",
             "title": "Enabled"
           },
-          "encryptedPostgresPassword": {
-            "$id": "#/properties/encryptedPostgresPassword",
+          "host": {
+            "$id": "#/properties/host",
             "type": "string",
-            "title": "Password for the postgres user"
+            "title": "Host address, eg.: TODO"
+          },
+          "adminUsername": {
+            "$id": "#/properties/adminUsername",
+            "type": "string",
+            "title": "Admin Username"
+          },
+          "adminPassword": {
+            "$id": "#/properties/adminPassword",
+            "type": "string",
+            "title": "Admin Password"
           }
         }
       }
@@ -1418,7 +1426,7 @@ components:
           ],
           "uiSchema": {
             "#postgresql": {
-              "encryptedPostgresPassword": {
+              "adminPassword": {
                 "ui:field": "encryptedWidget"
               }
             }
