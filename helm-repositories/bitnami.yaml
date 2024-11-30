@@ -1,4 +1,4 @@
-{{ if or .gimlet.postgresql.install (or .gimletd.postgresql.install .gimletDashboard.postgresql.install) -}}
+{{ if .postgresql.enabled -}}
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
@@ -8,4 +8,4 @@ metadata:
 spec:
   interval: 60m
   url: https://charts.bitnami.com/bitnami
-{{- end }}
+{{ end }}

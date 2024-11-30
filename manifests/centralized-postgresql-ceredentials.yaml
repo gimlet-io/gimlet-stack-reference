@@ -1,0 +1,21 @@
+{{ if .centralizedPostgresql -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: centralized-postgresql-admin-creds
+  namespace: flux-system
+data:
+  host: {{ .centralizedPostgresql.host }}
+  admin_username: {{ .centralizedPostgresql.adminUsername }}
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: centralized-postgresql-admin-creds
+  namespace: flux-system
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+spec:
+  encryptedData:
+    admin_password: {{ .centralizedPostgresql.adminPassword }}
+{{- end }}

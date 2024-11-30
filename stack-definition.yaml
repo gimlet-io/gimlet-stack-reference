@@ -16,6 +16,8 @@ categories:
     id: secrets
   - name: "Autoscaling"
     id: autoscaling
+  - name: "OpenTofu"
+    id: tofu
 components:
   - name: Nginx
     variable: nginx
@@ -1296,7 +1298,7 @@ components:
         "type": "object",
         "title": "Docker Hub",
         "properties": {
-                    "displayName": {
+          "displayName": {
             "$id": "#/properties/displayName",
             "type": "string",
             "title": "Display Name",
@@ -1348,8 +1350,88 @@ components:
           }
         }
       ]
+  - name: OpenTofu workflows
+    variable: tofuController
+    category: tofu
+    logo: https://raw.githubusercontent.com/gimlet-io/gimlet-stack-reference/main/assets/tofu.png
+    description: ""
+    onePager: ""
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#tofuController",
+        "type": "object",
+        "title": "Terraform/OpenTofu workflows",
+        "description": "A gitops OpenTofu and Terraform controller for Flux",
+        "properties": {
+          "enabled": {
+            "$id": "#/properties/enabled",
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#tofuController"
+          ],
+          "uiSchema": {
+          },
+          "metaData": {}
+        }
+      ]
+  - name: Centralized PostgreSQL
+    variable: centralizedPostgresql
+    category: tofu
+    logo: https://www.postgresql.org/media/img/about/press/elephant.png
+    description: "Access details of yoru centralized Postgresql instance"
+    onePager: ""
+    schema: |-
+      {
+        "$schema": "http://json-schema.org/draft-07/schema",
+        "$id": "#postgresql",
+        "type": "object",
+        "title": "Centralized PostgreSQL",
+        "description": "",
+        "properties": {
+          "host": {
+            "$id": "#/properties/host",
+            "type": "string",
+            "title": "Host address",
+            "description": "IP address or host name without port."
+          },
+          "adminUsername": {
+            "$id": "#/properties/adminUsername",
+            "type": "string",
+            "title": "Admin Username"
+          },
+          "adminPassword": {
+            "$id": "#/properties/adminPassword",
+            "type": "string",
+            "title": "Admin Password"
+          }
+        }
+      }
+    uiSchema: |-
+      [
+        {
+          "schemaIDs": [
+            "#postgresql"
+          ],
+          "uiSchema": {
+            "#postgresql": {
+              "adminPassword": {
+                "ui:field": "encryptedSingleLineWidget"
+              }
+            }
+          },
+          "metaData": {}
+        }
+      ]
 changeLog: |
-  - 🐛 fix: added missing permissions that are needed by the Gimlet footer.
+  - 🆕 tofu-controller for Terraform/Tofu workflows
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
