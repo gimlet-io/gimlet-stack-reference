@@ -1349,7 +1349,7 @@ components:
         }
       ]
 changeLog: |
-  - 🐛 fix: added missing permissions that are needed by the Gimlet footer.
+  - 🍏 Gimlet Agent update
 message: |
 
   Hey 👋 Laszlo here, the founder of Gimlet.io
